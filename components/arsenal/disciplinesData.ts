@@ -29,16 +29,16 @@ export const disciplines: Discipline[] = [
   {
     id: "ninjutsu",
     pathNumber: "01",
-    shinobiTitle: "NINJUTSU",
-    disciplineName: "Ninjutsu: Full-Stack Architecture",
-    category: "CODE & WEB CRAFT",
+    shinobiTitle: "PATH 01 · DEVELOPMENT",
+    disciplineName: "Development: Web & Full-Stack",
+    category: "DEVELOPMENT & WEB CRAFT",
     motto: "BUILD.",
     kanji: "忍",
-    tagline: "Engineering responsive interfaces, scalable applications and complete digital experiences.",
+    tagline: "Building responsive websites, web applications and useful software.",
     description:
-      "Crafting high-performance web systems with modern React, Next.js, and TypeScript architectures. Emphasizing clean component separation, relational data modeling, type-safe API boundaries, and responsive editorial styling.",
+      "Engineering responsive web systems using modern React, Next.js, and TypeScript architectures. Focusing on clean code, reliable backend connections, and modern user interfaces.",
     philosophy:
-      "Write clean code, structure resilient architectures, and deliver user-centric software with discipline and precision.",
+      "Write clean code, structure reliable components, and deliver useful software with precision.",
     primaryTags: ["REACT", "NEXT.JS", "TYPESCRIPT", "NODE.JS", "POSTGRESQL"],
     skills: [
       { name: "React", status: "USED IN PROJECTS", context: "MGS Jewellery, GMU Connect, Bayora Sec" },
@@ -60,16 +60,16 @@ export const disciplines: Discipline[] = [
   {
     id: "genjutsu",
     pathNumber: "02",
-    shinobiTitle: "GENJUTSU",
-    disciplineName: "Genjutsu: Neural Networks & AI",
-    category: "MACHINE INTELLIGENCE",
+    shinobiTitle: "PATH 02 · ARTIFICIAL INTELLIGENCE",
+    disciplineName: "Artificial Intelligence: Applied Machine Learning",
+    category: "APPLIED AI & MACHINE LEARNING",
     motto: "THINK.",
     kanji: "幻",
-    tagline: "Exploring applied machine learning, intelligent applications and AI-powered systems.",
+    tagline: "Exploring machine learning, AI applications and intelligent systems.",
     description:
-      "Investigating applied machine learning pipelines, deep learning computer vision for medical diagnostics, intelligent document gap analysis, and secure LLM integration within production web interfaces.",
+      "Exploring applied machine learning workflows, deep learning for medical image analysis (Diabetic Retinopathy Detection), and practical LLM integration within web applications.",
     philosophy:
-      "Deconstruct complex data patterns, harness cognitive reasoning, and integrate intelligent models responsibly and ethically.",
+      "Understand data patterns, test models carefully, and integrate intelligent systems responsibly.",
     primaryTags: ["PYTHON", "APPLIED ML", "COMPUTER VISION", "LLM INTEGRATION", "AI SAFETY"],
     skills: [
       { name: "Python", status: "USED IN PROJECTS", context: "Diabetic Retinopathy & AI Modeling" },
@@ -90,16 +90,16 @@ export const disciplines: Discipline[] = [
   {
     id: "dojutsu",
     pathNumber: "03",
-    shinobiTitle: "DOJUTSU",
-    disciplineName: "Dojutsu: Defensive Security & Red Teaming",
-    category: "SYSTEMS DEFENSE",
+    shinobiTitle: "PATH 03 · CYBERSECURITY",
+    disciplineName: "Cybersecurity: Defensive Security & Analysis",
+    category: "DEFENSIVE CYBERSECURITY",
     motto: "DEFEND.",
     kanji: "瞳",
-    tagline: "Developing practical cybersecurity knowledge through network analysis and security monitoring.",
+    tagline: "Learning network security, security monitoring and application security.",
     description:
-      "Pursuing MCA Cybersecurity specialization at GM University. Studying Security Operations Center (SOC) fundamentals, Wireshark packet capture analysis, DNS protocol scrutiny, and zero-trust evaluation of machine learning systems.",
+      "Pursuing MCA Cybersecurity at GM University. Studying network security, Wireshark packet capture analysis, DNS protocol scrutiny, and secure software practices.",
     philosophy:
-      "Observe every packet, anticipate attack surfaces, and enforce zero-trust defense across distributed perimeters.",
+      "Analyze network traffic carefully, understand security fundamentals, and build defensible systems.",
     primaryTags: ["WIRESHARK", "TSHARK", "TCP/IP PROTOCOLS", "DNS SCRUTINY", "SOC OPERATIONS"],
     skills: [
       { name: "Wireshark Packet Analysis", status: "PRACTISED IN LABS", context: "MCA Lab Deep Packet Capture Scrutiny" },

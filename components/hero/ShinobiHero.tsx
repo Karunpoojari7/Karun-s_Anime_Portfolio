@@ -58,7 +58,7 @@ export default function ShinobiHero() {
             className="hero-manifesto-block border-l-2 border-red-500/80 pl-4 py-1.5 my-3 bg-red-950/15 rounded-r"
           >
             <p className="hero-manifesto-text text-sm sm:text-base text-neutral-300 font-sans italic leading-relaxed">
-              &ldquo;I turn ideas into resilient digital systems — engineering high-performance web applications, exploring applied artificial intelligence, and mastering defensive cybersecurity to safeguard the technologies we rely on.&rdquo;
+              &ldquo;I build web applications, explore artificial intelligence and develop practical cybersecurity skills.&rdquo;
             </p>
           </motion.div>
 
