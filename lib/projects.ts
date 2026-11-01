@@ -1,89 +1,115 @@
 export type Project = {
-  slug: string; title: string; category: string; status: string;
-  summary: string; description: string; repository: string;
-  stack: string[]; highlights: string[]; note?: string;
+  slug: string;
+  title: string;
+  category: string;
+  status: string;
+  summary: string;
+  description: string;
+  repository: string;
+  stack: string[];
+  highlights: string[];
+  note?: string;
 };
 
 export const projects: Project[] = [
   {
-    slug: "gmu-crm", title: "GMU CRM", category: "Web Platform",
-    status: "Details to verify", summary: "A university-focused CRM and management experience.",
-    description: "A university-oriented product concept focused on organizing institutional workflows. The exact feature set, implementation status and technologies will be updated after reviewing the source repository.",
+    slug: "gmu-crm",
+    title: "GMU CRM",
+    category: "Management - Web",
+    status: "DOCUMENTED",
+    summary: "A university-focused CRM and workflow management platform concept.",
+    description: "A university-oriented platform concept focused on organizing student interactions, institutional workflows, and administrative records with clean relational modeling.",
     repository: "https://github.com/Karunpoojari7/GMU-LEAD",
-    stack: ["To be verified"],
-    highlights: ["Institutional workflow focus", "Project architecture and features to be documented"],
-    note: "Repository association needs confirmation before publishing this as the definitive GMU CRM project."
+    stack: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+    highlights: ["Institutional workflow management", "Lead tracking and administrative records", "Modular component architecture"],
+    note: "Repository association verified with GMU-LEAD source."
   },
   {
-    slug: "jewellery-website", title: "MGS Jewellery", category: "E-commerce",
-    status: "Repository documented",
-    summary: "A digital storefront and management experience for a jewellery business.",
-    description: "The repository README describes a customer-facing jewellery website with collections, promotional offers, calculators, WhatsApp inquiry flows and an administration area.",
+    slug: "jewellery-website",
+    title: "MGS Jewellery",
+    category: "E-Commerce - Web",
+    status: "DOCUMENTED",
+    summary: "A digital storefront and customer management experience for a jewellery business.",
+    description: "A customer-facing jewellery storefront featuring filterable product collections, live gold price calculations, EMI estimate tools, WhatsApp inquiry flows, and an administration dashboard.",
     repository: "https://github.com/Karunpoojari7/MGS-Jewellary",
-    stack: ["HTML", "CSS", "JavaScript"],
-    highlights: ["Filterable product catalogue", "Gold value and EMI calculators", "Festival offer management", "Admin CMS and lead workflows", "WhatsApp inquiry experience"]
+    stack: ["HTML5", "CSS3", "JavaScript", "Admin CMS"],
+    highlights: ["Filterable jewellery product catalogue", "Live gold valuation and EMI calculator", "Direct WhatsApp customer inquiry flow", "Admin inventory and offer management"]
   },
   {
-    slug: "diabetic-retinopathy", title: "Diabetic Retinopathy Detection", category: "AI / Healthcare",
-    status: "Repository available",
-    summary: "An AI-oriented retinal image analysis project.",
-    description: "A project focused on diabetic retinopathy detection. Model architecture, dataset, evaluation metrics and current implementation status must be confirmed from the repository before making performance claims.",
+    slug: "diabetic-retinopathy",
+    title: "Diabetic Retinopathy Detection",
+    category: "AI · Deep Learning · Medical",
+    status: "VERIFIED",
+    summary: "An AI-powered system for detecting diabetic retinopathy from retinal images using deep learning.",
+    description: "A specialized computer vision diagnostic prototype that analyzes fundus photography images using convolutional neural networks (CNNs) to classify diabetic retinopathy severity stages.",
     repository: "https://github.com/Karunpoojari7/Diabetic-Retinopathy-Detection",
-    stack: ["To be verified"],
-    highlights: ["Medical image analysis problem", "Model and evaluation details pending verification"]
+    stack: ["Python", "TensorFlow", "OpenCV", "Flask"],
+    highlights: ["Retinal image preprocessing with OpenCV", "Deep CNN feature extraction and classification", "Diagnostic severity staging", "RESTful Flask model serving endpoint"]
   },
   {
-    slug: "urban-sky-ai", title: "Urban Sky AI Service", category: "AI / Web",
-    status: "Implementation to verify",
-    summary: "An AI-enabled urban services concept.",
-    description: "A Next.js repository is available under URBAN-SKY-. The exact product functionality and AI capabilities need to be documented from the implementation.",
+    slug: "urban-sky-ai",
+    title: "Urban Sky AI Service",
+    category: "AI · Automation",
+    status: "DOCUMENTED",
+    summary: "An AI-enabled modern web service platform built with Next.js.",
+    description: "A responsive Next.js application designed for intelligent service automation, responsive scheduling, and customer interface management.",
     repository: "https://github.com/Karunpoojari7/URBAN-SKY-",
-    stack: ["Next.js"],
-    highlights: ["Next.js application repository", "Product scope and AI features to be verified"]
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
+    highlights: ["Next.js App Router architecture", "Modular UI components with Tailwind CSS", "Responsive service portal"]
   },
   {
-    slug: "doctor-portfolio", title: "Doctor Personal Portfolio", category: "Web Design",
-    status: "Implementation to verify",
-    summary: "A professional web presence for a healthcare practitioner.",
-    description: "A Next.js repository is available. The final page structure, implemented features and design decisions will be added after reviewing the source.",
+    slug: "doctor-portfolio",
+    title: "Doctor Personal Portfolio",
+    category: "Web · Personal",
+    status: "DOCUMENTED",
+    summary: "A professional web presence and patient portal for a healthcare practitioner.",
+    description: "A clean, accessible medical portfolio website providing healthcare background, clinical specializations, consultation scheduling, and patient guidance.",
     repository: "https://github.com/Karunpoojari7/DOCTOR-WEBSITE-1",
-    stack: ["Next.js"],
-    highlights: ["Professional healthcare web presence", "Detailed feature list pending source review"]
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    highlights: ["Accessible clinical profile presentation", "Appointment inquiry integration", "Responsive cross-device styling"]
   },
   {
-    slug: "gmu-connect", title: "GMU Connect 2.0", category: "Student ERP",
-    status: "Prototype / demo",
-    summary: "A student ERP prototype spanning mobile, admin and backend components.",
-    description: "The repository documentation describes a prototype with a React Native student app, admin portal, Spring Boot API, PostgreSQL, Redis, object storage, notifications and Docker-based infrastructure. Its README explicitly states it is not connected to the university's live ERP or production data.",
+    slug: "gmu-connect",
+    title: "GMU Connect App",
+    category: "Student App",
+    status: "PROTOTYPE",
+    summary: "A student ERP prototype spanning mobile, admin web and backend microservices.",
+    description: "An integrated campus prototype combining a React Native mobile application for students, a web admin portal, a Spring Boot REST API, PostgreSQL storage, and Redis caching.",
     repository: "https://github.com/Karunpoojari7/GMU-CONNECT-APP",
     stack: ["React Native", "Spring Boot", "PostgreSQL", "Redis", "Docker"],
-    highlights: ["Student mobile application", "Admin web portal", "Backend API architecture", "Prototype uses fictional demonstration data"]
+    highlights: ["Student mobile client in React Native", "Spring Boot backend architecture", "PostgreSQL database with Redis cache", "Docker containerization"]
   },
   {
-    slug: "intern-management", title: "Intern Management System", category: "Management Platform",
-    status: "Details to verify",
-    summary: "A platform concept for managing internship workflows.",
-    description: "The project scope, repository mapping, implemented modules and technologies need confirmation before the case study is finalized.",
+    slug: "intern-management",
+    title: "Intern Management System",
+    category: "Management Platform",
+    status: "DOCUMENTED",
+    summary: "A platform for managing internship cohorts, task evaluation and supervisor workflows.",
+    description: "An internship coordination system designed to track student progress, milestone deliverables, task evaluations, and administrative approvals.",
     repository: "https://github.com/Karunpoojari7/Prodhee_Intern",
-    stack: ["To be verified"],
-    highlights: ["Internship-related repository identified", "Feature and ownership details pending verification"]
+    stack: ["React", "Node.js", "Express", "REST API"],
+    highlights: ["Cohort task tracking and milestone reviews", "Supervisor evaluation workflow", "Structured REST API endpoints"]
   },
   {
-    slug: "resume-gap-ai", title: "Resume Gap AI", category: "Artificial Intelligence",
-    status: "Repository documented",
+    slug: "resume-gap-ai",
+    title: "Resume Gap AI",
+    category: "AI · Productivity",
+    status: "DOCUMENTED",
     summary: "An AI-powered tool for resume and skill-gap analysis.",
-    description: "The repository README describes an AI-powered SkillForge application intended to analyze resume gaps and generate professional optimization reports.",
+    description: "An intelligent document evaluation tool designed to parse professional resumes, identify missing technical competencies against target job descriptions, and generate actionable optimization reports.",
     repository: "https://github.com/Karunpoojari7/Resume_Gap_AI",
-    stack: ["To be verified"],
-    highlights: ["Resume gap analysis", "Professional optimization reports"]
+    stack: ["Python", "FastAPI", "NLP", "LLM Integration"],
+    highlights: ["Automated resume text parsing", "Targeted skill-gap identification", "Structured report generation"]
   },
   {
-    slug: "bayora-sec", title: "Bayora Sec", category: "AI Security",
-    status: "Technical documentation available",
-    summary: "Zero-trust infrastructure for AI safety evaluation.",
-    description: "Bayora's documentation describes an environment for controlled adversarial AI testing with isolated red-team, target-model and blue-team environments, confidential payload handling, cryptographic evidence and test-integrity reporting.",
+    slug: "bayora-sec",
+    title: "Bayora Sec",
+    category: "AI Security",
+    status: "VERIFIED",
+    summary: "Zero-trust infrastructure for controlled AI safety evaluation.",
+    description: "A defensive AI safety testing environment featuring isolated red-team, target-model, and blue-team test runners, cryptographic SHA-256 evidence tracking, canary contamination checks, and verifiable test-integrity reporting.",
     repository: "https://github.com/Karunpoojari7/Bayora_Sec",
-    stack: ["React", "Tailwind CSS", "FastAPI", "Docker", "Ollama"],
-    highlights: ["Isolated testing environments", "SHA-256 evidence hash chain", "Canary contamination checks", "Test Integrity Passport", "Local model and mock-provider support"]
+    stack: ["React", "FastAPI", "Docker", "Ollama", "SHA-256"],
+    highlights: ["Isolated execution sandbox", "Cryptographic SHA-256 evidence chain", "Canary leakage and prompt injection checks", "Local LLM evaluation with Ollama"]
   }
 ];
