@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import {
   Eye,
   Folder,
@@ -73,9 +72,9 @@ export default function ProjectsPage() {
   const totalNumStr = String(total).padStart(2, "0");
 
   return (
-    <main className="relative min-h-[calc(100vh-72px)] bg-black text-white selection:bg-red-900 selection:text-white overflow-x-hidden flex flex-col justify-between select-none">
+    <div className="relative min-h-[calc(100vh-72px)] lg:h-[calc(100vh-72px)] lg:overflow-hidden bg-black text-white selection:bg-red-900 selection:text-white flex flex-col justify-between select-none">
       {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Itachi, Torii Gates, Reflective Stage) */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src="/assets/itachi/tsukuyomi-stage-bg.jpg"
           alt="The Tsukuyomi Dimension Stage"
@@ -83,39 +82,40 @@ export default function ProjectsPage() {
           priority
           quality={100}
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-center filter contrast-[1.05] brightness-[0.92]"
         />
 
-        {/* Ambient Red Glow Pulse on floor & moon */}
+        {/* Controlled Ambient Red Glow (toned down from excessive haze) */}
         <div
-          className="absolute inset-0 animate-red-pulse opacity-25"
+          className="absolute inset-0 animate-red-pulse opacity-15"
           style={{
             background:
-              "radial-gradient(ellipse 65% 50% at 50% 40%, rgba(225, 29, 46, 0.35) 0%, rgba(130, 10, 22, 0.12) 50%, transparent 75%)",
+              "radial-gradient(ellipse 65% 50% at 50% 40%, rgba(225, 29, 46, 0.28) 0%, rgba(130, 10, 22, 0.08) 50%, transparent 75%)",
           }}
         />
 
-        {/* Top & Bottom edge vignettes for seamless integration */}
-        <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
+        {/* Deep Environmental Shadows and Edge Vignettes */}
+        <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.9)] z-10" />
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10" />
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/85 via-transparent to-transparent z-10" />
       </div>
 
       {/* 2. ATMOSPHERIC DRIFTING CROWS AND FEATHERS LAYER */}
       <CrowParticles />
 
       {/* 3. FOREGROUND PAGE CONTENT */}
-      <div className="relative z-20 w-full flex-1 flex flex-col justify-between pt-4 sm:pt-6 pb-4 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 w-full flex-1 flex flex-col justify-between pt-2 sm:pt-3 pb-3 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* TOP EDITORIAL HEADER & MODE SWITCHER MATCHING REFERENCE IMAGE 1 */}
-        <header className="w-full text-center space-y-2 pt-2">
+        <header className="w-full text-center space-y-1.5 shrink-0 pt-1">
           {/* Eyebrow Tag */}
-          <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-red-500 uppercase">
+          <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-red-500 uppercase font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
             PROJECTS // THE TSUKUYOMI DIMENSION
           </div>
 
           {/* Page Title */}
           <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-none"
+            className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white tracking-tight leading-none"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             The Tsukuyomi <em className="text-red-500 italic">Dimension.</em>
@@ -127,13 +127,13 @@ export default function ProjectsPage() {
           </p>
 
           {/* Dual View Mode Switcher Pills */}
-          <div className="inline-flex items-center p-1 rounded-full bg-black/80 border border-red-950/80 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.8)] mt-1">
+          <div className="inline-flex items-center p-1 rounded-full bg-black/80 border border-red-950/80 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.8)] mt-0.5">
             <button
               type="button"
               onClick={() => setViewMode("dimension")}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-full font-mono text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
                 viewMode === "dimension"
-                  ? "bg-red-950/80 border border-red-500 text-white shadow-[0_0_18px_rgba(225,29,46,0.6)]"
+                  ? "bg-red-950/80 border border-red-500 text-white shadow-[0_0_15px_rgba(225,29,46,0.5)]"
                   : "text-neutral-400 hover:text-white"
               }`}
             >
@@ -144,9 +144,9 @@ export default function ProjectsPage() {
             <button
               type="button"
               onClick={() => setViewMode("archive")}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-full font-mono text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
+              className={`flex items-center gap-2 px-3.5 py-1 rounded-full font-mono text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
                 viewMode === "archive"
-                  ? "bg-red-950/80 border border-red-500 text-white shadow-[0_0_18px_rgba(225,29,46,0.6)]"
+                  ? "bg-red-950/80 border border-red-500 text-white shadow-[0_0_15px_rgba(225,29,46,0.5)]"
                   : "text-neutral-400 hover:text-white"
               }`}
             >
@@ -160,9 +160,9 @@ export default function ProjectsPage() {
             VIEW A: TSUKUYOMI 3D AMPHITHEATER DIMENSION (REFERENCE IMAGE 1)
            ============================================================ */}
         {viewMode === "dimension" ? (
-          <div className="w-full flex-1 flex flex-col justify-between my-2">
+          <div className="w-full flex-1 flex flex-col justify-between my-1">
             {/* The 9 Floating Scrolls in Crescent Stage around Itachi */}
-            <div className="w-full flex-1 flex items-center justify-center">
+            <div className="w-full flex-1 flex items-center justify-center min-h-[380px]">
               <MissionOrbit
                 missions={projects}
                 activeIndex={currentIndex}
@@ -172,11 +172,11 @@ export default function ProjectsPage() {
             </div>
 
             {/* BOTTOM DOSSIER BAR & CAROUSEL CONTROLS */}
-            <div className="w-full max-w-6xl mx-auto space-y-3">
+            <div className="w-full max-w-6xl mx-auto space-y-2 shrink-0">
               {/* Bottom Active Mission Dossier Bar Matching Reference Image 1 */}
-              <div className="rounded-xl bg-[#080204]/94 border border-red-500/50 backdrop-blur-xl p-4 sm:p-5 shadow-[0_0_35px_rgba(225,29,46,0.25)] flex flex-col lg:flex-row items-center justify-between gap-5">
+              <div className="rounded-xl bg-[#080204]/96 border border-red-500/45 backdrop-blur-xl p-3.5 sm:p-4 shadow-[0_0_25px_rgba(225,29,46,0.2)] flex flex-col lg:flex-row items-center justify-between gap-4">
                 {/* Left: Mission Number Block */}
-                <div className="flex items-center gap-3 shrink-0 border-b lg:border-b-0 lg:border-r border-red-950/80 pb-3 lg:pb-0 lg:pr-6 w-full lg:w-auto justify-between lg:justify-start">
+                <div className="flex items-center gap-3 shrink-0 border-b lg:border-b-0 lg:border-r border-red-950/80 pb-2.5 lg:pb-0 lg:pr-5 w-full lg:w-auto justify-between lg:justify-start">
                   <div>
                     <div className="font-serif text-3xl sm:text-4xl font-bold tracking-tight">
                       <span className="text-red-500 drop-shadow-[0_0_10px_#ff263b]">{activeNumStr}</span>
@@ -191,27 +191,27 @@ export default function ProjectsPage() {
 
                 {/* Center: Title & Description */}
                 <div className="flex-1 min-w-0 space-y-1 text-center lg:text-left">
-                  <h3
-                    className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight"
+                  <h2
+                    className="text-lg sm:text-xl font-serif font-bold text-white tracking-tight"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     {currentProject.title}
-                  </h3>
+                  </h2>
                   <p className="text-xs sm:text-[13px] text-neutral-300 font-sans leading-relaxed line-clamp-2 max-w-2xl">
                     {currentProject.summary}
                   </p>
                 </div>
 
                 {/* Center-Right: Technologies with Badges */}
-                <div className="shrink-0 space-y-1.5 hidden xl:block border-l border-red-950/80 pl-6">
+                <div className="shrink-0 space-y-1 hidden xl:block border-l border-red-950/80 pl-5">
                   <div className="font-mono text-[9px] tracking-[0.25em] text-red-400 uppercase font-semibold">
                     TECHNOLOGIES
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {currentProject.stack.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#100306] border border-red-900/60 font-mono text-[11px] text-neutral-200"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#100306] border border-red-900/60 font-mono text-[11px] text-neutral-200"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_#ff263b]" />
                         {tech}
@@ -225,10 +225,10 @@ export default function ProjectsPage() {
                   <button
                     type="button"
                     onClick={() => handleOpenDossier(currentProject, currentIndex)}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded bg-gradient-to-r from-[#9e101f] to-[#e11d2e] hover:from-[#ba1425] hover:to-[#ff263b] text-white font-mono text-xs font-semibold tracking-wider transition-all duration-200 shadow-[0_0_20px_rgba(225,29,46,0.5)] cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded bg-gradient-to-r from-[#9e101f] to-[#e11d2e] hover:from-[#ba1425] hover:to-[#ff263b] text-white font-mono text-xs font-semibold tracking-wider transition-all duration-200 shadow-[0_0_18px_rgba(225,29,46,0.45)] cursor-pointer"
                   >
                     <span>Inspect Detailed Dossier</span>
-                    <ArrowUpRight size={15} />
+                    <ArrowUpRight size={14} />
                   </button>
 
                   {currentProject.repository && (
@@ -236,9 +236,9 @@ export default function ProjectsPage() {
                       href={currentProject.repository}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded border border-neutral-700/80 hover:border-red-500/70 bg-black/60 hover:bg-neutral-900 text-neutral-300 hover:text-white font-mono text-xs tracking-wider transition-colors cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2 px-3.5 py-1.5 rounded border border-neutral-700/80 hover:border-red-500/70 bg-black/60 hover:bg-neutral-900 text-neutral-300 hover:text-white font-mono text-xs tracking-wider transition-colors cursor-pointer"
                     >
-                      <Github size={14} className="text-red-400" />
+                      <Github size={13} className="text-red-400" />
                       <span>View GitHub Source</span>
                     </a>
                   )}
@@ -246,18 +246,18 @@ export default function ProjectsPage() {
               </div>
 
               {/* Bottom Carousel Controls: Prev, 9 Dots, Next */}
-              <div className="flex items-center justify-center gap-4 pt-1 pb-1">
+              <div className="flex items-center justify-center gap-4 pt-0.5 pb-0.5">
                 <button
                   type="button"
                   onClick={handlePrev}
                   aria-label="Previous Mission"
-                  className="w-8 h-8 rounded-full border border-red-950/80 bg-black/70 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                  className="w-7 h-7 rounded-full border border-red-950/80 bg-black/70 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(0,0,0,0.8)]"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={15} />
                 </button>
 
                 {/* 9 Pagination Dots */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
                   {projects.map((_, dotIdx) => {
                     const isDotActive = dotIdx === currentIndex;
                     return (
@@ -268,7 +268,7 @@ export default function ProjectsPage() {
                         aria-label={`Jump to Mission ${dotIdx + 1}`}
                         className={`transition-all duration-300 cursor-pointer ${
                           isDotActive
-                            ? "w-7 h-2 rounded-full bg-red-500 shadow-[0_0_12px_#ff263b]"
+                            ? "w-6 h-2 rounded-full bg-red-500 shadow-[0_0_12px_#ff263b]"
                             : "w-2 h-2 rounded-full bg-neutral-700 hover:bg-neutral-500"
                         }`}
                       />
@@ -280,9 +280,9 @@ export default function ProjectsPage() {
                   type="button"
                   onClick={handleNext}
                   aria-label="Next Mission"
-                  className="w-8 h-8 rounded-full border border-red-950/80 bg-black/70 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                  className="w-7 h-7 rounded-full border border-red-950/80 bg-black/70 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(0,0,0,0.8)]"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={15} />
                 </button>
               </div>
             </div>
@@ -291,7 +291,7 @@ export default function ProjectsPage() {
           /* ============================================================
               VIEW B: CLASSIFIED ARCHIVE RESPONSIVE GRID
              ============================================================ */
-          <div className="w-full flex-1 my-4">
+          <div className="w-full flex-1 my-3 overflow-y-auto max-h-[calc(100vh-220px)]">
             <ClassifiedArchive
               missions={projects}
               onOpenDossier={handleOpenDossier}
@@ -307,6 +307,6 @@ export default function ProjectsPage() {
         missionNumber={currentIndex + 1}
         onClose={() => setSelectedProject(null)}
       />
-    </main>
+    </div>
   );
 }
