@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Github, Linkedin, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   const currentYear = 2026;
@@ -15,39 +15,46 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="footer border-t border-red-950/40 bg-[#070708] text-white">
-      {/* Brand & Mission Statement */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2.5">
-          <span className="w-6 h-6 rounded-full border border-red-500/80 flex items-center justify-center font-serif text-xs text-red-500 bg-red-950/30">
-            月
-          </span>
-          <b className="font-serif text-lg tracking-wider text-white">
-            KARUN <span className="text-red-500">H G</span>
-          </b>
+    <footer className="w-full border-t border-red-950/60 bg-[#070708] text-white py-12 px-6 sm:px-8 lg:px-12 select-none relative z-30">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-white/5">
+        {/* Brand & Mission Statement */}
+        <div className="space-y-2 max-w-sm">
+          <Link href="/" className="inline-flex items-center gap-2.5 group">
+            <span className="w-7 h-7 rounded-full border border-red-500/80 flex items-center justify-center font-serif text-xs text-red-500 bg-red-950/30 shadow-[0_0_12px_rgba(225,29,46,0.4)] group-hover:scale-105 transition-transform">
+              月
+            </span>
+            <div>
+              <b className="font-serif text-base tracking-wider text-white group-hover:text-red-400 transition-colors">
+                KARUN <span className="text-red-500 font-bold">H G</span>
+              </b>
+              <small className="block font-mono text-[9px] tracking-[0.25em] text-neutral-400 uppercase">
+                THE SHINOBI DEVELOPER
+              </small>
+            </div>
+          </Link>
+          <p className="text-xs text-neutral-300 font-sans leading-relaxed">
+            Building digital products through software development, applied AI and cybersecurity.
+          </p>
         </div>
-        <p className="text-xs text-neutral-400 font-sans max-w-sm leading-relaxed">
-          Building digital products through software development, applied AI and cybersecurity.
-        </p>
-      </div>
 
-      {/* Footer Navigation & Verified Social Links */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
-        {/* Navigation Links */}
-        <nav className="flex flex-wrap items-center gap-4 text-xs font-sans text-neutral-400" aria-label="Footer Navigation">
+        {/* Footer Navigation Links */}
+        <nav
+          className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-sans text-neutral-300"
+          aria-label="Footer Navigation"
+        >
           {footerLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-red-400 transition-colors"
+              className="hover:text-red-400 transition-colors py-1"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        {/* Social Links */}
-        <div className="flex items-center gap-3 font-mono text-xs text-neutral-400">
+        {/* Verified Social Links */}
+        <div className="flex items-center gap-4 font-mono text-xs text-neutral-400">
           <a
             href="https://github.com/Karunpoojari7"
             target="_blank"
@@ -58,7 +65,7 @@ export default function Footer() {
             <Github size={14} className="text-red-400" />
             <span>GitHub</span>
           </a>
-          <span className="text-neutral-700">·</span>
+          <span className="text-neutral-700" aria-hidden="true">·</span>
           <a
             href="https://www.linkedin.com/"
             target="_blank"
@@ -69,13 +76,27 @@ export default function Footer() {
             <Linkedin size={14} className="text-red-400" />
             <span>LinkedIn</span>
           </a>
+          <span className="text-neutral-700" aria-hidden="true">·</span>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+            aria-label="Instagram Profile"
+          >
+            <Instagram size={14} className="text-red-400" />
+            <span>Instagram</span>
+          </a>
         </div>
       </div>
 
       {/* Copyright Notice */}
-      <small className="col-span-full pt-4 mt-2 border-t border-white/5 font-mono text-[10px] text-neutral-400">
-        © {currentYear} KARUN H G. All rights reserved.
-      </small>
+      <div className="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-neutral-400">
+        <span>© {currentYear} KARUN H G. All rights reserved.</span>
+        <span className="text-neutral-400 tracking-wider">
+          DISCIPLINE · PRECISION · CREATIVE ENGINEERING
+        </span>
+      </div>
     </footer>
   );
 }
