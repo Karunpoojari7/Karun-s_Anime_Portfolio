@@ -144,7 +144,7 @@ export default function ShinobiJourney() {
         {/* Footer Note */}
         <div className="pt-2 text-center">
           <p className="text-[10px] font-mono tracking-wider text-neutral-400">
-            KARUN.DEV // CONTINUOUS PROGRESSION THROUGH DISCIPLINE & CODE
+            KARUN H G // CONTINUOUS PROGRESSION THROUGH DISCIPLINE & CODE
           </p>
         </div>
       </div>

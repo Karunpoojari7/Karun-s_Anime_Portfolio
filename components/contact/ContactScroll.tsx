@@ -209,7 +209,7 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
         {/* Bottom Scroll Waves Detail */}
         <div className="mt-4 pt-2 border-t border-red-950/60 flex items-center justify-between text-[9px] font-mono text-neutral-500">
           <span>SHINOBI DISPATCH</span>
-          <span className="text-red-400">KARUN.DEV</span>
+          <span className="text-red-400">KARUN H G</span>
         </div>
       </motion.div>
     </div>
