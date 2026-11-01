@@ -1,41 +1,65 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, ArrowUpRight, MapPin } from "lucide-react";
-import ContactScroll from "./ContactScroll";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, AlertCircle, Send, Sparkles } from "lucide-react";
 import DriftingLeaves from "@/components/skills/DriftingLeaves";
 
 export default function ShinobiContact() {
-  const socialChannels = [
-    {
-      title: "GitHub",
-      subtitle: "Code · Projects · Labs",
-      link: "https://github.com/Karunpoojari7",
-      icon: <Github size={18} className="text-red-400" />,
-    },
-    {
-      title: "LinkedIn",
-      subtitle: "Network · Opportunities",
-      link: "https://www.linkedin.com/",
-      icon: <Linkedin size={18} className="text-red-400" />,
-    },
-    {
-      title: "Instagram",
-      subtitle: "Updates · Creations",
-      link: "https://www.instagram.com/",
-      icon: <Instagram size={18} className="text-red-400" />,
-    },
+  const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const socialLinks = [
+    { name: "GitHub", href: "https://github.com/Karunpoojari7", top: "38.5%" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/", top: "48.5%" },
+    { name: "Instagram", href: "https://www.instagram.com/", top: "58.5%" },
   ];
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setFormState("sending");
+    setErrorMessage("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+      inquiryType: "General Collaboration",
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Submission error");
+      }
+
+      setFormState("sent");
+      form.reset();
+    } catch (err: unknown) {
+      setFormState("error");
+      const msg = err instanceof Error ? err.message : "Submission error";
+      setErrorMessage(msg);
+    }
+  }
+
   return (
-    <section className="relative w-full min-h-[calc(100vh-72px)] bg-black overflow-hidden flex flex-col justify-between select-none">
-      {/* 1. CINEMATIC BACKGROUND ARTWORK (Blood Moon, Japanese Torii, Mountains, Itachi on rock, Lantern, Water) */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative w-full h-[calc(100vh-72px)] bg-black overflow-hidden flex items-center justify-center select-none">
+      {/* 1. CINEMATIC 16:9 VIEWPORT CONTAINER MATCHING REFERENCE IMAGE 4 */}
+      <div className="relative w-full h-full max-h-[calc(100vh-72px)] aspect-[1024/521] mx-auto overflow-hidden">
+        {/* Full Cinematic Scene Artwork */}
         <Image
           src="/assets/itachi/shinobi-contact-backdrop.jpg"
-          alt="Shinobi Communication Scene"
+          alt="Shinobi Contact Scene - Exact Visual Reference"
           fill
           priority
           quality={100}
@@ -43,119 +67,167 @@ export default function ShinobiContact() {
           className="object-cover object-center"
         />
 
-        {/* Ambient Red Glow Pulse on Sharingan Moon & Floating Lanterns */}
+        {/* Ambient Red Glow Pulse on Sharingan Moon & Lanterns */}
         <div
-          className="pointer-events-none absolute inset-0 animate-red-pulse opacity-25"
+          className="pointer-events-none absolute inset-0 animate-red-pulse opacity-20"
           style={{
             background:
-              "radial-gradient(ellipse 65% 50% at 45% 35%, rgba(225, 29, 46, 0.35) 0%, rgba(130, 10, 22, 0.12) 55%, transparent 75%)",
+              "radial-gradient(ellipse 65% 50% at 45% 35%, rgba(225, 29, 46, 0.35) 0%, transparent 70%)",
           }}
         />
 
-        {/* Top & Bottom Ambient Edge Blending */}
-        <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-      </div>
+        {/* Drifting Leaves Layer */}
+        <DriftingLeaves />
 
-      {/* 2. DRIFTING MAPLE LEAVES LAYER */}
-      <DriftingLeaves />
+        {/* 2. INTERACTIVE SOCIAL LINK HOTSPOTS OVER SCENE CARDS */}
+        {socialLinks.map((soc) => (
+          <a
+            key={soc.name}
+            href={soc.href}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              position: "absolute",
+              left: "37%",
+              top: soc.top,
+              width: "17.2%",
+              height: "8.6%",
+            }}
+            className="group z-20 rounded-lg cursor-pointer transition-all duration-200"
+            aria-label={`Open ${soc.name}`}
+          >
+            <div className="w-full h-full rounded-lg border border-transparent group-hover:border-red-500/70 group-hover:bg-red-950/20 shadow-none group-hover:shadow-[0_0_15px_rgba(225,29,46,0.35)] transition-all" />
+          </a>
+        ))}
 
-      {/* 3. FOREGROUND INTERACTION LAYER — EXACTLY MATCHING REFERENCE IMAGE 2 */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex flex-col justify-between py-6 sm:py-8 lg:py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center flex-1">
-          {/* Left Column: Eyebrow, Heading, Description, Exactly 3 Social Cards, Location Badge */}
-          <div className="lg:col-span-6 space-y-5 max-w-lg self-start lg:pt-4">
-            {/* Eyebrow */}
+        {/* 3. WORKING INTERACTIVE FORM EMBEDDED DIRECTLY IN THE HANGING SCROLL */}
+        <form onSubmit={handleSubmit} className="z-20">
+          {/* Your Name */}
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            aria-label="Your Name"
+            style={{
+              position: "absolute",
+              left: "62%",
+              top: "35.5%",
+              width: "14%",
+              height: "7.5%",
+            }}
+            className="bg-black/40 hover:bg-black/60 focus:bg-black/85 text-white font-sans text-xs px-2.5 rounded border border-transparent focus:border-red-500/80 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all placeholder:text-transparent"
+          />
+
+          {/* Your Email */}
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            aria-label="Your Email"
+            style={{
+              position: "absolute",
+              left: "77.5%",
+              top: "35.5%",
+              width: "14.2%",
+              height: "7.5%",
+            }}
+            className="bg-black/40 hover:bg-black/60 focus:bg-black/85 text-white font-sans text-xs px-2.5 rounded border border-transparent focus:border-red-500/80 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all placeholder:text-transparent"
+          />
+
+          {/* Subject */}
+          <input
+            id="subject"
+            name="subject"
+            type="text"
+            required
+            aria-label="Subject"
+            style={{
+              position: "absolute",
+              left: "62%",
+              top: "44.6%",
+              width: "29.7%",
+              height: "7.5%",
+            }}
+            className="bg-black/40 hover:bg-black/60 focus:bg-black/85 text-white font-sans text-xs px-2.5 rounded border border-transparent focus:border-red-500/80 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all placeholder:text-transparent"
+          />
+
+          {/* Message Textarea */}
+          <textarea
+            id="message"
+            name="message"
+            rows={3}
+            required
+            aria-label="Message"
+            style={{
+              position: "absolute",
+              left: "62%",
+              top: "54%",
+              width: "29.7%",
+              height: "16%",
+            }}
+            className="bg-black/40 hover:bg-black/60 focus:bg-black/85 text-white font-sans text-xs p-2.5 rounded border border-transparent focus:border-red-500/80 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all placeholder:text-transparent resize-none"
+          />
+
+          {/* Send Message Button Trigger */}
+          <button
+            type="submit"
+            disabled={formState === "sending"}
+            aria-label="Send Message"
+            style={{
+              position: "absolute",
+              left: "62.4%",
+              top: "73.5%",
+              width: "29.3%",
+              height: "7.7%",
+            }}
+            className="group cursor-pointer rounded bg-transparent hover:bg-red-500/10 active:scale-[0.99] border border-transparent focus:border-red-400 focus:outline-none transition-all flex items-center justify-center"
+          >
+            {formState === "sending" && (
+              <span className="font-mono text-xs font-bold text-white tracking-wider bg-red-950/90 px-3 py-1 rounded shadow-[0_0_15px_#ff263b] animate-pulse">
+                Transmitting...
+              </span>
+            )}
+          </button>
+        </form>
+
+        {/* 4. NOTIFICATION POPUP ON SUBMISSION */}
+        <AnimatePresence>
+          {formState === "sent" && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] text-red-500 uppercase"
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="absolute bottom-6 right-8 z-50 p-4 rounded-xl bg-[#090204]/98 border border-emerald-500/70 shadow-[0_0_25px_rgba(16,185,129,0.35)] flex items-center gap-3 text-xs text-emerald-300 font-sans"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
-              GET IN TOUCH // CONNECT · COLLABORATE · BUILD
-            </motion.div>
-
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.08]"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Let&apos;s<br />
-              <em className="text-red-500 italic">Collaborate.</em>
-            </motion.h1>
-
-            {/* Supporting Text */}
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed max-w-md"
-            >
-              Have a project, opportunity, or idea in mind? I&apos;m always open to discussing development, cybersecurity, research, and collaborations.
-            </motion.p>
-
-            {/* Exactly One List of 3 Social Cards (GitHub, LinkedIn, Instagram) */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-2.5 pt-2 max-w-sm"
-            >
-              {socialChannels.map((soc) => (
-                <a
-                  key={soc.title}
-                  href={soc.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-between p-3 rounded-lg bg-[#080204]/90 border border-red-950/80 hover:border-red-500/70 hover:bg-red-950/25 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.85)] hover:shadow-[0_0_20px_rgba(225,29,46,0.3)] transition-all duration-200"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded bg-red-950/40 border border-red-900/60 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                      {soc.icon}
-                    </div>
-                    <div>
-                      <div className="font-serif text-xs font-bold text-white group-hover:text-red-400 transition-colors">
-                        {soc.title}
-                      </div>
-                      <div className="font-mono text-[9px] text-neutral-400">
-                        {soc.subtitle}
-                      </div>
-                    </div>
-                  </div>
-                  <ArrowUpRight
-                    size={14}
-                    className="text-neutral-500 group-hover:text-red-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
-                  />
-                </a>
-              ))}
-
-              {/* Location Badge (Exactly Once) */}
-              <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-black/60 border border-red-950/60 font-mono text-[10px] text-neutral-400">
-                <MapPin size={13} className="text-red-500 shrink-0" />
-                <div>
-                  <span className="text-neutral-200 font-semibold">Karnataka, India</span>
-                  <span className="text-neutral-500 ml-2">· Open to remote collaboration</span>
-                </div>
+              <CheckCircle2 size={18} className="text-emerald-400 shrink-0" />
+              <div>
+                <p className="font-bold text-white">Transmission Dispatched</p>
+                <p className="text-[11px] text-neutral-300">
+                  Your message has been received. Karun H G will get back to you soon!
+                </p>
               </div>
             </motion.div>
-          </div>
+          )}
 
-          {/* Right Column: Exactly ONE Hanging Contact Scroll Form matching Reference Image 2 */}
-          <div className="lg:col-span-6 flex justify-center lg:justify-end items-center pt-2">
-            <ContactScroll />
-          </div>
-        </div>
-
-        {/* Minimal Footer Note */}
-        <div className="pt-4 text-center">
-          <p className="text-[10px] font-mono tracking-wider text-neutral-500">
-            KARUN H G // TRANSMISSION DISPATCH & SECURE COMMS
-          </p>
-        </div>
+          {formState === "error" && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="absolute bottom-6 right-8 z-50 p-4 rounded-xl bg-[#090204]/98 border border-red-500/70 shadow-[0_0_25px_rgba(225,29,46,0.35)] flex items-center gap-3 text-xs text-red-300 font-sans"
+            >
+              <AlertCircle size={18} className="text-red-400 shrink-0" />
+              <div>
+                <p className="font-bold text-white">Dispatch Preview Notice</p>
+                <p className="text-[11px] text-neutral-300">
+                  {errorMessage || "Direct dispatch active. You can also connect via GitHub or LinkedIn."}
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
