@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles, Terminal, Cpu, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { Discipline } from "./disciplinesData";
 
 interface DisciplineCardProps {
@@ -13,6 +13,16 @@ interface DisciplineCardProps {
 
 export default function DisciplineCard({ discipline, index, onOpen }: DisciplineCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isActivating, setIsActivating] = useState(false);
+
+  const handleActivate = () => {
+    if (isActivating) return;
+    setIsActivating(true);
+    setTimeout(() => {
+      onOpen();
+      setIsActivating(false);
+    }, 160);
+  };
 
   // Custom emblem based on discipline id
   const renderEmblem = () => {
@@ -81,7 +91,6 @@ export default function DisciplineCard({ discipline, index, onOpen }: Discipline
             strokeWidth="1"
             strokeDasharray="4 6"
           />
-          {/* Neural connection spokes */}
           <line x1="50" y1="12" x2="50" y2="88" stroke="#8a101b" strokeWidth="1" />
           <line x1="12" y1="50" x2="88" y2="50" stroke="#8a101b" strokeWidth="1" />
           <circle cx="50" cy="18" r="3" fill="#ff263b" />
@@ -122,7 +131,6 @@ export default function DisciplineCard({ discipline, index, onOpen }: Discipline
             stroke="#8a101b"
             strokeWidth="1.2"
           />
-          {/* 3 Tomoe curved arc blades */}
           <path
             d="M50,22 C58,22 64,30 60,38 C56,46 50,48 50,50"
             fill="none"
@@ -172,9 +180,18 @@ export default function DisciplineCard({ discipline, index, onOpen }: Discipline
       whileHover={{ y: -6 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={onOpen}
+      onClick={handleActivate}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open Training Scroll for ${discipline.disciplineName}`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleActivate();
+        }
+      }}
       className={`group relative flex flex-col justify-between p-6 sm:p-7 rounded-sm border transition-all duration-300 cursor-pointer overflow-hidden ${
-        isHovered
+        isHovered || isActivating
           ? "border-red-500 bg-[#12070a] shadow-[0_0_35px_rgba(255,38,59,0.35)]"
           : "border-red-950/60 bg-[#0e0a0c] hover:border-red-600/80"
       }`}
@@ -182,6 +199,11 @@ export default function DisciplineCard({ discipline, index, onOpen }: Discipline
         minHeight: "440px",
       }}
     >
+      {/* Subtle Crimson Energy Pulse on Open */}
+      {isActivating && (
+        <span className="pointer-events-none absolute inset-0 bg-red-600/25 animate-pulse z-30" />
+      )}
+
       {/* Top Wooden Rod Scroll Accent */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#200508] via-red-600 to-[#200508] opacity-80" />
 
@@ -249,7 +271,7 @@ export default function DisciplineCard({ discipline, index, onOpen }: Discipline
         {/* Activation Button Bar */}
         <div className="flex items-center justify-between text-[11px] font-mono tracking-[0.2em] text-red-400 group-hover:text-red-300 transition-colors pt-1">
           <span className="flex items-center gap-1.5 font-semibold">
-            <Sparkles size={12} className={isHovered ? "animate-pulse" : ""} />
+            <Sparkles size={12} className={isHovered || isActivating ? "animate-pulse" : ""} />
             <span>OPEN TRAINING SCROLL</span>
           </span>
           <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -258,4 +280,3 @@ export default function DisciplineCard({ discipline, index, onOpen }: Discipline
     </motion.div>
   );
 }
-
