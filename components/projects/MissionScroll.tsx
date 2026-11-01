@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Project } from "@/lib/projects";
 
 interface MissionScrollProps {
@@ -25,7 +25,17 @@ export default function MissionScroll({
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label={`Mission ${missionNumber}: ${project.title} (${isActive ? "Active - click to open dossier" : "Click to select"})`}
       onClick={isActive ? onOpenDossier : onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          if (isActive) onOpenDossier();
+          else onSelect();
+        }
+      }}
       className={`group relative flex flex-col items-center cursor-pointer transition-all duration-300 select-none ${
         isActive ? "z-50 scale-100" : "hover:brightness-125 opacity-85 hover:opacity-100"
       }`}
