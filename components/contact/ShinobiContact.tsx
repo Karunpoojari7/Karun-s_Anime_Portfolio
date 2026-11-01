@@ -39,7 +39,7 @@ export default function ShinobiContact() {
   ];
 
   return (
-    <section className="relative w-full min-h-[960px] lg:min-h-screen bg-black overflow-hidden flex flex-col justify-between py-12 lg:py-16 select-none">
+    <section className="relative w-full min-h-[960px] lg:min-h-screen bg-black overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-12 lg:pb-16 select-none">
       {/* 1. CINEMATIC BACKGROUND ARTWORK (Sharingan Moon, Itachi, Lantern with 連絡, Crow, Torii Gate, Water) */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -47,21 +47,23 @@ export default function ShinobiContact() {
           alt="Shinobi Communication Scene"
           fill
           priority
-          className="object-cover object-center filter contrast-[1.08] brightness-[0.95]"
+          quality={100}
+          sizes="100vw"
+          className="object-cover object-center"
         />
 
         {/* Ambient Red Glow Pulse on Sharingan Moon & Floating Lanterns */}
         <div
-          className="pointer-events-none absolute inset-0 animate-red-pulse opacity-35"
+          className="pointer-events-none absolute inset-0 animate-red-pulse opacity-25"
           style={{
             background:
-              "radial-gradient(ellipse 65% 50% at 45% 35%, rgba(225, 29, 46, 0.45) 0%, rgba(130, 10, 22, 0.15) 55%, transparent 75%)",
+              "radial-gradient(ellipse 65% 50% at 45% 35%, rgba(225, 29, 46, 0.35) 0%, rgba(130, 10, 22, 0.12) 55%, transparent 75%)",
           }}
         />
 
         {/* Top & Bottom Ambient Edge Blending */}
-        <div className="pointer-events-none absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black via-black/40 to-transparent" />
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
       </div>
 
       {/* 2. DRIFTING MAPLE LEAVES LAYER */}
@@ -244,3 +246,4 @@ export default function ShinobiContact() {
     </section>
   );
 }
+
