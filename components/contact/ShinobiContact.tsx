@@ -138,7 +138,7 @@ export default function ShinobiContact() {
                 <MapPin size={13} className="text-red-500 shrink-0" />
                 <div>
                   <span className="text-neutral-200 font-semibold">Karnataka, India</span>
-                  <span className="text-neutral-500 ml-2">· Open to remote collaboration</span>
+                  <span className="text-neutral-400 ml-2">— Open to remote collaboration</span>
                 </div>
               </div>
             </motion.div>

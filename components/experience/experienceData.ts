@@ -31,7 +31,7 @@ export const MILESTONES: Milestone[] = [
     id: "internship",
     category: "INDUSTRY EXPERIENCE",
     title: "Frontend Development Internship",
-    subtitle: "Building responsive web applications & UI systems",
+    subtitle: "Responsive web applications and UI development",
     duration: "2026",
     status: "Completed ✓",
     isCompleted: true,
