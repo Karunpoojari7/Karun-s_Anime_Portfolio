@@ -20,16 +20,16 @@ interface TimelineEntry {
 const TIMELINE_CHAPTERS: TimelineEntry[] = [
   {
     chapter: "01",
-    category: "EDUCATION",
+    category: "EDUCATION (POSTGRADUATE)",
     title: "Master of Computer Applications — Cybersecurity",
     organization: "GM University",
     period: "Postgraduate Degree · Ongoing",
     summary:
-      "Pursuing specialized master's studies focused on foundational computing, defensive security systems, advanced database concepts, and secure application architecture.",
+      "Pursuing master's studies focused on computing fundamentals, network defense, database systems, and secure software development.",
     details: [
-      "Specializing in cybersecurity operations, cryptography fundamentals, and secure software engineering.",
-      "Hands-on coursework covering operating systems, computer networking, data structures, and database systems.",
-      "Bridging application development with proactive security testing and vulnerability identification.",
+      "Specializing in cybersecurity operations, network protocols, and secure software engineering.",
+      "Coursework covering operating systems, computer networks, data structures, and relational databases.",
+      "Hands-on labs in network packet inspection, vulnerability assessment, and defensive security.",
     ],
     skills: ["Cybersecurity", "Network Architecture", "Database Systems", "Software Engineering"],
     icon: <GraduationCap className="timeline-icon" size={20} />,
@@ -37,70 +37,70 @@ const TIMELINE_CHAPTERS: TimelineEntry[] = [
   },
   {
     chapter: "02",
-    category: "PROFESSIONAL EXPERIENCE",
+    category: "EDUCATION (UNDERGRADUATE)",
+    title: "Bachelor of Science (BSc)",
+    organization: "Sindhi College, Bengaluru",
+    period: "Undergraduate Degree · Completed",
+    summary:
+      "Completed undergraduate science education with a solid grounding in mathematics, analytical thinking, and computing principles.",
+    details: [
+      "Built core analytical and problem-solving foundations through scientific coursework.",
+      "Learned programming basics, structured algorithms, and computer science concepts.",
+      "Participated in academic projects and technical activities.",
+    ],
+    skills: ["Computer Fundamentals", "Problem Solving", "Analytical Thinking", "Mathematics"],
+    icon: <GraduationCap className="timeline-icon" size={20} />,
+    verified: true,
+  },
+  {
+    chapter: "03",
+    category: "PROFESSIONAL INTERNSHIP",
     title: "Frontend Development Internship",
     organization: "Industry Experience",
     period: "Development Internship · Completed",
     summary:
-      "Applied modern frontend engineering principles to build real-world web interfaces, ensuring cross-device responsiveness, component modularity, and smooth user experiences.",
+      "Applied frontend development practices to build responsive web interfaces, ensure component modularity, and improve user experiences.",
     details: [
-      "Engineered reusable UI components with responsive layouts and fluid interactions.",
-      "Collaborated on frontend codebase architecture, asset optimization, and state management.",
-      "Gained practical experience adhering to production development standards and version control practices.",
+      "Developed responsive UI components using React, JavaScript, and modern CSS.",
+      "Collaborated on codebase improvements, state management, and asset optimization.",
+      "Gained practical experience working with version control (Git) in a team setting.",
     ],
     skills: ["React", "JavaScript", "Responsive Design", "Component Architecture", "Git"],
     icon: <Briefcase className="timeline-icon" size={20} />,
     verified: true,
   },
   {
-    chapter: "03",
-    category: "PRACTICAL LABS & TRAINING",
-    title: "SOC Analyst Learning Journey",
-    organization: "Self-Directed Security Labs & Hands-On Analysis",
-    period: "Defensive Security Training · Active",
+    chapter: "04",
+    category: "PRACTICAL LABS & SELF-LEARNING",
+    title: "Defensive Cybersecurity & Network Analysis",
+    organization: "Hands-on Packet Analysis & Security Labs",
+    period: "Self-Directed Practical Learning · Active",
     summary:
-      "Deep diving into Security Operations Center (SOC) fundamentals, investigating real network packet captures, and understanding threat detection mechanisms.",
+      "Practicing network packet analysis, inspecting traffic protocols, and understanding defensive security workflows.",
     details: [
-      "Analyzing PCAP captures with Wireshark and TShark to inspect TCP/UDP streams, DNS tunneling attempts, and HTTP headers.",
-      "Investigating network handshake protocols, suspicious beaconing patterns, and abnormal connection behavior.",
-      "Studying SIEM log ingestion, event correlation rules, and incident triage workflows using sanitized lab data.",
+      "Analyzing network packet captures (PCAP) with Wireshark and TShark to inspect TCP/UDP handshakes and DNS queries.",
+      "Studying Security Operations Center (SOC) fundamentals, alert triage, and incident response workflows.",
+      "Experimenting with secure coding principles and cryptographic hashing (SHA-256).",
     ],
-    skills: ["Wireshark", "TShark", "TCP/IP Protocol Suite", "DNS Inspection", "SIEM Fundamentals", "Network Forensics"],
+    skills: ["Wireshark", "TShark", "TCP/IP Protocols", "DNS Inspection", "SOC Fundamentals"],
     icon: <ShieldCheck className="timeline-icon" size={20} />,
     verified: true,
   },
   {
-    chapter: "04",
-    category: "PROJECT ENGINEERING",
-    title: "Software & AI Systems Engineering",
-    organization: "Personal & Academic Research Missions",
-    period: "9 Documented Missions · 2024 – Present",
-    summary:
-      "Building practical applications spanning intelligent document analysis, AI safety infrastructure, medical imaging prototypes, and full-stack web platforms.",
-    details: [
-      "Architected Bayora Sec: zero-trust AI safety testing environment with SHA-256 evidence verification.",
-      "Built GMU Connect 2.0 student ERP prototype with Spring Boot backend, PostgreSQL, and React Native client.",
-      "Explored applied AI in medical diagnostics (Diabetic Retinopathy) and resume skill-gap extraction.",
-    ],
-    skills: ["Next.js", "FastAPI", "Python", "PostgreSQL", "Docker", "Applied AI"],
-    icon: <Terminal className="timeline-icon" size={20} />,
-    verified: true,
-  },
-  {
     chapter: "05",
-    category: "COMMUNITY & LEADERSHIP",
-    title: "Technical Community & Event Coordination",
-    organization: "University & Peer Tech Initiatives",
-    period: "Active Engagement",
+    category: "SOFTWARE PROJECTS",
+    title: "Full-Stack Web & AI Projects",
+    organization: "Personal & Academic Projects",
+    period: "2024 – Present",
     summary:
-      "Participating in student hackathons, organizing university technical sessions, and fostering collaborative learning around coding and cyber awareness.",
+      "Building practical applications spanning full-stack web platforms, machine learning diagnostics, and security testing tools.",
     details: [
-      "Assisting fellow students in setting up development environments and understanding web development workflows.",
-      "Advocating for cyber hygiene, secure password management, and online threat awareness among student peers.",
-      "Collaborating on multi-disciplinary engineering initiatives and prototype pitch presentations.",
+      "Developed Bayora Sec: an AI safety evaluation environment with SHA-256 evidence tracking.",
+      "Built GMU Connect 2.0: student ERP prototype with Spring Boot backend and React Native client.",
+      "Explored applied deep learning in medical image analysis (Diabetic Retinopathy Detection).",
     ],
-    skills: ["Team Leadership", "Cyber Hygiene Advocacy", "Technical Presentations", "Mentorship"],
-    icon: <Award className="timeline-icon" size={20} />,
+    skills: ["Next.js", "Python", "React", "PostgreSQL", "FastAPI", "Docker"],
+    icon: <Terminal className="timeline-icon" size={20} />,
     verified: true,
   },
 ];
@@ -122,7 +122,7 @@ export default function Experience() {
             transition={{ duration: 0.6 }}
             className="eyebrow"
           >
-            <span className="pulse-dot" /> FIELD HISTORY / TRAINING LOG
+            <span className="pulse-dot" /> EXPERIENCE & BACKGROUND // TIMELINE
           </motion.div>
 
           <motion.h1
@@ -131,7 +131,7 @@ export default function Experience() {
             transition={{ delay: 0.1, duration: 0.7 }}
             className="page-title"
           >
-            The journey <em>so far.</em>
+            Education & <em>Experience.</em>
           </motion.h1>
 
           <motion.p
@@ -140,7 +140,7 @@ export default function Experience() {
             transition={{ delay: 0.2, duration: 0.7 }}
             className="page-lead"
           >
-            A disciplined chronicle of education, hands-on engineering, security operations training, and practical software creation. Every milestone verified through actual code and lab practice.
+            A clear timeline covering my formal education, development internship, personal projects, and hands-on cybersecurity learning.
           </motion.p>
         </header>
 
