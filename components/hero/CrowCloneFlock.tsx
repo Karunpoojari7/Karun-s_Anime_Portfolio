@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface CrowCloneFlockProps {
@@ -42,6 +42,14 @@ const crows: CrowData[] = [
 ];
 
 export default function CrowCloneFlock({ isDispersed, layer }: CrowCloneFlockProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   const filteredCrows = crows.filter((c) => c.layer === layer);
 
   return (
@@ -62,53 +70,51 @@ export default function CrowCloneFlock({ isDispersed, layer }: CrowCloneFlockPro
             }}
             transition={{
               type: "spring",
-              stiffness: isDispersed ? 55 : 45,
-              damping: isDispersed ? 14 : 18,
+              stiffness: 55,
+              damping: 14,
               mass: 0.8,
-              delay: isDispersed ? crow.delay : (0.25 - crow.delay * 0.5),
+              delay: crow.delay,
             }}
-            className="absolute will-change-transform"
+            className="absolute flex items-center justify-center"
             style={{
-              width: `${crow.size}px`,
-              height: `${crow.size * 0.56}px`,
+              width: crow.size,
+              height: crow.size,
+              transformOrigin: "center center",
             }}
           >
-            {/* Animated Crow Silhouette with flapping wings and subtle crimson rim glow */}
-            <div
-              className={`w-full h-full relative transition-transform duration-300 ${
-                isFlipped ? "scale-x-[-1]" : ""
-              }`}
+            {/* SVG Crow Silhouette with wings spread and crimson eye accent */}
+            <svg
+              viewBox="0 0 100 80"
+              className="w-full h-full filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
+              style={{
+                transform: isFlipped ? "scaleX(-1)" : "scaleX(1)",
+              }}
             >
-              <svg
-                viewBox="0 0 120 68"
-                className="w-full h-full filter drop-shadow-[0_0_10px_rgba(255,38,59,0.55)]"
-              >
-                {/* Flapping Wing Motion */}
-                <motion.path
-                  animate={{
-                    d: [
-                      "M0,34 Q35,6 60,34 Q85,6 120,34 Q85,46 60,38 Q35,46 0,34 Z",
-                      "M0,20 Q35,42 60,34 Q85,42 120,20 Q85,34 60,38 Q35,34 0,20 Z",
-                      "M0,34 Q35,6 60,34 Q85,6 120,34 Q85,46 60,38 Q35,46 0,34 Z",
-                    ],
-                  }}
-                  transition={{
-                    duration: 0.38 + (crow.id % 4) * 0.05,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  fill="#060406"
-                  stroke="#ff263b"
-                  strokeWidth="0.8"
-                />
-                {/* Crow Eye Glimmer (Crimson Sharingan Glint) */}
-                <circle cx={isFlipped ? "28" : "92"} cy="30" r="1.5" fill="#ff263b" />
-              </svg>
-            </div>
+              <g fill="#050102" stroke="#ff263b" strokeWidth="0.8">
+                {/* Left wing feather tips */}
+                <path d="M 50 40 Q 30 15 5 10 Q 15 30 35 45 Q 20 48 10 52 Q 28 58 45 50 Z" />
+                {/* Right wing feather tips */}
+                <path d="M 50 40 Q 70 15 95 10 Q 85 30 65 45 Q 80 48 90 52 Q 72 58 55 50 Z" />
+                {/* Tail fan */}
+                <path d="M 46 48 L 40 75 L 50 78 L 60 75 L 54 48 Z" />
+                {/* Crow torso & head */}
+                <ellipse cx="50" cy="42" rx="7" ry="12" />
+                <circle cx="50" cy="30" r="5" />
+                {/* Sharp Beak */}
+                <polygon points="50,27 48,22 52,22" />
+              </g>
+              {/* Glowing Crimson Sharingan Eye */}
+              <circle
+                cx="49"
+                cy="30"
+                r="1.2"
+                fill="#ff263b"
+                className="filter drop-shadow-[0_0_4px_#ff263b]"
+              />
+            </svg>
           </motion.div>
         );
       })}
     </div>
   );
 }
-

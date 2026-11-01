@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -9,6 +9,14 @@ interface FeatherDriftProps {
 }
 
 export default function FeatherDrift({ isDispersed }: FeatherDriftProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-visible flex items-center justify-center z-35">
       {/* 6 Floating Raven Feathers */}
@@ -75,4 +83,3 @@ export default function FeatherDrift({ isDispersed }: FeatherDriftProps) {
     </div>
   );
 }
-
