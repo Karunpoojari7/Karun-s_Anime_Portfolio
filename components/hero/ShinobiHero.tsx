@@ -33,7 +33,7 @@ export default function ShinobiHero() {
             transition={{ delay: 0.15, duration: 0.8 }}
             className="hero-headline-block"
           >
-            <span className="hero-pretitle">KARUN POOJARI</span>
+            <span className="hero-pretitle">KARUN H G</span>
             <h1 className="hero-main-title">
               THE SHINOBI<br />
               <em>DEVELOPER.</em>

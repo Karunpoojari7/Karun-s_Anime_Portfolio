@@ -50,7 +50,7 @@ export default function About() {
           className="flex items-center gap-2 font-mono text-[11px] tracking-[0.25em] text-red-500 uppercase mb-6"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b]" />
-          ABOUT ME // KARUN POOJARI
+          ABOUT ME // KARUN H G
         </motion.div>
 
         {/* Section 1: Introduction & Portrait */}
@@ -71,7 +71,7 @@ export default function About() {
             </h1>
 
             <p className="text-lg sm:text-xl text-neutral-200 font-sans leading-relaxed">
-              I&apos;m Karun Poojari, an MCA Cybersecurity student at GM University with a foundation in frontend development and a growing interest in full-stack engineering, artificial intelligence and cybersecurity.
+              I&apos;m Karun H G, an MCA Cybersecurity student at GM University with a foundation in frontend development and a growing interest in full-stack engineering, artificial intelligence and cybersecurity.
             </p>
 
             {/* Verified Academic & Background Badges */}
@@ -103,7 +103,7 @@ export default function About() {
             <div className="relative w-full max-w-[320px] h-[400px] rounded-t-[140px] rounded-b-md border border-red-600/50 overflow-hidden shadow-[0_0_35px_rgba(225,29,46,0.2)] bg-[#0c0508]">
               <Image
                 src="/images/karun-shinobi.png"
-                alt="Karun Poojari"
+                alt="Karun H G"
                 fill
                 priority
                 className="object-cover object-top filter contrast-[1.05]"
@@ -114,7 +114,7 @@ export default function About() {
               <div className="absolute bottom-3 left-3 right-3 bg-black/80 backdrop-blur-md px-3 py-2 rounded border border-red-500/40 flex items-center justify-between">
                 <div>
                   <span className="font-mono text-[9px] tracking-wider text-red-400 uppercase block">Developer</span>
-                  <span className="font-serif text-xs font-bold text-white">Karun Poojari</span>
+                  <span className="font-serif text-xs font-bold text-white">Karun H G</span>
                 </div>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
               </div>
