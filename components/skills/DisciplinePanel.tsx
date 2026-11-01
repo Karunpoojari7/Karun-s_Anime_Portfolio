@@ -98,13 +98,13 @@ export default function DisciplinePanel({ discipline }: DisciplinePanelProps) {
 
   return (
     <div className="relative w-full max-w-[490px] mx-auto select-none">
-      {/* 1. AMBIENT RED GLOW BEHIND PANEL */}
+      {/* 1. SOFT AMBIENT GLOW BEHIND PANEL (Controlled, no ghost box borders) */}
       <div
-        className="pointer-events-none absolute -inset-3 rounded-2xl opacity-35"
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-20"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(225, 29, 46, 0.45) 0%, transparent 70%)",
-          filter: "blur(25px)",
+            "radial-gradient(circle at center, rgba(225, 29, 46, 0.35) 0%, transparent 75%)",
+          filter: "blur(30px)",
         }}
       />
 
