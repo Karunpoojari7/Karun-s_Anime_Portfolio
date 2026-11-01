@@ -37,7 +37,7 @@ export default function ShinobiSkillTree() {
   }, [activeId]);
 
   return (
-    <section className="relative w-full min-h-[920px] lg:min-h-[100vh] bg-black overflow-hidden flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 pb-12 lg:pb-20 select-none">
+    <section className="relative w-full min-h-[calc(100vh-72px)] bg-black overflow-hidden flex flex-col justify-center py-6 sm:py-8 lg:py-10 select-none">
       {/* 1. CINEMATIC BACKGROUND ARTWORK */}
       <div className="absolute inset-0 z-0">
         <Image
