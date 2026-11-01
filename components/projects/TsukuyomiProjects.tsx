@@ -95,7 +95,7 @@ export default function TsukuyomiProjects() {
           </div>
           <div>
             <span className="font-mono text-xs font-semibold tracking-[0.25em] text-white">
-              KARUN.DEV
+              KARUN H G
             </span>
             <span className="block font-mono text-[9px] tracking-[0.2em] text-neutral-400">
               THE SHINOBI DEVELOPER

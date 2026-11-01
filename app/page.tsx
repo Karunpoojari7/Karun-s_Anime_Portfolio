@@ -85,7 +85,7 @@ export default function Home() {
       <NinjutsuSpecializations />
 
       {/* Featured Missions Archive */}
-      <TsukuyomiProjects featuredOnly={true} />
+      <TsukuyomiProjects />
 
       {/* Closing Call to Action */}
       <section className="section-wrap closing-cta">
