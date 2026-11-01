@@ -83,28 +83,29 @@ export default function ProjectsPage() {
           alt="The Tsukuyomi Dimension"
           fill
           priority
-          className="object-cover object-center filter contrast-[1.08] brightness-[0.92]"
+          quality={100}
+          sizes="100vw"
+          className="object-cover object-center"
         />
 
         {/* Ambient Red Glow Pulse on floor & moon */}
         <div
-          className="absolute inset-0 animate-red-pulse opacity-40"
+          className="absolute inset-0 animate-red-pulse opacity-30"
           style={{
             background:
-              "radial-gradient(ellipse 65% 50% at 50% 40%, rgba(225, 29, 46, 0.4) 0%, rgba(130, 10, 22, 0.18) 50%, transparent 75%)",
+              "radial-gradient(ellipse 65% 50% at 50% 40%, rgba(225, 29, 46, 0.35) 0%, rgba(130, 10, 22, 0.15) 50%, transparent 75%)",
           }}
         />
 
-        {/* Edge Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/70 opacity-90" />
-        <div className="absolute inset-0 shadow-[inset_0_0_140px_rgba(0,0,0,0.95)]" />
+        {/* Crisp Edge Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50 opacity-30" />
       </div>
 
       {/* 2. ATMOSPHERIC DRIFTING CROWS AND FEATHERS */}
       <CrowParticles />
 
       {/* 3. FOREGROUND PAGE CONTENT */}
-      <div className="relative z-20 w-full min-h-screen flex flex-col justify-between pt-8 pb-12">
+      <div className="relative z-20 w-full min-h-screen flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-12">
         {/* TOP EDITORIAL HEADER & MODE SWITCHER */}
         <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 pt-4">
           {/* Eyebrow Tag */}
