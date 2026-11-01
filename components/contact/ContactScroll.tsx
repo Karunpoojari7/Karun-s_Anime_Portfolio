@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Mail, Tag, MessageSquare, Send, CheckCircle2, AlertCircle, Sparkles } from "lucide-react";
+import { User, Mail, Tag, MessageSquare, Send, CheckCircle2, AlertCircle } from "lucide-react";
 
 interface ContactScrollProps {
   selectedTopic?: string;
 }
 
-export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
+export default function ContactScroll({ selectedTopic }: ContactScrollProps = {}) {
   const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -24,7 +24,7 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
       email: formData.get("email"),
       subject: formData.get("subject"),
       message: formData.get("message"),
-      inquiryType: selectedTopic || "General Collaboration",
+      inquiryType: "General Collaboration",
     };
 
     try {
@@ -49,14 +49,13 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
   }
 
   return (
-    <div className="relative w-full max-w-[460px] mx-auto select-none">
+    <div className="relative w-full max-w-[480px] mx-auto select-none">
       {/* 1. TOP WOODEN SUSPENSION ROD & HANGING CORDS */}
       <div className="relative w-full flex items-center justify-between z-20 -mb-2">
         {/* Left Rod Finial */}
         <div className="w-4 h-6 -ml-2 rounded-sm bg-gradient-to-b from-[#ff3b4d] via-[#8a121c] to-[#250306] border border-red-500 shadow-[0_0_10px_#ff263b]" />
         {/* Central Wooden Beam */}
         <div className="flex-1 h-3.5 bg-gradient-to-r from-[#200508] via-[#5e0e18] to-[#200508] border-y border-red-600/80 shadow-[0_0_15px_rgba(255,38,59,0.5)] flex items-center justify-around px-8">
-          {/* Hanging Ropes & Knots */}
           <span className="w-1.5 h-6 bg-red-700/80 rounded-b shadow-[0_0_8px_#ff263b]" />
           <span className="w-1.5 h-6 bg-red-700/80 rounded-b shadow-[0_0_8px_#ff263b]" />
         </div>
@@ -66,14 +65,14 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
 
       {/* 2. HANGING SCROLL BODY WITH ILLUMINATED CRIMSON EDGES */}
       <motion.div
-        initial={{ opacity: 0, scaleY: 0.94 }}
+        initial={{ opacity: 0, scaleY: 0.96 }}
         animate={{ opacity: 1, scaleY: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-[96%] mx-auto rounded-b-2xl bg-[#090204]/94 border-x-2 border-b-2 border-red-500/70 shadow-[0_0_40px_rgba(225,29,46,0.35),inset_0_0_30px_rgba(0,0,0,0.9)] backdrop-blur-xl p-6 sm:p-7 pt-8 overflow-hidden"
+        className="relative w-[96%] mx-auto rounded-b-2xl bg-[#080204]/96 border-x-2 border-b-2 border-red-500/70 shadow-[0_0_40px_rgba(225,29,46,0.35),inset_0_0_30px_rgba(0,0,0,0.9)] backdrop-blur-xl p-5 sm:p-6 pt-7 overflow-hidden"
       >
         {/* Top Center: Stylized Red Akatsuki Cloud Motif */}
         <div className="flex justify-center mb-3">
-          <svg width="68" height="38" viewBox="0 0 100 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="64" height="34" viewBox="0 0 100 58" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M32 48 C20 48 10 38 10 26 C10 16 18 8 28 8 C32 3 40 0 50 0 C64 0 74 10 76 22 C84 22 92 28 92 36 C92 44 84 50 76 50 C70 54 62 56 54 56 C42 56 36 50 32 48 Z"
               stroke="#ff263b"
@@ -91,7 +90,7 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
         </div>
 
         {/* Scroll Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-4">
           <span className="font-mono text-[10px] tracking-[0.25em] text-red-500 font-bold uppercase flex items-center justify-center gap-1.5">
             <span className="w-1 h-1 rounded-full bg-red-500" />
             SEND A MESSAGE
@@ -100,13 +99,13 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
         </div>
 
         {/* 3. WORKING INTERACTIVE FORM */}
-        <form onSubmit={handleSubmit} className="space-y-3.5">
-          {/* Row 1: Name and Email */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          {/* Row 1: Name and Email side-by-side in 2 columns */}
+          <div className="grid grid-cols-2 gap-3">
             {/* Your Name */}
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-500">
-                <User size={14} className="text-red-500/80" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 pl-2.5 flex items-center text-neutral-500">
+                <User size={13} className="text-red-500/80" />
               </div>
               <input
                 id="name"
@@ -114,14 +113,14 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
                 type="text"
                 required
                 placeholder="Your Name"
-                className="w-full pl-9 pr-3 py-2.5 rounded bg-black/75 border border-red-950/80 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
+                className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
               />
             </div>
 
             {/* Your Email */}
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-500">
-                <Mail size={14} className="text-red-500/80" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 pl-2.5 flex items-center text-neutral-500">
+                <Mail size={13} className="text-red-500/80" />
               </div>
               <input
                 id="email"
@@ -129,31 +128,30 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
                 type="email"
                 required
                 placeholder="Your Email"
-                className="w-full pl-9 pr-3 py-2.5 rounded bg-black/75 border border-red-950/80 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
+                className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
               />
             </div>
           </div>
 
           {/* Row 2: Subject */}
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-500">
-              <Tag size={14} className="text-red-500/80" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 pl-2.5 flex items-center text-neutral-500">
+              <Tag size={13} className="text-red-500/80" />
             </div>
             <input
               id="subject"
               name="subject"
               type="text"
               required
-              defaultValue={selectedTopic ? `${selectedTopic} Inquiry` : ""}
               placeholder="Subject"
-              className="w-full pl-9 pr-3 py-2.5 rounded bg-black/75 border border-red-950/80 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
+              className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
             />
           </div>
 
           {/* Row 3: Message Textarea */}
           <div className="relative">
-            <div className="pointer-events-none absolute top-3 left-3 text-neutral-500">
-              <MessageSquare size={14} className="text-red-500/80" />
+            <div className="pointer-events-none absolute top-3 left-2.5 text-neutral-500">
+              <MessageSquare size={13} className="text-red-500/80" />
             </div>
             <textarea
               id="message"
@@ -161,11 +159,11 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps) {
               rows={4}
               required
               placeholder="Tell me about your project, idea, or opportunity..."
-              className="w-full pl-9 pr-3 py-2.5 rounded bg-black/75 border border-red-950/80 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans resize-none"
+              className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans resize-none"
             />
           </div>
 
-          {/* Submit Button with Chakra Pulse */}
+          {/* Submit Button with Crimson Chakra Glow */}
           <button
             type="submit"
             disabled={formState === "sending"}
