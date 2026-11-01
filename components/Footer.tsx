@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Instagram } from "lucide-react";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -21,6 +21,9 @@ export default function Footer() {
     { href: "/experience", label: "Experience" },
     { href: "/contact", label: "Contact" },
   ];
+
+  // Instagram only shown if real configured URL exists in environment or verified settings
+  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
 
   return (
     <footer className="w-full border-t border-red-950/60 bg-[#070708] text-white py-12 px-6 sm:px-8 lg:px-12 select-none relative z-30">
@@ -84,17 +87,21 @@ export default function Footer() {
             <Linkedin size={14} className="text-red-400" />
             <span>LinkedIn</span>
           </a>
-          <span className="text-neutral-700" aria-hidden="true">·</span>
-          <a
-            href="https://www.instagram.com/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
-            aria-label="Instagram Profile"
-          >
-            <Instagram size={14} className="text-red-400" />
-            <span>Instagram</span>
-          </a>
+          {instagramUrl && (
+            <>
+              <span className="text-neutral-700" aria-hidden="true">·</span>
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
+                aria-label="Instagram Profile"
+              >
+                <Instagram size={14} className="text-red-400" />
+                <span>Instagram</span>
+              </a>
+            </>
+          )}
         </div>
       </div>
 
