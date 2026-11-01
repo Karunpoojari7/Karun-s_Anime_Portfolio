@@ -1,0 +1,9 @@
+import { notFound } from "next/navigation";
+import { ArrowUpRight, Github } from "lucide-react";
+import Link from "next/link";
+import { projects } from "@/lib/projects";
+export function generateStaticParams() { return projects.map(p=>({slug:p.slug})); }
+export default async function ProjectDetail({ params }: { params: Promise<{slug:string}> }) {
+ const {slug}=await params; const p=projects.find(x=>x.slug===slug); if(!p) notFound();
+ return <div className="page-shell section-wrap"><Link href="/projects" className="text-link">← Back to mission archive</Link><p className="eyebrow top-gap">MISSION DOSSIER / {p.category.toUpperCase()}</p><h1 className="page-title">{p.title.split(" ").slice(0,-1).join(" ")} <em>{p.title.split(" ").slice(-1)}</em></h1><p className="page-lead">{p.summary}</p><div className="detail-layout"><article className="detail-main"><h2>Mission overview</h2><p>{p.description}</p><h2>Documented highlights</h2><ul className="detail-list">{p.highlights.map(x=><li key={x}>{x}</li>)}</ul>{p.note&&<p className="notice">{p.note}</p>}<h2>Technology stack</h2><div className="tag-row">{p.stack.map(s=><span key={s}>{s}</span>)}</div></article><aside className="detail-aside"><span className="eyebrow">FILE STATUS</span><b>{p.status}</b><span className="eyebrow">SOURCE REPOSITORY</span><a className="button button-primary" href={p.repository} target="_blank" rel="noreferrer"><Github size={16}/> View on GitHub <ArrowUpRight size={15}/></a><small>Live demo not available yet. This case study is based on currently available repository documentation and will be expanded after code review.</small></aside></div></div>;
+}
