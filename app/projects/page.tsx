@@ -2,16 +2,14 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Eye,
-  Layers,
+  Folder,
   ChevronLeft,
   ChevronRight,
   ArrowUpRight,
   Github,
-  Sparkles,
-  Folder,
 } from "lucide-react";
 import { projects, Project } from "@/lib/projects";
 import MissionOrbit from "@/components/projects/MissionOrbit";
@@ -20,7 +18,7 @@ import ClassifiedArchive from "@/components/projects/ClassifiedArchive";
 import CrowParticles from "@/components/projects/CrowParticles";
 
 export default function ProjectsPage() {
-  // Default to Mission 03 (Diabetic Retinopathy Detection as shown in visual reference)
+  // Default to Mission 03 (Diabetic Retinopathy Detection as shown in visual Reference Image 1)
   const [currentIndex, setCurrentIndex] = useState(2);
   const [viewMode, setViewMode] = useState<"dimension" | "archive">("dimension");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -48,10 +46,10 @@ export default function ProjectsPage() {
     setViewMode("dimension");
   };
 
-  // Keyboard navigation for mission orbit
+  // Keyboard navigation (Arrow keys + numbers 1-9)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedProject) return; // Modal open
+      if (selectedProject) return; // Ignore when modal is open
 
       if (e.key === "ArrowLeft") {
         handlePrev();
@@ -75,12 +73,12 @@ export default function ProjectsPage() {
   const totalNumStr = String(total).padStart(2, "0");
 
   return (
-    <main className="relative min-h-screen bg-black text-white selection:bg-red-900 selection:text-white overflow-x-hidden">
-      {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Torii Gates, Reflective Lake) */}
+    <main className="relative min-h-[calc(100vh-72px)] bg-black text-white selection:bg-red-900 selection:text-white overflow-x-hidden flex flex-col justify-between select-none">
+      {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Itachi, Torii Gates, Reflective Stage) */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <Image
           src="/assets/itachi/tsukuyomi-stage-bg.jpg"
-          alt="The Tsukuyomi Dimension"
+          alt="The Tsukuyomi Dimension Stage"
           fill
           priority
           quality={100}
@@ -90,24 +88,25 @@ export default function ProjectsPage() {
 
         {/* Ambient Red Glow Pulse on floor & moon */}
         <div
-          className="absolute inset-0 animate-red-pulse opacity-30"
+          className="absolute inset-0 animate-red-pulse opacity-25"
           style={{
             background:
-              "radial-gradient(ellipse 65% 50% at 50% 40%, rgba(225, 29, 46, 0.35) 0%, rgba(130, 10, 22, 0.15) 50%, transparent 75%)",
+              "radial-gradient(ellipse 65% 50% at 50% 40%, rgba(225, 29, 46, 0.35) 0%, rgba(130, 10, 22, 0.12) 50%, transparent 75%)",
           }}
         />
 
-        {/* Crisp Edge Vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/50 opacity-30" />
+        {/* Top & Bottom edge vignettes for seamless integration */}
+        <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
       </div>
 
-      {/* 2. ATMOSPHERIC DRIFTING CROWS AND FEATHERS */}
+      {/* 2. ATMOSPHERIC DRIFTING CROWS AND FEATHERS LAYER */}
       <CrowParticles />
 
       {/* 3. FOREGROUND PAGE CONTENT */}
-      <div className="relative z-20 w-full min-h-screen flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-12">
-        {/* TOP EDITORIAL HEADER & MODE SWITCHER */}
-        <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 pt-4">
+      <div className="relative z-20 w-full flex-1 flex flex-col justify-between pt-4 sm:pt-6 pb-4 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* TOP EDITORIAL HEADER & MODE SWITCHER MATCHING REFERENCE IMAGE 1 */}
+        <header className="w-full text-center space-y-2 pt-2">
           {/* Eyebrow Tag */}
           <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-red-500 uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
@@ -116,19 +115,19 @@ export default function ProjectsPage() {
 
           {/* Page Title */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white tracking-tight leading-none"
+            className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-none"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             The Tsukuyomi <em className="text-red-500 italic">Dimension.</em>
           </h1>
 
-          {/* Supporting Subtitle */}
-          <p className="text-sm sm:text-base text-neutral-300 font-sans max-w-xl mx-auto">
+          {/* Subtitle */}
+          <p className="text-xs sm:text-sm text-neutral-300 font-sans max-w-xl mx-auto">
             Nine missions. Verified projects. Real engineering solutions.
           </p>
 
           {/* Dual View Mode Switcher Pills */}
-          <div className="inline-flex items-center p-1 rounded-full bg-black/80 border border-red-950/80 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.8)] mt-2">
+          <div className="inline-flex items-center p-1 rounded-full bg-black/80 border border-red-950/80 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.8)] mt-1">
             <button
               type="button"
               onClick={() => setViewMode("dimension")}
@@ -138,7 +137,7 @@ export default function ProjectsPage() {
                   : "text-neutral-400 hover:text-white"
               }`}
             >
-              <Eye size={14} className={viewMode === "dimension" ? "text-red-400" : ""} />
+              <Eye size={13} className={viewMode === "dimension" ? "text-red-400" : ""} />
               <span>Tsukuyomi Dimension</span>
             </button>
 
@@ -151,18 +150,18 @@ export default function ProjectsPage() {
                   : "text-neutral-400 hover:text-white"
               }`}
             >
-              <Folder size={14} className={viewMode === "archive" ? "text-red-400" : ""} />
+              <Folder size={13} className={viewMode === "archive" ? "text-red-400" : ""} />
               <span>Classified Archive</span>
             </button>
           </div>
         </header>
 
         {/* ============================================================
-            VIEW A: TSUKUYOMI 3D ORBITAL DIMENSION
+            VIEW A: TSUKUYOMI 3D AMPHITHEATER DIMENSION (REFERENCE IMAGE 1)
            ============================================================ */}
         {viewMode === "dimension" ? (
           <div className="w-full flex-1 flex flex-col justify-between my-2">
-            {/* The 9 Floating Scrolls around Itachi with Energy Laser */}
+            {/* The 9 Floating Scrolls in Crescent Stage around Itachi */}
             <div className="w-full flex-1 flex items-center justify-center">
               <MissionOrbit
                 missions={projects}
@@ -173,47 +172,48 @@ export default function ProjectsPage() {
             </div>
 
             {/* BOTTOM DOSSIER BAR & CAROUSEL CONTROLS */}
-            <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 mt-4 space-y-4">
-              {/* Bottom Active Mission Dossier Bar */}
-              <div className="rounded-xl bg-[#090305]/92 border border-red-500/50 backdrop-blur-xl p-4 sm:p-5 shadow-[0_0_35px_rgba(225,29,46,0.25),inset_0_0_20px_rgba(0,0,0,0.85)] flex flex-col lg:flex-row items-center justify-between gap-5">
+            <div className="w-full max-w-6xl mx-auto space-y-3">
+              {/* Bottom Active Mission Dossier Bar Matching Reference Image 1 */}
+              <div className="rounded-xl bg-[#080204]/94 border border-red-500/50 backdrop-blur-xl p-4 sm:p-5 shadow-[0_0_35px_rgba(225,29,46,0.25)] flex flex-col lg:flex-row items-center justify-between gap-5">
                 {/* Left: Mission Number Block */}
-                <div className="flex items-center gap-3 shrink-0 border-b lg:border-b-0 lg:border-r border-red-950/80 pb-3 lg:pb-0 lg:pr-5 w-full lg:w-auto justify-between lg:justify-start">
+                <div className="flex items-center gap-3 shrink-0 border-b lg:border-b-0 lg:border-r border-red-950/80 pb-3 lg:pb-0 lg:pr-6 w-full lg:w-auto justify-between lg:justify-start">
                   <div>
-                    <div className="font-serif text-2xl sm:text-3xl font-bold tracking-tight">
-                      <span className="text-red-500">{activeNumStr}</span>
-                      <span className="text-neutral-600 text-lg mx-1.5">/</span>
-                      <span className="text-neutral-400 text-lg">{totalNumStr}</span>
+                    <div className="font-serif text-3xl sm:text-4xl font-bold tracking-tight">
+                      <span className="text-red-500 drop-shadow-[0_0_10px_#ff263b]">{activeNumStr}</span>
+                      <span className="text-neutral-500 text-xl mx-1.5">/</span>
+                      <span className="text-neutral-400 text-xl">{totalNumStr}</span>
                     </div>
-                    <div className="font-mono text-[9px] tracking-[0.2em] text-red-400 font-semibold uppercase mt-0.5">
+                    <div className="font-mono text-[9px] tracking-[0.25em] text-red-400 font-semibold uppercase mt-0.5">
                       MISSION DOSSIER
                     </div>
                   </div>
                 </div>
 
-                {/* Center-Left: Project Title & Summary */}
+                {/* Center: Title & Description */}
                 <div className="flex-1 min-w-0 space-y-1 text-center lg:text-left">
                   <h3
-                    className="text-lg sm:text-xl font-serif font-bold text-white tracking-tight truncate"
+                    className="text-xl sm:text-2xl font-serif font-bold text-white tracking-tight"
                     style={{ fontFamily: "'Playfair Display', serif" }}
                   >
                     {currentProject.title}
                   </h3>
-                  <p className="text-xs text-neutral-300 font-sans line-clamp-2 max-w-xl">
+                  <p className="text-xs sm:text-[13px] text-neutral-300 font-sans leading-relaxed line-clamp-2 max-w-2xl">
                     {currentProject.summary}
                   </p>
                 </div>
 
-                {/* Center-Right: Technologies */}
-                <div className="shrink-0 space-y-1.5 hidden md:block">
-                  <div className="font-mono text-[9px] tracking-[0.2em] text-red-400 uppercase font-semibold">
+                {/* Center-Right: Technologies with Badges */}
+                <div className="shrink-0 space-y-1.5 hidden xl:block border-l border-red-950/80 pl-6">
+                  <div className="font-mono text-[9px] tracking-[0.25em] text-red-400 uppercase font-semibold">
                     TECHNOLOGIES
                   </div>
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-2">
                     {currentProject.stack.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 rounded bg-black/60 border border-red-950/80 font-mono text-[10px] text-neutral-300"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#100306] border border-red-900/60 font-mono text-[11px] text-neutral-200"
                       >
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_6px_#ff263b]" />
                         {tech}
                       </span>
                     ))}
@@ -221,11 +221,11 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Right: Action Buttons */}
-                <div className="flex flex-wrap items-center gap-2.5 shrink-0 justify-center w-full lg:w-auto">
+                <div className="flex flex-col sm:flex-row lg:flex-col gap-2 shrink-0 w-full lg:w-auto">
                   <button
                     type="button"
                     onClick={() => handleOpenDossier(currentProject, currentIndex)}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-red-600 hover:bg-red-500 text-white font-mono text-xs font-semibold tracking-wider transition-all duration-200 shadow-[0_0_18px_rgba(225,29,46,0.5)] cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded bg-gradient-to-r from-[#9e101f] to-[#e11d2e] hover:from-[#ba1425] hover:to-[#ff263b] text-white font-mono text-xs font-semibold tracking-wider transition-all duration-200 shadow-[0_0_20px_rgba(225,29,46,0.5)] cursor-pointer"
                   >
                     <span>Inspect Detailed Dossier</span>
                     <ArrowUpRight size={15} />
@@ -236,22 +236,22 @@ export default function ProjectsPage() {
                       href={currentProject.repository}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded border border-neutral-700 hover:border-red-500/60 bg-black/70 hover:bg-neutral-900 text-neutral-300 hover:text-white font-mono text-xs tracking-wider transition-all duration-200"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded border border-neutral-700/80 hover:border-red-500/70 bg-black/60 hover:bg-neutral-900 text-neutral-300 hover:text-white font-mono text-xs tracking-wider transition-colors cursor-pointer"
                     >
-                      <Github size={14} />
-                      <span className="hidden sm:inline">View GitHub Source</span>
+                      <Github size={14} className="text-red-400" />
+                      <span>View GitHub Source</span>
                     </a>
                   )}
                 </div>
               </div>
 
               {/* Bottom Carousel Controls: Prev, 9 Dots, Next */}
-              <div className="flex items-center justify-center gap-4 pt-1">
+              <div className="flex items-center justify-center gap-4 pt-1 pb-1">
                 <button
                   type="button"
                   onClick={handlePrev}
                   aria-label="Previous Mission"
-                  className="w-8 h-8 rounded-full border border-red-950/80 bg-black/60 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-red-950/80 bg-black/70 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(0,0,0,0.8)]"
                 >
                   <ChevronLeft size={16} />
                 </button>
@@ -268,7 +268,7 @@ export default function ProjectsPage() {
                         aria-label={`Jump to Mission ${dotIdx + 1}`}
                         className={`transition-all duration-300 cursor-pointer ${
                           isDotActive
-                            ? "w-6 h-2 rounded-full bg-red-500 shadow-[0_0_10px_#ff263b]"
+                            ? "w-7 h-2 rounded-full bg-red-500 shadow-[0_0_12px_#ff263b]"
                             : "w-2 h-2 rounded-full bg-neutral-700 hover:bg-neutral-500"
                         }`}
                       />
@@ -280,7 +280,7 @@ export default function ProjectsPage() {
                   type="button"
                   onClick={handleNext}
                   aria-label="Next Mission"
-                  className="w-8 h-8 rounded-full border border-red-950/80 bg-black/60 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-red-950/80 bg-black/70 hover:border-red-500/80 flex items-center justify-center text-neutral-400 hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(0,0,0,0.8)]"
                 >
                   <ChevronRight size={16} />
                 </button>
