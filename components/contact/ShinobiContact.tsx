@@ -3,18 +3,18 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, ArrowUpRight, MapPin, Sparkles } from "lucide-react";
+import { Github, Linkedin, Instagram, ArrowUpRight, MapPin } from "lucide-react";
 import ContactScroll from "./ContactScroll";
 import DriftingLeaves from "@/components/skills/DriftingLeaves";
 
 export default function ShinobiContact() {
-  const [selectedTopic, setSelectedTopic] = useState<string>("Project Collaboration");
+  const [selectedTopic, setSelectedTopic] = useState<string>("Full-Stack Web");
 
   const topics = [
-    "Project Collaboration",
-    "Internship Opportunities",
-    "Cybersecurity & Research",
-    "Custom Development",
+    "Full-Stack Web",
+    "Applied AI",
+    "Cybersecurity",
+    "Internships",
   ];
 
   const socialChannels = [
@@ -40,7 +40,7 @@ export default function ShinobiContact() {
 
   return (
     <section className="relative w-full min-h-[960px] lg:min-h-screen bg-black overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-12 lg:pb-16 select-none">
-      {/* 1. CINEMATIC BACKGROUND ARTWORK (Sharingan Moon, Itachi, Lantern with 連絡, Crow, Torii Gate, Water) */}
+      {/* 1. CINEMATIC BACKGROUND ARTWORK (Blood Moon, Landscape, Itachi on rock, Lantern, Water - Zero Background Scroll) */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/assets/itachi/shinobi-contact-backdrop.jpg"
@@ -69,12 +69,11 @@ export default function ShinobiContact() {
       {/* 2. DRIFTING MAPLE LEAVES LAYER */}
       <DriftingLeaves />
 
-      {/* 3. FOREGROUND INTERACTION LAYER */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex flex-col justify-between">
-        {/* DESKTOP 2-COLUMN COMPOSITION MATCHING REFERENCE */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-start pt-4 flex-1">
-          {/* Left Column: Eyebrow, Heading, Description, Topics & Social Cards */}
-          <div className="lg:col-span-6 space-y-6 pt-4 max-w-lg">
+      {/* 3. FOREGROUND INTERACTION LAYER (SINGLE RESPONSIVE GRID - NO DUPLICATE CONTENT) */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center w-full py-6">
+          {/* Left Column: Eyebrow, Heading, Description, Topics & Single Social Links List */}
+          <div className="lg:col-span-6 space-y-6 max-w-lg">
             {/* Eyebrow Tag */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -91,7 +90,7 @@ export default function ShinobiContact() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl xl:text-6xl font-serif font-bold text-white tracking-tight leading-[1.08]"
+              className="text-4xl sm:text-5xl xl:text-6xl font-serif font-bold text-white tracking-tight leading-[1.08]"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               Let&apos;s<br />
@@ -105,7 +104,7 @@ export default function ShinobiContact() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-sm text-neutral-300 font-sans leading-relaxed"
             >
-              Have a project, opportunity, or idea in mind? I&apos;m always open to discussing development, cybersecurity, research, and collaborations.
+              Have a project, opportunity, or idea in mind? I&apos;m always open to discussing development, cybersecurity, research, and technical collaborations.
             </motion.p>
 
             {/* Collaboration Interest Chips */}
@@ -139,7 +138,7 @@ export default function ShinobiContact() {
               </div>
             </motion.div>
 
-            {/* 3 Social Cards (GitHub, LinkedIn, Instagram) */}
+            {/* Exactly One List of Social Cards (GitHub, LinkedIn, Instagram) */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -174,7 +173,7 @@ export default function ShinobiContact() {
                 </a>
               ))}
 
-              {/* Location Badge */}
+              {/* Location Badge (Exactly Once) */}
               <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-black/60 border border-red-950/60 font-mono text-[10px] text-neutral-400">
                 <MapPin size={13} className="text-red-500 shrink-0" />
                 <div>
@@ -185,65 +184,12 @@ export default function ShinobiContact() {
             </motion.div>
           </div>
 
-          {/* Right Column: The Hanging Contact Scroll */}
-          <div className="lg:col-span-6 flex justify-end items-center pt-2">
+          {/* Right Column: Exactly ONE Hanging Contact Scroll with Form */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end items-center pt-2">
             <ContactScroll selectedTopic={selectedTopic} />
-          </div>
-        </div>
-
-        {/* MOBILE / TABLET STACKED RESPONSIVE LAYOUT */}
-        <div className="lg:hidden flex flex-col gap-8 py-4">
-          {/* Header */}
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-red-500 uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b]" />
-              GET IN TOUCH
-            </div>
-
-            <h1
-              className="text-4xl font-serif font-bold text-white tracking-tight"
-              style={{ fontFamily: "'Playfair Display', serif" }}
-            >
-              Let&apos;s <em className="text-red-500 italic">Collaborate.</em>
-            </h1>
-
-            <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed">
-              Have a project, opportunity, or idea in mind? I&apos;m always open to discussing development, cybersecurity, research, and collaborations.
-            </p>
-          </div>
-
-          {/* Contact Scroll */}
-          <ContactScroll selectedTopic={selectedTopic} />
-
-          {/* Social Links & Location */}
-          <div className="space-y-2.5 pt-2">
-            {socialChannels.map((soc) => (
-              <a
-                key={soc.title}
-                href={soc.link}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between p-3 rounded-lg bg-black/70 border border-red-950/80"
-              >
-                <div className="flex items-center gap-3">
-                  {soc.icon}
-                  <div>
-                    <div className="font-serif text-xs font-bold text-white">{soc.title}</div>
-                    <div className="font-mono text-[9px] text-neutral-400">{soc.subtitle}</div>
-                  </div>
-                </div>
-                <ArrowUpRight size={14} className="text-neutral-500" />
-              </a>
-            ))}
-
-            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/60 border border-red-950/60 font-mono text-[10px] text-neutral-400">
-              <MapPin size={13} className="text-red-500 shrink-0" />
-              <span>Karnataka, India · Open to remote collaboration</span>
-            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
