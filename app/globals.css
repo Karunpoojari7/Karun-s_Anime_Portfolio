@@ -2921,3 +2921,18 @@
   animation: redPulse 4s ease-in-out infinite;
 }
 
+
+/* CUSTOM MINIMAL SCROLLBAR FOR TRAINING SCROLL & PROJECT DOSSIER */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(10, 3, 5, 0.6);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(225, 29, 46, 0.35);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(225, 29, 46, 0.7);
+}
