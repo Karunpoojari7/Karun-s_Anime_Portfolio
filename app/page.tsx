@@ -52,10 +52,10 @@ export default function Home() {
           transition={{ duration: 0.7, delay: 0.15 }}
         >
           <p className="body-large">
-            I&apos;m Karun Poojari, an MCA Cybersecurity scholar at GM University with a foundation in frontend craftsmanship and a deliberate focus on full-stack architecture, applied artificial intelligence, and defensive cybersecurity operations.
+            I&apos;m Karun Poojari, an MCA Cybersecurity student at GM University with a foundation in frontend development and a growing interest in full-stack engineering, artificial intelligence and cybersecurity.
           </p>
           <Link href="/about" className="text-link">
-            Read the five-chapter story <ArrowUpRight size={16} />
+            Learn more about me <ArrowUpRight size={16} />
           </Link>
         </motion.div>
       </section>
@@ -68,13 +68,13 @@ export default function Home() {
 
       {/* Closing Open Channel CTA */}
       <section className="closing-cta section-wrap">
-        <p className="eyebrow">OPEN DISPATCH</p>
+        <p className="eyebrow">GET IN TOUCH</p>
         <h2>
-          Have a challenge<br />
-          worth <em>solving?</em>
+          Have a project or opportunity<br />
+          in mind? <em>Let&apos;s talk.</em>
         </h2>
         <p className="closing-desc">
-          Available for software engineering roles, defensive security operations, freelance technical consulting, and collaborative research initiatives.
+          Available for software engineering roles, internships, and collaborative projects.
         </p>
         <div className="closing-actions">
           <Link href="/contact" className="button button-primary">
