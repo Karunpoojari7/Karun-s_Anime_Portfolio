@@ -104,8 +104,8 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps = {}
           <div className="grid grid-cols-2 gap-3">
             {/* Your Name */}
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 pl-2.5 flex items-center text-neutral-500">
-                <User size={13} className="text-red-500/80" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-500">
+                <User size={14} className="text-red-500/80" />
               </div>
               <input
                 id="name"
@@ -113,14 +113,14 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps = {}
                 type="text"
                 required
                 placeholder="Your Name"
-                className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
+                className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-black/85 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
               />
             </div>
 
             {/* Your Email */}
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 pl-2.5 flex items-center text-neutral-500">
-                <Mail size={13} className="text-red-500/80" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-500">
+                <Mail size={14} className="text-red-500/80" />
               </div>
               <input
                 id="email"
@@ -128,15 +128,15 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps = {}
                 type="email"
                 required
                 placeholder="Your Email"
-                className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
+                className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-black/85 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
               />
             </div>
           </div>
 
           {/* Row 2: Subject */}
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 pl-2.5 flex items-center text-neutral-500">
-              <Tag size={13} className="text-red-500/80" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-500">
+              <Tag size={14} className="text-red-500/80" />
             </div>
             <input
               id="subject"
@@ -144,14 +144,14 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps = {}
               type="text"
               required
               placeholder="Subject"
-              className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
+              className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-black/85 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans"
             />
           </div>
 
           {/* Row 3: Message Textarea */}
           <div className="relative">
-            <div className="pointer-events-none absolute top-3 left-2.5 text-neutral-500">
-              <MessageSquare size={13} className="text-red-500/80" />
+            <div className="pointer-events-none absolute top-3 left-3 text-neutral-500">
+              <MessageSquare size={14} className="text-red-500/80" />
             </div>
             <textarea
               id="message"
@@ -159,7 +159,7 @@ export default function ContactScroll({ selectedTopic }: ContactScrollProps = {}
               rows={4}
               required
               placeholder="Tell me about your project, idea, or opportunity..."
-              className="w-full pl-8 pr-2.5 py-2.5 rounded bg-black/80 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans resize-none"
+              className="w-full pl-9 pr-3 py-2.5 rounded-lg bg-black/85 border border-red-950/90 focus:border-red-500 text-xs sm:text-sm text-white placeholder-neutral-500 focus:outline-none focus:ring-1 focus:ring-red-500/50 transition-all font-sans resize-none"
             />
           </div>
 
