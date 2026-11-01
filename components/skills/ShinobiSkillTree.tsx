@@ -37,7 +37,7 @@ export default function ShinobiSkillTree() {
   }, [activeId]);
 
   return (
-    <section className="relative w-full min-h-[920px] lg:min-h-[100vh] bg-black overflow-hidden flex flex-col justify-center py-12 lg:py-20 select-none">
+    <section className="relative w-full min-h-[920px] lg:min-h-[100vh] bg-black overflow-hidden flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 pb-12 lg:pb-20 select-none">
       {/* 1. CINEMATIC BACKGROUND ARTWORK */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -45,7 +45,9 @@ export default function ShinobiSkillTree() {
           alt="Itachi Uchiha - Shinobi Skill Tree"
           fill
           priority
-          className="object-cover object-center filter contrast-[1.06] brightness-[0.96]"
+          quality={100}
+          sizes="100vw"
+          className="object-cover object-center"
         />
 
         {/* Subtle Ambient Red Glow on Central Uchiha Fan & Horizon */}
@@ -53,13 +55,13 @@ export default function ShinobiSkillTree() {
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 35% 45%, rgba(255, 38, 59, 0.3) 0%, transparent 65%)",
+              "radial-gradient(ellipse 60% 50% at 35% 45%, rgba(255, 38, 59, 0.25) 0%, transparent 65%)",
           }}
         />
 
-        {/* Ambient Dark Vignette Edge Mask */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 opacity-80" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 opacity-60" />
+        {/* Crisp Ambient Edge Frame */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-30" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 opacity-25" />
       </div>
 
       {/* 2. DRIFTING MAPLE LEAVES PARTICLE LAYER */}
