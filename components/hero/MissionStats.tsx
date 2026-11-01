@@ -45,12 +45,11 @@ export default function MissionStats() {
   return (
     <section className="section-wrap stats-section" aria-label="Mission Statistics">
       <div className="stats-grid">
-        <AnimatedStat target={9} label="PROJECTS TO EXPLORE" />
-        <AnimatedStat target={3} label="CORE DOMAINS" />
-        <AnimatedStat target={1} label="FRONTEND DEVELOPMENT INTERNSHIP" />
-        <AnimatedStat target="∞" label="ROOM TO KEEP LEARNING" />
+        <AnimatedStat target={9} label="DOCUMENTED PROJECTS" />
+        <AnimatedStat target={3} label="CORE FOCUS DOMAINS" />
+        <AnimatedStat target={2} label="EDUCATION MILESTONES" />
+        <AnimatedStat target={1} label="VERIFIED INTERNSHIP" />
       </div>
     </section>
   );
 }
-
