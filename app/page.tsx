@@ -1,9 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
+
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Code2, ShieldCheck, BrainCircuit, Sparkles, Terminal } from "lucide-react";
+import { ArrowUpRight, Code2, ShieldCheck, BrainCircuit, Terminal, Sparkles } from "lucide-react";
 import { projects } from "@/lib/projects";
 import ItachiIntro from "@/components/ItachiIntro";
 import ShinobiHero from "@/components/hero/ShinobiHero";
@@ -12,7 +12,25 @@ import TsukuyomiProjects from "@/components/projects/TsukuyomiProjects";
 import NinjutsuSpecializations from "@/components/arsenal/NinjutsuSpecializations";
 
 export default function Home() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState<boolean>(false);
+  const [isReady, setIsReady] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsReady(true);
+    // Respect user's session navigation: intro plays on initial visit or when ?intro=true is requested
+    const hasSeen = sessionStorage.getItem("karun_hg_intro_seen");
+    const params = new URLSearchParams(window.location.search);
+    const forceIntro = params.get("intro") === "true";
+
+    if (!hasSeen || forceIntro) {
+      setShowIntro(true);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem("karun_hg_intro_seen", "true");
+    setShowIntro(false);
+  };
 
   // 4 premier featured missions across domains
   const featured = projects.filter((p) =>
@@ -21,8 +39,10 @@ export default function Home() {
 
   return (
     <div className="homepage-root">
-      {/* Cinematic Itachi Mangekyo Intro Screen */}
-      {showIntro && <ItachiIntro onComplete={() => setShowIntro(false)} />}
+      {/* Dedicated Cinematic Mangekyo Sharingan Opening Experience */}
+      {isReady && showIntro && (
+        <ItachiIntro onComplete={handleIntroComplete} />
+      )}
 
       {/* Hero: Itachi Arrival, Akatsuki Cloak, Crow Vortex */}
       <ShinobiHero />
@@ -49,45 +69,40 @@ export default function Home() {
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
         >
           <p className="body-large">
-            I&apos;m Karun Poojari, an MCA Cybersecurity student at GM University with a foundation in frontend development and a growing interest in full-stack engineering, artificial intelligence and cybersecurity.
+            I build software with disciplined focus, strategic planning and clean execution.
+            My approach combines modern web technologies, applied artificial intelligence and cybersecurity principles.
           </p>
           <Link href="/about" className="text-link">
-            Learn more about me <ArrowUpRight size={16} />
+            Read My Full Story <ArrowUpRight size={14} />
           </Link>
         </motion.div>
       </section>
 
-      {/* Section: Cinematic Itachi Tsukuyomi Mission Dimension (9 Orbital Scrolls) */}
-      <TsukuyomiProjects />
-
-      {/* Section: Three Paths of the Shinobi (Ninjutsu Specializations) */}
+      {/* Core Technical Disciplines Preview */}
       <NinjutsuSpecializations />
 
-      {/* Closing Open Channel CTA */}
-      <section className="closing-cta section-wrap">
-        <p className="eyebrow">GET IN TOUCH</p>
-        <h2>
-          Have a project or opportunity<br />
-          in mind? <em>Let&apos;s talk.</em>
-        </h2>
-        <p className="closing-desc">
-          Available for software engineering roles, internships, and collaborative projects.
-        </p>
-        <div className="closing-actions">
-          <Link href="/contact" className="button button-primary">
-            Start a Conversation <ArrowUpRight size={17} />
-          </Link>
-          <a
-            href="https://github.com/Karunpoojari7"
-            target="_blank"
-            rel="noreferrer"
-            className="button button-ghost"
+      {/* Featured Missions Archive */}
+      <TsukuyomiProjects featuredOnly={true} />
+
+      {/* Closing Call to Action */}
+      <section className="section-wrap closing-cta">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-t border-red-950/60 pt-16 pb-12">
+          <div>
+            <span className="eyebrow">NEXT MISSION</span>
+            <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight mt-2">
+              Ready to create something <em className="text-red-500 italic">remarkable?</em>
+            </h2>
+          </div>
+          <Link
+            href="/contact"
+            className="button button-primary shrink-0 self-start sm:self-end"
           >
-            Explore GitHub Repositories
-          </a>
+            <span>Initiate Collaboration</span>
+            <ArrowUpRight size={15} />
+          </Link>
         </div>
       </section>
     </div>
