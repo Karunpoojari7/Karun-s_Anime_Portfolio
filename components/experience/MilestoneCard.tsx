@@ -22,11 +22,11 @@ export default function MilestoneCard({
       onMouseLeave={() => onHover(null)}
       whileHover={{ y: -2, scale: 1.01 }}
       transition={{ duration: 0.2 }}
-      className={`group relative rounded-2xl p-4 sm:p-4.5 transition-all duration-300 cursor-pointer select-none border ${
+      className={`group relative rounded-2xl p-3.5 sm:p-4 transition-all duration-300 cursor-pointer select-none border ${
         isActive
-          ? "bg-[#0d0407]/95 border-red-500 shadow-[0_0_25px_rgba(225,29,46,0.35),inset_0_0_12px_rgba(255,38,59,0.12)]"
-          : "bg-[#090305]/88 border-red-500/40 hover:border-red-500/75 shadow-[0_0_16px_rgba(0,0,0,0.85)] hover:shadow-[0_0_24px_rgba(225,29,46,0.22)]"
-      } backdrop-blur-xl w-full`}
+          ? "bg-[#0d0407]/98 border-red-500 shadow-[0_0_28px_rgba(225,29,46,0.45),inset_0_0_15px_rgba(255,38,59,0.15)]"
+          : "bg-[#080204]/94 border-red-500/50 hover:border-red-500 shadow-[0_0_20px_rgba(0,0,0,0.92)] hover:shadow-[0_0_25px_rgba(225,29,46,0.3)]"
+      } backdrop-blur-2xl w-full`}
     >
       {/* Decorative Akatsuki Cloud Outline (Top-Right) */}
       <div className="pointer-events-none absolute top-3 right-3 opacity-25 group-hover:opacity-45 transition-opacity">
