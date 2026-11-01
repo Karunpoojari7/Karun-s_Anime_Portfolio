@@ -1,7 +1,40 @@
+export type DisciplineId = "development" | "ai-ml" | "cybersecurity" | "devops-tools";
+
 export interface TechnologyItem {
   name: string;
-  category?: string;
-  iconType?: "react" | "next" | "ts" | "node" | "spring" | "postgres" | "python" | "fastapi" | "docker" | "git" | "wireshark" | "linux" | "redis" | "code";
+  iconType:
+    | "react"
+    | "next"
+    | "ts"
+    | "node"
+    | "tailwind"
+    | "postgres"
+    | "git"
+    | "docker"
+    | "redis"
+    | "python"
+    | "tensorflow"
+    | "opencv"
+    | "fastapi"
+    | "pytorch"
+    | "scikit"
+    | "ollama"
+    | "pandas"
+    | "flask"
+    | "wireshark"
+    | "terminal"
+    | "network"
+    | "dns"
+    | "soc"
+    | "lock"
+    | "linux"
+    | "nmap"
+    | "burp"
+    | "github"
+    | "vscode"
+    | "postman"
+    | "vercel"
+    | "code";
 }
 
 export interface AppliedProject {
@@ -11,165 +44,245 @@ export interface AppliedProject {
   isExternal?: boolean;
 }
 
+export interface ProjectEvidenceItem {
+  title: string;
+  role: string;
+  summary: string;
+  technologies: string[];
+  link: string;
+  isExternal?: boolean;
+}
+
 export interface SkillDiscipline {
-  id: "ninjutsu" | "genjutsu" | "dojutsu" | "kugutsu";
+  id: DisciplineId;
   number: string;
-  japaneseTitle: string;
-  englishCategory: string;
-  shortTitle: string;
-  shortSubtitle: string;
-  panelTitle: string;
+  title: string;
+  subtitle: string;
   description: string;
   iconType: "code" | "brain" | "shield" | "layers";
   technologies: TechnologyItem[];
   appliedIn: AppliedProject[];
+  evidence: ProjectEvidenceItem[];
 }
 
 export const SKILL_DISCIPLINES: SkillDiscipline[] = [
   {
-    id: "ninjutsu",
+    id: "development",
     number: "01",
-    japaneseTitle: "Ninjutsu",
-    englishCategory: "FULL-STACK DEVELOPMENT",
-    shortTitle: "Development",
-    shortSubtitle: "Web · Full-Stack",
-    panelTitle: "Ninjutsu: Full-Stack Development",
+    title: "Development",
+    subtitle: "Web · Full-Stack",
     description:
-      "Building responsive web applications, scalable systems and practical digital solutions.",
+      "Building responsive web applications, scalable systems and real-world digital solutions.",
     iconType: "code",
     technologies: [
       { name: "React", iconType: "react" },
       { name: "Next.js", iconType: "next" },
       { name: "TypeScript", iconType: "ts" },
       { name: "Node.js", iconType: "node" },
-      { name: "Spring Boot", iconType: "spring" },
+      { name: "Tailwind CSS", iconType: "tailwind" },
       { name: "PostgreSQL", iconType: "postgres" },
+      { name: "Git", iconType: "git" },
+      { name: "Docker", iconType: "docker" },
+      { name: "Redis", iconType: "redis" },
     ],
     appliedIn: [
       {
-        title: "GMU Connect 2.0",
-        subtitle: "Student ERP web application",
-        link: "/projects",
+        title: "MGS Jewellery",
+        subtitle: "E-commerce Web Platform",
+        link: "/projects/jewellery-website",
       },
       {
-        title: "MGS Jewellery",
-        subtitle: "E-commerce platform",
-        link: "/projects",
+        title: "GMU Connect 2.0",
+        subtitle: "Student ERP Prototype",
+        link: "/projects/gmu-crm",
       },
       {
         title: "Doctor Portfolio",
-        subtitle: "Personal portfolio web app",
-        link: "/projects",
+        subtitle: "Personal Web Application",
+        link: "/projects/doctor-portfolio",
+      },
+    ],
+    evidence: [
+      {
+        title: "MGS Jewellery Platform",
+        role: "Frontend Engineer & UI Lead",
+        summary:
+          "Engineered a high-performance luxury e-commerce catalog, dynamic cart management, and fluid responsive checkout interface with Next.js and Tailwind.",
+        technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+        link: "/projects/jewellery-website",
+      },
+      {
+        title: "GMU Connect Student ERP",
+        role: "Full-Stack Developer",
+        summary:
+          "Developed student profile management, course navigation, and responsive administration portals with Node.js and PostgreSQL backend services.",
+        technologies: ["React", "Node.js", "PostgreSQL", "Tailwind CSS"],
+        link: "/projects/gmu-crm",
       },
     ],
   },
   {
-    id: "genjutsu",
+    id: "ai-ml",
     number: "02",
-    japaneseTitle: "Genjutsu",
-    englishCategory: "ARTIFICIAL INTELLIGENCE",
-    shortTitle: "AI",
-    shortSubtitle: "ML · DL · LLMs",
-    panelTitle: "Genjutsu: Artificial Intelligence",
+    title: "AI & ML",
+    subtitle: "ML · DL · LLMs",
     description:
       "Exploring applied machine learning, computer vision for medical diagnostics and intelligent application integration.",
     iconType: "brain",
     technologies: [
       { name: "Python", iconType: "python" },
-      { name: "Applied ML", iconType: "code" },
-      { name: "Computer Vision", iconType: "code" },
+      { name: "TensorFlow", iconType: "tensorflow" },
+      { name: "OpenCV", iconType: "opencv" },
       { name: "FastAPI", iconType: "fastapi" },
-      { name: "LLM Integration", iconType: "code" },
-      { name: "Ollama", iconType: "code" },
+      { name: "PyTorch", iconType: "pytorch" },
+      { name: "Scikit-Learn", iconType: "scikit" },
+      { name: "Ollama / LLMs", iconType: "ollama" },
+      { name: "Pandas", iconType: "pandas" },
+      { name: "Flask", iconType: "flask" },
     ],
     appliedIn: [
       {
         title: "Diabetic Retinopathy Detection",
-        subtitle: "Deep learning medical imaging prototype",
-        link: "/projects",
+        subtitle: "AI · Deep Learning · Medical",
+        link: "/projects/diabetic-retinopathy",
       },
       {
         title: "Resume Gap AI",
-        subtitle: "Skill analysis & resume optimization",
-        link: "/projects",
+        subtitle: "AI · Productivity Analysis",
+        link: "/projects/resume-gap-ai",
       },
       {
         title: "Bayora Sec",
-        subtitle: "Adversarial AI evaluation environment",
-        link: "/projects",
+        subtitle: "AI Security & Adversarial Safety",
+        link: "/projects/bayora-sec",
+      },
+    ],
+    evidence: [
+      {
+        title: "Diabetic Retinopathy Detection",
+        role: "Deep Learning Researcher",
+        summary:
+          "Built a CNN deep learning classifier to diagnose retinopathy severity stages from retinal photography with OpenCV image preprocessing and TensorFlow pipelines.",
+        technologies: ["Python", "TensorFlow", "OpenCV", "Flask"],
+        link: "/projects/diabetic-retinopathy",
+      },
+      {
+        title: "Resume Gap AI Analysis System",
+        role: "Full-Stack AI Developer",
+        summary:
+          "Integrated LLM semantic parsing and career gap identification to automatically recommend targeted upskilling roadmaps for candidates.",
+        technologies: ["Python", "FastAPI", "React", "Ollama"],
+        link: "/projects/resume-gap-ai",
       },
     ],
   },
   {
-    id: "dojutsu",
+    id: "cybersecurity",
     number: "03",
-    japaneseTitle: "Dojutsu",
-    englishCategory: "DEFENSIVE CYBERSECURITY",
-    shortTitle: "Cybersecurity",
-    shortSubtitle: "Network · AppSec",
-    panelTitle: "Dojutsu: Defensive Cybersecurity",
+    title: "Cybersecurity",
+    subtitle: "Network · AppSec",
     description:
-      "Investigating network protocols, packet inspection, incident triage and secure software defense.",
+      "Investigating network protocols, packet inspection, incident triage and secure software defense architectures.",
     iconType: "shield",
     technologies: [
       { name: "Wireshark", iconType: "wireshark" },
-      { name: "TShark", iconType: "code" },
-      { name: "TCP/IP Protocols", iconType: "code" },
-      { name: "DNS Forensics", iconType: "code" },
-      { name: "SOC Fundamentals", iconType: "code" },
-      { name: "SHA-256 Hashing", iconType: "code" },
+      { name: "TShark", iconType: "terminal" },
+      { name: "TCP/IP Protocols", iconType: "network" },
+      { name: "DNS Forensics", iconType: "dns" },
+      { name: "SOC Fundamentals", iconType: "soc" },
+      { name: "SHA-256 Hashing", iconType: "lock" },
+      { name: "Kali Linux", iconType: "linux" },
+      { name: "Nmap", iconType: "nmap" },
+      { name: "Burp Suite", iconType: "burp" },
     ],
     appliedIn: [
       {
         title: "Bayora Sec",
-        subtitle: "Zero-trust AI safety testing framework",
-        link: "/projects",
+        subtitle: "Zero-Trust AI Safety Framework",
+        link: "/projects/bayora-sec",
       },
       {
         title: "Packet Analysis Labs",
-        subtitle: "Hands-on Wireshark traffic inspection",
+        subtitle: "Hands-on Traffic Inspection",
         link: "/skills",
       },
       {
         title: "GMU Cybersecurity Studies",
-        subtitle: "Defensive systems & cryptography",
+        subtitle: "Defensive Systems & Cryptography",
+        link: "/experience",
+      },
+    ],
+    evidence: [
+      {
+        title: "Bayora Sec Zero-Trust Framework",
+        role: "Security Engineer",
+        summary:
+          "Constructed adversarial prompt-injection mitigation boundaries, input sanitation filters, and isolated container execution environments for AI tools.",
+        technologies: ["Docker", "Python", "Kali Linux", "AppSec"],
+        link: "/projects/bayora-sec",
+      },
+      {
+        title: "Network Traffic & Packet Forensics",
+        role: "Shinobi Analyst",
+        summary:
+          "Conducted deep packet inspection using Wireshark and TShark to detect anomalous DNS beaconing, malformed TCP packets, and unauthorized port scan attempts.",
+        technologies: ["Wireshark", "TShark", "TCP/IP", "Kali Linux"],
         link: "/experience",
       },
     ],
   },
   {
-    id: "kugutsu",
+    id: "devops-tools",
     number: "04",
-    japaneseTitle: "Kugutsu",
-    englishCategory: "ENGINEERING TOOLS & DEVOPS",
-    shortTitle: "DevOps & Tools",
-    shortSubtitle: "Build · Deploy · Manage",
-    panelTitle: "Kugutsu: Engineering Tools & DevOps",
+    title: "DevOps & Tools",
+    subtitle: "Build · Deploy · Manage",
     description:
-      "Essential developer tooling, containerization, reproducible environments and version control workflows.",
+      "Essential developer tooling, containerization, reproducible deployment environments and version control workflows.",
     iconType: "layers",
     technologies: [
-      { name: "Git & GitHub", iconType: "git" },
+      { name: "Git", iconType: "git" },
       { name: "Docker", iconType: "docker" },
       { name: "Linux / Kali", iconType: "linux" },
-      { name: "VS Code", iconType: "code" },
-      { name: "Postman", iconType: "code" },
+      { name: "GitHub Actions", iconType: "github" },
+      { name: "VS Code", iconType: "vscode" },
+      { name: "Postman", iconType: "postman" },
       { name: "Redis", iconType: "redis" },
+      { name: "Vercel", iconType: "vercel" },
+      { name: "Bash Scripting", iconType: "terminal" },
     ],
     appliedIn: [
       {
         title: "Bayora Sec Architecture",
-        subtitle: "Multi-container Docker orchestration",
-        link: "/projects",
+        subtitle: "Multi-Container Docker Deployment",
+        link: "/projects/bayora-sec",
       },
       {
         title: "GMU Connect Infrastructure",
-        subtitle: "PostgreSQL & Redis container deployment",
-        link: "/projects",
+        subtitle: "PostgreSQL & Redis Container Stack",
+        link: "/projects/gmu-crm",
       },
       {
         title: "GitHub Repositories",
-        subtitle: "Version control & collaborative branch hygiene",
+        subtitle: "Git Hygiene & Release Management",
+        link: "https://github.com/Karunpoojari7",
+        isExternal: true,
+      },
+    ],
+    evidence: [
+      {
+        title: "Containerized Microservices Setup",
+        role: "DevOps Engineer",
+        summary:
+          "Constructed isolated multi-container Docker environments orchestrating FastAPI endpoints, Redis cache queues, and PostgreSQL databases.",
+        technologies: ["Docker", "PostgreSQL", "Redis", "Linux"],
+        link: "/projects/bayora-sec",
+      },
+      {
+        title: "Continuous Delivery & Git Hygiene",
+        role: "Maintainer",
+        summary:
+          "Maintained strict version control practices, automated deployment pipelines with Vercel, and repeatable cross-platform configuration scripts.",
+        technologies: ["Git", "GitHub Actions", "Vercel", "Bash"],
         link: "https://github.com/Karunpoojari7",
         isExternal: true,
       },
