@@ -1,9 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Github, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
+  const pathname = usePathname();
   const currentYear = 2026;
+
+  // Suppress footer on full-viewport immersive cinematic pages to prevent vertical scroll and header collisions
+  const isCinematicPage = ["/experience", "/contact", "/skills", "/projects"].includes(pathname);
+  if (isCinematicPage) return null;
 
   const footerLinks = [
     { href: "/", label: "Home" },
