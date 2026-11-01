@@ -113,21 +113,23 @@ export default function ShinobiJourney() {
               A progressive journey of learning, building, and specializing in cybersecurity.
             </motion.p>
 
-            {/* Single Row 4 Compact Indicators matching Reference */}
+            {/* 4 Compact Stat Cards in a row matching Reference Image 3 */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-2 pt-2"
+              className="flex items-center gap-2.5 pt-2"
             >
               {SUMMARY_INDICATORS.map((ind) => (
                 <div
                   key={ind.label}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#090204]/90 border border-red-950/80 backdrop-blur-md text-[11px] font-mono shadow-[0_0_12px_rgba(0,0,0,0.8)]"
+                  className="flex flex-col items-center justify-center px-3.5 py-2 rounded-xl bg-[#0a0305]/85 border border-red-950/80 backdrop-blur-md shadow-[0_0_14px_rgba(0,0,0,0.85)] min-w-[76px]"
                 >
-                  {getIndicatorIcon(ind.iconType)}
-                  <span className="font-bold text-white">{ind.count}</span>
-                  <span className="text-neutral-400">{ind.label}</span>
+                  <div className="flex items-center gap-1.5">
+                    {getIndicatorIcon(ind.iconType)}
+                    <span className="font-mono text-sm sm:text-base font-bold text-white">{ind.count}</span>
+                  </div>
+                  <span className="text-[10px] text-neutral-400 font-sans tracking-wide mt-0.5">{ind.label}</span>
                 </div>
               ))}
             </motion.div>

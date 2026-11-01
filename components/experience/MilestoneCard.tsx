@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, Shield, CheckCircle2 } from "lucide-react";
+import { Calendar, Shield, CheckCircle2, GraduationCap } from "lucide-react";
 import { Milestone } from "./experienceData";
 
 interface MilestoneCardProps {
@@ -69,16 +69,21 @@ export default function MilestoneCard({
         </div>
 
         <div
-          className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium tracking-wide ${
-            milestone.isCompleted
-              ? "border border-emerald-500/50 bg-emerald-950/40 text-emerald-300"
+          className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium tracking-wide ${
+            milestone.id === "internship"
+              ? "border border-cyan-500/50 bg-cyan-950/40 text-cyan-300"
               : "border border-emerald-500/50 bg-emerald-950/40 text-emerald-300"
           }`}
         >
           {milestone.isCompleted ? (
             <>
-              <CheckCircle2 size={11} className="text-emerald-400" />
+              <CheckCircle2 size={11} className={milestone.id === "internship" ? "text-cyan-400" : "text-emerald-400"} />
               <span>Completed ✓</span>
+            </>
+          ) : milestone.id === "masters" ? (
+            <>
+              <GraduationCap size={11} className="text-emerald-400" />
+              <span>Ongoing</span>
             </>
           ) : (
             <>
