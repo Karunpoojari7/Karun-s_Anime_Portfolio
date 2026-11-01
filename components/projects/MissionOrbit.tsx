@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Project } from "@/lib/projects";
 import MissionScroll from "./MissionScroll";
 
@@ -18,7 +18,7 @@ export default function MissionOrbit({
   onSelect,
   onOpenDossier,
 }: MissionOrbitProps) {
-  const [radii, setRadii] = useState({ rx: 420, ry: 130 });
+  const [radii, setRadii] = useState({ rx: 460, ry: 135 });
   const [isMobile, setIsMobile] = useState(false);
 
   // Dynamically calculate responsive radius based on window size
@@ -27,13 +27,13 @@ export default function MissionOrbit({
       const width = window.innerWidth;
       if (width < 640) {
         setIsMobile(true);
-        setRadii({ rx: 140, ry: 60 });
+        setRadii({ rx: 155, ry: 65 });
       } else if (width < 1024) {
         setIsMobile(false);
-        setRadii({ rx: 300, ry: 100 });
+        setRadii({ rx: 330, ry: 105 });
       } else {
         setIsMobile(false);
-        setRadii({ rx: 430, ry: 135 });
+        setRadii({ rx: 470, ry: 140 });
       }
     };
 
@@ -45,11 +45,11 @@ export default function MissionOrbit({
   const total = missions.length;
 
   return (
-    <div className="relative w-full h-[480px] sm:h-[540px] md:h-[580px] flex items-center justify-center overflow-visible select-none">
+    <div className="relative w-full h-[500px] sm:h-[560px] md:h-[620px] flex items-center justify-center overflow-visible select-none my-2">
       {/* 1. GLOWING CRIMSON ORBITAL ENERGY RINGS (SVG) */}
       <svg
         className="pointer-events-none absolute inset-0 w-full h-full z-10"
-        viewBox="-500 -300 1000 600"
+        viewBox="-550 -320 1100 640"
       >
         <defs>
           <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
@@ -58,7 +58,7 @@ export default function MissionOrbit({
             <stop offset="100%" stopColor="#250306" stopOpacity="0" />
           </radialGradient>
           <filter id="laserGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feGaussianBlur stdDeviation="5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -69,55 +69,60 @@ export default function MissionOrbit({
         {/* Outer subtle orbital guide */}
         <ellipse
           cx="0"
-          cy="30"
-          rx={radii.rx + 15}
-          ry={radii.ry + 8}
+          cy="40"
+          rx={radii.rx + 18}
+          ry={radii.ry + 10}
           fill="none"
-          stroke="#5a0b14"
-          strokeWidth="1"
+          stroke="#680c16"
+          strokeWidth="1.2"
           strokeDasharray="4 8"
-          opacity="0.5"
+          opacity="0.6"
         />
 
-        {/* Primary glowing crimson orbital beam */}
+        {/* Primary glowing crimson orbital laser beam */}
         <ellipse
           cx="0"
-          cy="30"
+          cy="40"
           rx={radii.rx}
           ry={radii.ry}
           fill="none"
           stroke="#ff263b"
-          strokeWidth="1.8"
-          strokeDasharray="12 6"
+          strokeWidth="2.2"
+          strokeDasharray="14 8"
           filter="url(#laserGlow)"
           className="animate-pulse"
-          opacity="0.85"
+          opacity="0.9"
         />
 
-        {/* Energy beam from Itachi's hand to active front scroll */}
+        {/* Vertical Chakra Beam connecting Itachi's hand to the active front scroll */}
         <g>
+          {/* Broad outer crimson aura beam */}
           <line
             x1="0"
-            y1="-90"
+            y1="-95"
             x2="0"
-            y2={radii.ry - 45}
+            y2={radii.ry - 10}
             stroke="#ff263b"
-            strokeWidth="2.5"
+            strokeWidth="4"
+            opacity="0.6"
             filter="url(#laserGlow)"
-            className="animate-pulse"
           />
+          {/* Intense central laser core */}
           <line
             x1="0"
-            y1="-90"
+            y1="-95"
             x2="0"
-            y2={radii.ry - 45}
+            y2={radii.ry - 10}
             stroke="#ffffff"
-            strokeWidth="0.8"
-            opacity="0.9"
+            strokeWidth="1.2"
+            opacity="0.95"
           />
-          {/* Energy focus node at Itachi's hand */}
-          <circle cx="0" cy="-90" r="5" fill="#ff263b" filter="url(#laserGlow)" />
-          <circle cx="0" cy="-90" r="2.5" fill="#ffffff" />
+          {/* Focus energy node at Itachi's hand */}
+          <circle cx="0" cy="-95" r="6" fill="#ff263b" filter="url(#laserGlow)" />
+          <circle cx="0" cy="-95" r="3" fill="#ffffff" />
+          {/* Target energy node at the top of active scroll */}
+          <circle cx="0" cy={radii.ry - 10} r="5" fill="#ff263b" filter="url(#laserGlow)" />
+          <circle cx="0" cy={radii.ry - 10} r="2.5" fill="#ffffff" />
         </g>
       </svg>
 
@@ -129,12 +134,12 @@ export default function MissionOrbit({
 
           // Projected 2D coordinates with 3D elliptical tilt
           const x = Math.cos(angle) * radii.rx;
-          const y = Math.sin(angle) * radii.ry + 30;
+          const y = Math.sin(angle) * radii.ry + 40;
 
           // Depth metric: 0 is furthest back, 1 is closest to camera in front
           const depth = (Math.sin(angle) + 1) / 2;
-          const scale = isMobile ? (i === activeIndex ? 1 : 0.6) : 0.62 + depth * 0.44;
-          const opacity = isMobile ? (i === activeIndex ? 1 : 0.35) : 0.42 + depth * 0.58;
+          const scale = isMobile ? (i === activeIndex ? 1 : 0.62) : 0.65 + depth * 0.42;
+          const opacity = isMobile ? (i === activeIndex ? 1 : 0.38) : 0.45 + depth * 0.55;
           const zIndex = Math.round(depth * 50);
           const isActive = i === activeIndex;
 
@@ -153,8 +158,8 @@ export default function MissionOrbit({
               }}
               transition={{
                 type: "spring",
-                stiffness: 90,
-                damping: 20,
+                stiffness: 95,
+                damping: 22,
                 mass: 0.8,
               }}
             >
@@ -172,4 +177,3 @@ export default function MissionOrbit({
     </div>
   );
 }
-
