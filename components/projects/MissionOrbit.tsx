@@ -18,47 +18,88 @@ export default function MissionOrbit({
   onSelect,
   onOpenDossier,
 }: MissionOrbitProps) {
-  const [radii, setRadii] = useState({ rx: 460, ry: 135 });
-  const [isMobile, setIsMobile] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState<number>(1440);
 
-  // Dynamically calculate responsive radius based on window size
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 640) {
-        setIsMobile(true);
-        setRadii({ rx: 155, ry: 65 });
-      } else if (width < 1024) {
-        setIsMobile(false);
-        setRadii({ rx: 330, ry: 105 });
-      } else {
-        setIsMobile(false);
-        setRadii({ rx: 470, ry: 140 });
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const updateWidth = () => setViewportWidth(window.innerWidth);
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
   const total = missions.length;
 
+  // Calculate coordinates matching the amphitheater crescent arc of Reference Image 1
+  const getSlotTransform = (offset: number) => {
+    if (viewportWidth >= 1280) {
+      // Desktop
+      const desktopSlots: Record<number, { x: number; y: number; scale: number; zIndex: number; opacity: number }> = {
+        0: { x: 0, y: 55, scale: 1.08, zIndex: 50, opacity: 1.0 },
+        [-1]: { x: -225, y: 25, scale: 0.82, zIndex: 40, opacity: 0.90 },
+        [1]: { x: 225, y: 25, scale: 0.82, zIndex: 40, opacity: 0.90 },
+        [-2]: { x: -400, y: -35, scale: 0.74, zIndex: 30, opacity: 0.80 },
+        [2]: { x: 400, y: -35, scale: 0.74, zIndex: 30, opacity: 0.80 },
+        [-3]: { x: -555, y: -15, scale: 0.68, zIndex: 20, opacity: 0.72 },
+        [3]: { x: 555, y: -15, scale: 0.68, zIndex: 20, opacity: 0.72 },
+        [-4]: { x: -685, y: 40, scale: 0.62, zIndex: 10, opacity: 0.62 },
+        [4]: { x: 685, y: 40, scale: 0.62, zIndex: 10, opacity: 0.62 },
+      };
+      return desktopSlots[offset] || desktopSlots[0];
+    } else if (viewportWidth >= 1024) {
+      // Laptop
+      const laptopSlots: Record<number, { x: number; y: number; scale: number; zIndex: number; opacity: number }> = {
+        0: { x: 0, y: 45, scale: 1.0, zIndex: 50, opacity: 1.0 },
+        [-1]: { x: -185, y: 18, scale: 0.76, zIndex: 40, opacity: 0.88 },
+        [1]: { x: 185, y: 18, scale: 0.76, zIndex: 40, opacity: 0.88 },
+        [-2]: { x: -330, y: -28, scale: 0.68, zIndex: 30, opacity: 0.78 },
+        [2]: { x: 330, y: -28, scale: 0.68, zIndex: 30, opacity: 0.78 },
+        [-3]: { x: -460, y: -10, scale: 0.60, zIndex: 20, opacity: 0.70 },
+        [3]: { x: 460, y: -10, scale: 0.60, zIndex: 20, opacity: 0.70 },
+        [-4]: { x: -560, y: 32, scale: 0.54, zIndex: 10, opacity: 0.55 },
+        [4]: { x: 560, y: 32, scale: 0.54, zIndex: 10, opacity: 0.55 },
+      };
+      return laptopSlots[offset] || laptopSlots[0];
+    } else if (viewportWidth >= 640) {
+      // Tablet
+      const tabletSlots: Record<number, { x: number; y: number; scale: number; zIndex: number; opacity: number }> = {
+        0: { x: 0, y: 30, scale: 0.94, zIndex: 50, opacity: 1.0 },
+        [-1]: { x: -150, y: 10, scale: 0.70, zIndex: 40, opacity: 0.85 },
+        [1]: { x: 150, y: 10, scale: 0.70, zIndex: 40, opacity: 0.85 },
+        [-2]: { x: -275, y: -20, scale: 0.58, zIndex: 30, opacity: 0.65 },
+        [2]: { x: 275, y: -20, scale: 0.58, zIndex: 30, opacity: 0.65 },
+        [-3]: { x: -375, y: -5, scale: 0.48, zIndex: 20, opacity: 0.45 },
+        [3]: { x: 375, y: -5, scale: 0.48, zIndex: 20, opacity: 0.45 },
+        [-4]: { x: -445, y: 25, scale: 0.40, zIndex: 10, opacity: 0.30 },
+        [4]: { x: 445, y: 25, scale: 0.40, zIndex: 10, opacity: 0.30 },
+      };
+      return tabletSlots[offset] || tabletSlots[0];
+    } else {
+      // Mobile (< 640px)
+      const mobileSlots: Record<number, { x: number; y: number; scale: number; zIndex: number; opacity: number }> = {
+        0: { x: 0, y: 15, scale: 1.0, zIndex: 50, opacity: 1.0 },
+        [-1]: { x: -150, y: 5, scale: 0.65, zIndex: 30, opacity: 0.40 },
+        [1]: { x: 150, y: 5, scale: 0.65, zIndex: 30, opacity: 0.40 },
+        [-2]: { x: -260, y: -10, scale: 0.48, zIndex: 20, opacity: 0.15 },
+        [2]: { x: 260, y: -10, scale: 0.48, zIndex: 20, opacity: 0.15 },
+        [-3]: { x: -330, y: -5, scale: 0.35, zIndex: 10, opacity: 0.05 },
+        [3]: { x: 330, y: -5, scale: 0.35, zIndex: 10, opacity: 0.05 },
+        [-4]: { x: -380, y: 10, scale: 0.25, zIndex: 5, opacity: 0.0 },
+        [4]: { x: 380, y: 10, scale: 0.25, zIndex: 5, opacity: 0.0 },
+      };
+      return mobileSlots[offset] || mobileSlots[0];
+    }
+  };
+
   return (
-    <div className="relative w-full h-[500px] sm:h-[560px] md:h-[620px] flex items-center justify-center overflow-visible select-none my-2">
-      {/* 1. GLOWING CRIMSON ORBITAL ENERGY RINGS (SVG) */}
+    <div className="relative w-full h-[430px] sm:h-[480px] lg:h-[530px] flex items-center justify-center overflow-visible select-none my-1">
+      {/* 1. GLOWING CRIMSON CHAKRA LASER ENERGY RING & BEAMS (SVG) */}
       <svg
-        className="pointer-events-none absolute inset-0 w-full h-full z-10"
-        viewBox="-550 -320 1100 640"
+        className="pointer-events-none absolute inset-0 w-full h-full z-15"
+        viewBox="-750 -300 1500 600"
       >
         <defs>
-          <radialGradient id="ringGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ff263b" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#8a0f1c" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#250306" stopOpacity="0" />
-          </radialGradient>
-          <filter id="laserGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
+          <filter id="laserBeamGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -66,100 +107,90 @@ export default function MissionOrbit({
           </filter>
         </defs>
 
-        {/* Outer subtle orbital guide */}
+        {/* Outer subtle orbital energy guide */}
         <ellipse
           cx="0"
-          cy="40"
-          rx={radii.rx + 18}
-          ry={radii.ry + 10}
+          cy="45"
+          rx="680"
+          ry="155"
           fill="none"
-          stroke="#680c16"
+          stroke="#700d18"
           strokeWidth="1.2"
           strokeDasharray="4 8"
-          opacity="0.6"
+          opacity="0.5"
         />
 
-        {/* Primary glowing crimson orbital laser beam */}
+        {/* Primary glowing crimson orbital laser beam passing through scrolls */}
         <ellipse
           cx="0"
-          cy="40"
-          rx={radii.rx}
-          ry={radii.ry}
+          cy="45"
+          rx="650"
+          ry="145"
           fill="none"
           stroke="#ff263b"
-          strokeWidth="2.2"
-          strokeDasharray="14 8"
-          filter="url(#laserGlow)"
+          strokeWidth="2.5"
+          strokeDasharray="16 8"
+          filter="url(#laserBeamGlow)"
           className="animate-pulse"
-          opacity="0.9"
+          opacity="0.85"
         />
 
-        {/* Vertical Chakra Beam connecting Itachi's hand to the active front scroll */}
+        {/* Vertical Chakra Beam connecting Itachi's hand to active front scroll */}
         <g>
-          {/* Broad outer crimson aura beam */}
           <line
             x1="0"
-            y1="-95"
+            y1="-90"
             x2="0"
-            y2={radii.ry - 10}
+            y2="38"
             stroke="#ff263b"
-            strokeWidth="4"
+            strokeWidth="3.5"
             opacity="0.6"
-            filter="url(#laserGlow)"
+            filter="url(#laserBeamGlow)"
           />
-          {/* Intense central laser core */}
           <line
             x1="0"
-            y1="-95"
+            y1="-90"
             x2="0"
-            y2={radii.ry - 10}
+            y2="38"
             stroke="#ffffff"
             strokeWidth="1.2"
             opacity="0.95"
           />
-          {/* Focus energy node at Itachi's hand */}
-          <circle cx="0" cy="-95" r="6" fill="#ff263b" filter="url(#laserGlow)" />
-          <circle cx="0" cy="-95" r="3" fill="#ffffff" />
-          {/* Target energy node at the top of active scroll */}
-          <circle cx="0" cy={radii.ry - 10} r="5" fill="#ff263b" filter="url(#laserGlow)" />
-          <circle cx="0" cy={radii.ry - 10} r="2.5" fill="#ffffff" />
+          {/* Energy spark at Itachi's hand */}
+          <circle cx="0" cy="-90" r="5" fill="#ff263b" filter="url(#laserBeamGlow)" />
+          <circle cx="0" cy="-90" r="2.5" fill="#ffffff" />
+          {/* Energy spark at active scroll anchor */}
+          <circle cx="0" cy="38" r="5" fill="#ff263b" filter="url(#laserBeamGlow)" />
+          <circle cx="0" cy="38" r="2.5" fill="#ffffff" />
         </g>
       </svg>
 
-      {/* 2. THE NINE MISSION SCROLLS IN 3D PERSPECTIVE ORBIT */}
+      {/* 2. THE NINE FLOATING MISSION SCROLLS */}
       <div className="relative w-0 h-0 flex items-center justify-center">
         {missions.map((project, i) => {
-          // Calculate angle so activeIndex is at Math.PI / 2 (front center)
-          const angle = ((i - activeIndex) / total) * 2 * Math.PI + Math.PI / 2;
+          let offset = (i - activeIndex + total) % total;
+          if (offset > 4) offset -= total;
 
-          // Projected 2D coordinates with 3D elliptical tilt
-          const x = Math.cos(angle) * radii.rx;
-          const y = Math.sin(angle) * radii.ry + 40;
-
-          // Depth metric: 0 is furthest back, 1 is closest to camera in front
-          const depth = (Math.sin(angle) + 1) / 2;
-          const scale = isMobile ? (i === activeIndex ? 1 : 0.62) : 0.65 + depth * 0.42;
-          const opacity = isMobile ? (i === activeIndex ? 1 : 0.38) : 0.45 + depth * 0.55;
-          const zIndex = Math.round(depth * 50);
-          const isActive = i === activeIndex;
+          const slot = getSlotTransform(offset);
+          const isActive = offset === 0;
 
           return (
             <motion.div
               key={project.slug}
               className="absolute pointer-events-auto"
               style={{
-                zIndex,
+                zIndex: slot.zIndex,
               }}
               animate={{
-                x,
-                y,
-                scale,
-                opacity,
+                x: slot.x,
+                y: slot.y,
+                scale: slot.scale,
+                opacity: slot.opacity,
               }}
               transition={{
                 type: "spring",
-                stiffness: 95,
-                damping: 22,
+                stiffness: 90,
+                damping: 20,
                 mass: 0.8,
               }}
             >
