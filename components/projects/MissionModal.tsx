@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Github, Shield, CheckCircle2, Terminal } from "lucide-react";
 import { Project } from "@/lib/projects";
@@ -88,9 +89,14 @@ export default function MissionModal({
             {/* Title & Preview Image */}
             <div className="space-y-4">
               <div>
-                <span className="inline-block px-2.5 py-1 rounded bg-red-950/40 border border-red-900/60 font-mono text-[10px] tracking-wider text-red-400 mb-2">
-                  {project.category}
-                </span>
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="inline-block px-2.5 py-1 rounded bg-red-950/40 border border-red-900/60 font-mono text-[10px] tracking-wider text-red-400">
+                    {project.category}
+                  </span>
+                  <span className="inline-block px-2.5 py-1 rounded bg-neutral-900/80 border border-neutral-700/60 font-mono text-[10px] tracking-wider text-neutral-300">
+                    {project.projectType}
+                  </span>
+                </div>
                 <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
                   {project.title}
                 </h2>
@@ -123,6 +129,26 @@ export default function MissionModal({
               </p>
             </div>
 
+            {/* Problem Statement & Role */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div className="bg-red-950/20 p-3 rounded border border-red-950/40 space-y-1">
+                <span className="font-mono text-[10px] text-red-400 uppercase tracking-wider block">
+                  Problem Addressed
+                </span>
+                <p className="text-neutral-300 font-sans leading-relaxed">
+                  {project.problemStatement}
+                </p>
+              </div>
+              <div className="bg-red-950/20 p-3 rounded border border-red-950/40 space-y-1">
+                <span className="font-mono text-[10px] text-red-400 uppercase tracking-wider block">
+                  Role & Execution
+                </span>
+                <p className="text-neutral-300 font-sans leading-relaxed">
+                  {project.role}
+                </p>
+              </div>
+            </div>
+
             {/* Key Implementation Highlights */}
             {project.highlights && project.highlights.length > 0 && (
               <div className="space-y-2">
@@ -148,15 +174,15 @@ export default function MissionModal({
             {project.stack && project.stack.length > 0 && (
               <div className="space-y-2">
                 <h4 className="font-mono text-xs tracking-wider text-red-400 uppercase">
-                  TECHNOLOGIES USED
+                  VERIFIED STACK
                 </h4>
                 <div className="flex flex-wrap gap-1.5">
-                  {project.stack.map((tech) => (
+                  {project.stack.map((t, i) => (
                     <span
-                      key={tech}
-                      className="font-mono text-[10px] tracking-wider bg-black/60 border border-red-900/40 text-neutral-300 px-2.5 py-1 rounded"
+                      key={i}
+                      className="px-2.5 py-1 rounded bg-[#150508] border border-red-900/50 text-[11px] font-mono text-neutral-300"
                     >
-                      {tech}
+                      {t}
                     </span>
                   ))}
                 </div>
@@ -173,17 +199,25 @@ export default function MissionModal({
 
           {/* Modal Footer Actions */}
           <div className="px-6 py-4 bg-black/60 border-t border-red-950/70 flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                href={`/projects/${project.slug}`}
+                onClick={onClose}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded border border-red-500/80 bg-red-950/40 text-white font-mono text-xs tracking-wider hover:bg-red-900/60 hover:shadow-[0_0_15px_rgba(255,38,59,0.4)] transition-all duration-200"
+              >
+                <span>OPEN FULL DOSSIER</span>
+                <ExternalLink size={12} className="text-red-400" />
+              </Link>
+
               {project.repository && (
                 <a
                   href={project.repository}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded border border-red-600 bg-red-950/50 text-white font-mono text-xs tracking-wider hover:bg-red-900/60 hover:shadow-[0_0_15px_rgba(255,38,59,0.5)] transition-all duration-200"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded border border-neutral-700 bg-black/60 text-neutral-200 font-mono text-xs tracking-wider hover:text-white hover:border-neutral-500 transition-colors"
                 >
-                  <Github size={14} />
-                  <span>VIEW ON GITHUB</span>
-                  <ExternalLink size={12} className="text-red-400" />
+                  <Github size={13} />
+                  <span>GITHUB</span>
                 </a>
               )}
             </div>
@@ -201,4 +235,3 @@ export default function MissionModal({
     </AnimatePresence>
   );
 }
-

@@ -1,7 +1,20 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowUpRight, Github, CheckCircle2, ShieldCheck, Layers, Terminal } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Github,
+  CheckCircle2,
+  ShieldCheck,
+  Layers,
+  Terminal,
+  Target,
+  UserCheck,
+  Cpu,
+  AlertTriangle,
+  Camera,
+} from "lucide-react";
 import { projects, Project } from "@/lib/projects";
 
 export function generateStaticParams() {
@@ -20,7 +33,6 @@ export default async function ProjectDetail({
   if (!project) notFound();
 
   const missionNumber = String(projectIndex + 1).padStart(2, "0");
-  const thumbSrc = `/assets/projects/mission-${missionNumber}.jpg`;
 
   // Split title for styling
   const titleWords = project.title.split(" ");
@@ -33,7 +45,8 @@ export default async function ProjectDetail({
       <div
         className="pointer-events-none fixed inset-0 z-0 opacity-20"
         style={{
-          background: "radial-gradient(ellipse 70% 45% at 50% 15%, rgba(225, 29, 46, 0.2) 0%, transparent 65%)",
+          background:
+            "radial-gradient(ellipse 70% 45% at 50% 15%, rgba(225, 29, 46, 0.2) 0%, transparent 65%)",
         }}
       />
 
@@ -55,9 +68,14 @@ export default async function ProjectDetail({
 
         {/* Header Block */}
         <div className="space-y-3 pt-2">
-          <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-red-400 uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b]" />
-            MISSION DOSSIER // {project.category.toUpperCase()}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-red-400 uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b]" />
+              MISSION DOSSIER // {project.category.toUpperCase()}
+            </span>
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono tracking-wider bg-red-950/40 border border-red-900/60 text-red-300">
+              {project.projectType}
+            </span>
           </div>
 
           <h1
@@ -76,7 +94,7 @@ export default async function ProjectDetail({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
           {/* Main Column */}
           <article className="lg:col-span-8 space-y-8">
-            {/* Mission Overview Panel */}
+            {/* 1. Mission Overview Panel */}
             <div className="p-6 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_25px_rgba(0,0,0,0.8)] space-y-3">
               <h2 className="font-serif text-xl font-bold text-white tracking-wide">
                 Mission Overview
@@ -86,11 +104,43 @@ export default async function ProjectDetail({
               </p>
             </div>
 
-            {/* Documented Highlights */}
+            {/* 2. Problem Statement & Role */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_20px_rgba(0,0,0,0.7)] space-y-2.5">
+                <h3 className="font-mono text-xs tracking-wider text-red-400 uppercase flex items-center gap-1.5 font-semibold">
+                  <Target size={14} /> Problem Statement
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed">
+                  {project.problemStatement}
+                </p>
+              </div>
+
+              <div className="p-5 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_20px_rgba(0,0,0,0.7)] space-y-2.5">
+                <h3 className="font-mono text-xs tracking-wider text-red-400 uppercase flex items-center gap-1.5 font-semibold">
+                  <UserCheck size={14} /> My Role & Contributions
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed">
+                  {project.role}
+                </p>
+              </div>
+            </div>
+
+            {/* 3. System Architecture */}
+            <div className="p-6 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_25px_rgba(0,0,0,0.8)] space-y-3">
+              <h2 className="font-serif text-xl font-bold text-white tracking-wide flex items-center gap-2">
+                <Cpu size={18} className="text-red-400" />
+                System Architecture & Design
+              </h2>
+              <p className="text-sm text-neutral-300 font-sans leading-relaxed">
+                {project.architecture}
+              </p>
+            </div>
+
+            {/* 4. Documented Highlights */}
             <div className="p-6 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_25px_rgba(0,0,0,0.8)] space-y-4">
               <h2 className="font-serif text-xl font-bold text-white tracking-wide flex items-center gap-2">
                 <ShieldCheck size={18} className="text-red-400" />
-                Documented Highlights
+                Key Capabilities & Features
               </h2>
               <ul className="space-y-2.5">
                 {project.highlights.map((highlight) => (
@@ -102,14 +152,68 @@ export default async function ProjectDetail({
               </ul>
             </div>
 
-            {/* Optional Note */}
+            {/* 5. Engineering Challenges */}
+            <div className="p-6 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_25px_rgba(0,0,0,0.8)] space-y-3">
+              <h2 className="font-serif text-xl font-bold text-white tracking-wide flex items-center gap-2">
+                <AlertTriangle size={18} className="text-amber-400" />
+                Technical Challenges & Solutions
+              </h2>
+              <p className="text-sm text-neutral-300 font-sans leading-relaxed">
+                {project.challenges}
+              </p>
+            </div>
+
+            {/* 6. Genuine Interface Captures & Evidence (Architecture prepared for live screenshots) */}
+            <div className="p-6 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_25px_rgba(0,0,0,0.8)] space-y-4">
+              <div className="flex items-center justify-between border-b border-red-950/60 pb-3">
+                <h2 className="font-serif text-xl font-bold text-white tracking-wide flex items-center gap-2">
+                  <Camera size={18} className="text-red-400" />
+                  Interface Evidence & Architecture Captures
+                </h2>
+                <span className="font-mono text-[10px] text-neutral-400 tracking-wider">
+                  AUTHENTIC EVIDENCE
+                </span>
+              </div>
+
+              <p className="text-xs text-neutral-400 font-sans leading-relaxed">
+                Genuine application interface captures from local test environments and production deployments will be integrated here upon individual execution.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                {project.screenshotSlots.map((slot, idx) => (
+                  <div
+                    key={slot.title}
+                    className="p-4 rounded-lg bg-[#0a0305] border border-dashed border-red-900/60 flex flex-col justify-between space-y-3"
+                  >
+                    <div>
+                      <span className="font-mono text-[9px] text-red-500 uppercase tracking-widest block mb-1">
+                        VIEW 0{idx + 1}
+                      </span>
+                      <h4 className="font-serif text-sm font-semibold text-white">
+                        {slot.title}
+                      </h4>
+                      <p className="text-xs text-neutral-400 font-sans mt-1.5 leading-relaxed">
+                        {slot.description}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2 py-2 px-3 rounded bg-black/60 border border-red-950/70 font-mono text-[10px] text-neutral-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                      <span>{slot.placeholder}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 7. Optional Note */}
             {project.note && (
               <div className="p-4 rounded-lg bg-red-950/20 border-l-2 border-red-500 text-xs text-neutral-300 font-sans">
                 {project.note}
               </div>
             )}
 
-            {/* Technology Stack Grid */}
+            {/* 8. Technology Stack Grid */}
             <div className="p-6 rounded-xl bg-black/75 border border-red-950/80 shadow-[0_0_25px_rgba(0,0,0,0.8)] space-y-3">
               <h2 className="font-serif text-xl font-bold text-white tracking-wide flex items-center gap-2">
                 <Terminal size={18} className="text-red-400" />
@@ -142,6 +246,15 @@ export default async function ProjectDetail({
                 </span>
               </div>
 
+              <div>
+                <span className="font-mono text-[10px] tracking-[0.2em] text-neutral-400 uppercase block mb-1">
+                  PROJECT CLASSIFICATION
+                </span>
+                <span className="font-mono text-xs text-neutral-200 block">
+                  {project.projectType}
+                </span>
+              </div>
+
               {/* Source Repository Link */}
               {project.repository && (
                 <div className="space-y-2 pt-2 border-t border-red-950/60">
@@ -156,6 +269,24 @@ export default async function ProjectDetail({
                   >
                     <Github size={15} />
                     <span>View on GitHub</span>
+                    <ArrowUpRight size={14} />
+                  </a>
+                </div>
+              )}
+
+              {/* Live Demo Link (if configured) */}
+              {project.liveDemo && (
+                <div className="space-y-2 pt-2 border-t border-red-950/60">
+                  <span className="font-mono text-[10px] tracking-[0.2em] text-neutral-400 uppercase block">
+                    LIVE DEPLOYMENT
+                  </span>
+                  <a
+                    href={project.liveDemo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded border border-red-500/80 bg-red-950/30 text-white font-mono text-xs font-semibold tracking-wider hover:bg-red-950/50 transition-colors cursor-pointer"
+                  >
+                    <span>Launch Live Demo</span>
                     <ArrowUpRight size={14} />
                   </a>
                 </div>
