@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram, ArrowUpRight, MapPin } from "lucide-react";
@@ -8,15 +8,6 @@ import ContactScroll from "./ContactScroll";
 import DriftingLeaves from "@/components/skills/DriftingLeaves";
 
 export default function ShinobiContact() {
-  const [selectedTopic, setSelectedTopic] = useState<string>("Full-Stack Web");
-
-  const topics = [
-    "Full-Stack Web",
-    "Applied AI",
-    "Cybersecurity",
-    "Internships",
-  ];
-
   const socialChannels = [
     {
       title: "GitHub",
@@ -39,8 +30,8 @@ export default function ShinobiContact() {
   ];
 
   return (
-    <section className="relative w-full min-h-[960px] lg:min-h-screen bg-black overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-12 lg:pb-16 select-none">
-      {/* 1. CINEMATIC BACKGROUND ARTWORK (Blood Moon, Landscape, Itachi on rock, Lantern, Water - Zero Background Scroll) */}
+    <section className="relative w-full min-h-[calc(100vh-72px)] bg-black overflow-hidden flex flex-col justify-between select-none">
+      {/* 1. CINEMATIC BACKGROUND ARTWORK (Blood Moon, Japanese Torii, Mountains, Itachi on rock, Lantern, Water) */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/assets/itachi/shinobi-contact-backdrop.jpg"
@@ -62,24 +53,24 @@ export default function ShinobiContact() {
         />
 
         {/* Top & Bottom Ambient Edge Blending */}
-        <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
       </div>
 
       {/* 2. DRIFTING MAPLE LEAVES LAYER */}
       <DriftingLeaves />
 
-      {/* 3. FOREGROUND INTERACTION LAYER (SINGLE RESPONSIVE GRID - NO DUPLICATE CONTENT) */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center w-full py-6">
-          {/* Left Column: Eyebrow, Heading, Description, Topics & Single Social Links List */}
-          <div className="lg:col-span-6 space-y-6 max-w-lg">
-            {/* Eyebrow Tag */}
+      {/* 3. FOREGROUND INTERACTION LAYER — EXACTLY MATCHING REFERENCE IMAGE 2 */}
+      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex flex-col justify-between py-6 sm:py-8 lg:py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center flex-1">
+          {/* Left Column: Eyebrow, Heading, Description, Exactly 3 Social Cards, Location Badge */}
+          <div className="lg:col-span-6 space-y-5 max-w-lg self-start lg:pt-4">
+            {/* Eyebrow */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-red-500 uppercase"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] text-red-500 uppercase"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
               GET IN TOUCH // CONNECT · COLLABORATE · BUILD
@@ -89,8 +80,8 @@ export default function ShinobiContact() {
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl sm:text-5xl xl:text-6xl font-serif font-bold text-white tracking-tight leading-[1.08]"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.08]"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               Let&apos;s<br />
@@ -101,48 +92,17 @@ export default function ShinobiContact() {
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-sm text-neutral-300 font-sans leading-relaxed"
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed max-w-md"
             >
-              Have a project, opportunity, or idea in mind? I&apos;m always open to discussing development, cybersecurity, research, and technical collaborations.
+              Have a project, opportunity, or idea in mind? I&apos;m always open to discussing development, cybersecurity, research, and collaborations.
             </motion.p>
 
-            {/* Collaboration Interest Chips */}
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="space-y-2 pt-1"
-            >
-              <span className="font-mono text-[9px] tracking-[0.2em] text-neutral-400 uppercase block">
-                INTEREST AREAS
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {topics.map((topic) => {
-                  const isSelected = selectedTopic === topic;
-                  return (
-                    <button
-                      key={topic}
-                      type="button"
-                      onClick={() => setSelectedTopic(topic)}
-                      className={`px-3 py-1.5 rounded-full font-mono text-[10px] tracking-wider transition-all duration-200 cursor-pointer ${
-                        isSelected
-                          ? "bg-red-950/80 border border-red-500 text-white shadow-[0_0_12px_rgba(225,29,46,0.6)]"
-                          : "bg-black/60 border border-red-950/80 text-neutral-400 hover:text-white hover:border-red-800"
-                      }`}
-                    >
-                      {topic}
-                    </button>
-                  );
-                })}
-              </div>
-            </motion.div>
-
-            {/* Exactly One List of Social Cards (GitHub, LinkedIn, Instagram) */}
+            {/* Exactly One List of 3 Social Cards (GitHub, LinkedIn, Instagram) */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-2.5 pt-2 max-w-sm"
             >
               {socialChannels.map((soc) => (
@@ -151,7 +111,7 @@ export default function ShinobiContact() {
                   href={soc.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center justify-between p-3 rounded-lg bg-[#080204]/90 border border-red-950/80 hover:border-red-500/70 hover:bg-red-950/20 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.85)] hover:shadow-[0_0_20px_rgba(225,29,46,0.3)] transition-all duration-200"
+                  className="group flex items-center justify-between p-3 rounded-lg bg-[#080204]/90 border border-red-950/80 hover:border-red-500/70 hover:bg-red-950/25 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.85)] hover:shadow-[0_0_20px_rgba(225,29,46,0.3)] transition-all duration-200"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded bg-red-950/40 border border-red-900/60 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
@@ -174,7 +134,7 @@ export default function ShinobiContact() {
               ))}
 
               {/* Location Badge (Exactly Once) */}
-              <div className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-black/60 border border-red-950/60 font-mono text-[10px] text-neutral-400">
+              <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-black/60 border border-red-950/60 font-mono text-[10px] text-neutral-400">
                 <MapPin size={13} className="text-red-500 shrink-0" />
                 <div>
                   <span className="text-neutral-200 font-semibold">Karnataka, India</span>
@@ -184,10 +144,17 @@ export default function ShinobiContact() {
             </motion.div>
           </div>
 
-          {/* Right Column: Exactly ONE Hanging Contact Scroll with Form */}
+          {/* Right Column: Exactly ONE Hanging Contact Scroll Form matching Reference Image 2 */}
           <div className="lg:col-span-6 flex justify-center lg:justify-end items-center pt-2">
-            <ContactScroll selectedTopic={selectedTopic} />
+            <ContactScroll />
           </div>
+        </div>
+
+        {/* Minimal Footer Note */}
+        <div className="pt-4 text-center">
+          <p className="text-[10px] font-mono tracking-wider text-neutral-500">
+            KARUN H G // TRANSMISSION DISPATCH & SECURE COMMS
+          </p>
         </div>
       </div>
     </section>
