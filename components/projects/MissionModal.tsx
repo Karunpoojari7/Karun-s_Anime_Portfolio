@@ -62,12 +62,12 @@ export default function MissionModal({
               </span>
               <div>
                 <p className="font-mono text-[10px] tracking-[0.25em] text-red-400 font-semibold uppercase">
-                  CLASSIFIED MISSION DOSSIER // FILE 0{missionNumber}
+                  PROJECT DOSSIER // FILE 0{missionNumber}
                 </p>
                 <div className="flex items-center gap-2 mt-0.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
                   <span className="font-mono text-[9px] tracking-wider text-neutral-400 uppercase">
-                    STATUS: {project.status || "CONFIDENTIAL"}
+                    STATUS: {project.status || "DOCUMENTED"}
                   </span>
                 </div>
               </div>
@@ -76,7 +76,7 @@ export default function MissionModal({
             <button
               onClick={onClose}
               type="button"
-              aria-label="Close Dossier"
+              aria-label="Close Project Modal"
               className="p-1.5 rounded-full text-neutral-400 hover:text-white hover:bg-red-950/50 border border-transparent hover:border-red-500/50 transition-all duration-200"
             >
               <X size={18} />
@@ -116,7 +116,7 @@ export default function MissionModal({
             <div className="space-y-2">
               <h4 className="font-mono text-xs tracking-wider text-red-400 uppercase flex items-center gap-1.5">
                 <Terminal size={14} />
-                <span>MISSION ARCHITECTURE & SCOPE</span>
+                <span>PROJECT OVERVIEW</span>
               </h4>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-sans bg-black/40 p-3.5 rounded border border-red-950/60">
                 {project.description}
@@ -128,7 +128,7 @@ export default function MissionModal({
               <div className="space-y-2">
                 <h4 className="font-mono text-xs tracking-wider text-red-400 uppercase flex items-center gap-1.5">
                   <Shield size={14} />
-                  <span>KEY SYSTEM HIGHLIGHTS</span>
+                  <span>KEY HIGHLIGHTS</span>
                 </h4>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-neutral-300 font-sans">
                   {project.highlights.map((h, i) => (
@@ -148,7 +148,7 @@ export default function MissionModal({
             {project.stack && project.stack.length > 0 && (
               <div className="space-y-2">
                 <h4 className="font-mono text-xs tracking-wider text-red-400 uppercase">
-                  VERIFIED TECHNICAL ARSENAL
+                  TECHNOLOGIES USED
                 </h4>
                 <div className="flex flex-wrap gap-1.5">
                   {project.stack.map((tech) => (
@@ -166,7 +166,7 @@ export default function MissionModal({
             {/* Note if available */}
             {project.note && (
               <div className="text-[11px] font-mono text-amber-400/90 bg-amber-950/20 border border-amber-900/40 p-3 rounded">
-                ⚠ {project.note}
+                ℹ {project.note}
               </div>
             )}
           </div>
@@ -182,7 +182,7 @@ export default function MissionModal({
                   className="inline-flex items-center gap-2 px-4 py-2 rounded border border-red-600 bg-red-950/50 text-white font-mono text-xs tracking-wider hover:bg-red-900/60 hover:shadow-[0_0_15px_rgba(255,38,59,0.5)] transition-all duration-200"
                 >
                   <Github size={14} />
-                  <span>VIEW REPOSITORY</span>
+                  <span>VIEW ON GITHUB</span>
                   <ExternalLink size={12} className="text-red-400" />
                 </a>
               )}
@@ -193,7 +193,7 @@ export default function MissionModal({
               type="button"
               className="px-4 py-2 font-mono text-xs tracking-wider text-neutral-400 hover:text-white transition-colors"
             >
-              RETURN TO ORBIT
+              CLOSE
             </button>
           </div>
         </motion.div>

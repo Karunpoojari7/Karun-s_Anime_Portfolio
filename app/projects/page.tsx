@@ -50,13 +50,13 @@ export default function Projects() {
         <header className="projects-header">
           <div className="header-text-block">
             <div className="eyebrow">
-              <span className="pulse-dot" /> TSUKUYOMI CLASSIFIED REPOSITORY // 009 FILES
+              <span className="pulse-dot" /> FEATURED WORK // 09 PROJECTS
             </div>
             <h1 className="page-title">
-              Project <em>dimension.</em>
+              Selected <em>Projects.</em>
             </h1>
             <p className="page-lead">
-              Enter the Tsukuyomi space to inspect missions one by one, or switch to the classified dossier view. Every project reflects verified source code and genuine engineering problems.
+              A curated collection of web applications, AI tools, and cybersecurity projects. Explore projects one by one or switch to the grid view.
             </p>
           </div>
 
@@ -66,17 +66,17 @@ export default function Projects() {
               type="button"
               className={`mode-btn ${viewMode === "dimension" ? "active" : ""}`}
               onClick={() => setViewMode("dimension")}
-              aria-label="View projects one-by-one in Tsukuyomi Dimension"
+              aria-label="View projects one by one"
             >
-              <Eye size={15} /> Tsukuyomi Dimension (1-by-1)
+              <Eye size={15} /> Interactive View
             </button>
             <button
               type="button"
               className={`mode-btn ${viewMode === "grid" ? "active" : ""}`}
               onClick={() => setViewMode("grid")}
-              aria-label="View all projects in classified grid"
+              aria-label="View all projects in grid"
             >
-              <Layers size={15} /> All Classified Files (Grid)
+              <Layers size={15} /> All Projects (Grid)
             </button>
           </div>
         </header>
