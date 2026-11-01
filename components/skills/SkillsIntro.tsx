@@ -2,98 +2,90 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Brain, Shield, Layers } from "lucide-react";
-import { SKILL_DISCIPLINES, SkillDiscipline } from "./skillsData";
+import { Code2, Layers, FlaskConical } from "lucide-react";
 
-interface SkillsIntroProps {
-  activeId: string;
-  onSelect: (id: SkillDiscipline["id"]) => void;
-}
-
-export default function SkillsIntro({ activeId, onSelect }: SkillsIntroProps) {
-  const getTileIcon = (type: SkillDiscipline["iconType"], isActive: boolean) => {
-    const size = 16;
-    const color = isActive ? "text-red-400" : "text-red-500/80 group-hover:text-red-400";
-
-    switch (type) {
-      case "code":
-        return <Code2 size={size} className={color} />;
-      case "brain":
-        return <Brain size={size} className={color} />;
-      case "shield":
-        return <Shield size={size} className={color} />;
-      case "layers":
-        return <Layers size={size} className={color} />;
-    }
-  };
+export default function SkillsIntro() {
+  const stats = [
+    {
+      icon: <Code2 size={16} className="text-red-500" />,
+      value: "4",
+      label: "Core Domains",
+    },
+    {
+      icon: <Layers size={16} className="text-red-500" />,
+      value: "15+",
+      label: "Technologies",
+    },
+    {
+      icon: <FlaskConical size={16} className="text-red-500" />,
+      value: "9",
+      label: "Project Applications",
+    },
+  ];
 
   return (
-    <div className="flex flex-col justify-center space-y-6 max-w-sm">
-      {/* Top Tag */}
+    <div className="flex flex-col justify-center space-y-6 max-w-md select-none">
+      {/* 1. TOP EYEBROW TAG MATCHING REFERENCE */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="font-mono text-[11px] tracking-[0.25em] text-red-500 font-semibold uppercase flex items-center gap-2"
+        className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-red-500 uppercase font-semibold"
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b]" />
-        NINJUTSU ARSENAL // SKILLS
+        <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
+        SKILLS // THE SHINOBI ARSENAL
       </motion.div>
 
-      {/* Main Title */}
+      {/* 2. MAIN EDITORIAL HEADING */}
       <motion.h1
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-4xl sm:text-5xl font-serif font-bold text-white tracking-tight leading-[1.08]"
+        className="text-4xl sm:text-5xl lg:text-[54px] font-serif font-bold text-white tracking-tight leading-[1.08]"
         style={{ fontFamily: "'Playfair Display', serif" }}
       >
-        My<br />
-        Technical<br />
-        <em className="text-red-500 italic">Disciplines.</em>
+        My Technical<br />
+        <em className="text-red-500 italic drop-shadow-[0_0_20px_rgba(225,29,46,0.4)]">
+          Disciplines.
+        </em>
       </motion.h1>
 
-      {/* Description */}
+      {/* 3. EDITORIAL PARAGRAPH */}
       <motion.p
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-sm text-neutral-300 font-sans leading-relaxed max-w-xs"
+        className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed max-w-sm"
       >
-        A practical skill set built through projects, internships and continuous learning.
+        A focused set of technical skills, sharpened through real projects, hands-on
+        practice, and continuous learning.
       </motion.p>
 
-      {/* 4 Compact Category Tiles (2x2 Grid) */}
+      {/* 4. COMPACT FACTUAL STATS */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="grid grid-cols-2 gap-2.5 pt-2"
+        className="space-y-3.5 pt-2"
       >
-        {SKILL_DISCIPLINES.map((disc) => {
-          const isActive = disc.id === activeId;
-
-          return (
-            <button
-              key={disc.id}
-              type="button"
-              onClick={() => onSelect(disc.id)}
-              className={`group p-3 rounded-md text-left transition-all duration-200 cursor-pointer border ${
-                isActive
-                  ? "bg-red-950/40 border-red-500/80 shadow-[0_0_20px_rgba(225,29,46,0.35)] scale-[1.02]"
-                  : "bg-black/60 border-red-950/60 hover:border-red-600/60 hover:bg-red-950/20"
-              }`}
-            >
-              <div className="mb-2">{getTileIcon(disc.iconType, isActive)}</div>
-              <div className="font-serif text-xs font-bold text-white group-hover:text-red-400 transition-colors">
-                {disc.shortTitle}
-              </div>
-              <div className="font-mono text-[9px] text-neutral-400 tracking-wider mt-0.5">
-                {disc.shortSubtitle}
-              </div>
-            </button>
-          );
-        })}
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="flex items-center gap-3 group"
+          >
+            <div className="w-8 h-8 rounded-lg bg-red-950/40 border border-red-900/60 flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(225,29,46,0.15)] group-hover:border-red-500 transition-colors">
+              {stat.icon}
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="font-serif text-lg font-bold text-white tracking-tight">
+                {stat.value}
+              </span>
+              <span className="font-mono text-xs text-neutral-400 tracking-wider">
+                {stat.label}
+              </span>
+            </div>
+          </div>
+        ))}
       </motion.div>
     </div>
   );
