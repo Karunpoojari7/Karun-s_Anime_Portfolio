@@ -12,7 +12,7 @@ export default function ShinobiJourney() {
   const [activeMilestone, setActiveMilestone] = useState<string | null>(null);
 
   const getIndicatorIcon = (type: string) => {
-    const size = 15;
+    const size = 14;
     const color = "text-red-400";
     switch (type) {
       case "graduation":
@@ -28,8 +28,24 @@ export default function ShinobiJourney() {
     }
   };
 
+  // Staggered offsets for the 4 cards descending along the mountain slope
+  const getCardOffsetClass = (index: number) => {
+    switch (index) {
+      case 0:
+        return "lg:ml-auto max-w-[420px]";
+      case 1:
+        return "lg:ml-auto lg:mr-6 xl:mr-10 max-w-[420px]";
+      case 2:
+        return "lg:ml-auto lg:mr-14 xl:mr-20 max-w-[420px]";
+      case 3:
+        return "lg:ml-auto lg:mr-20 xl:mr-28 max-w-[420px]";
+      default:
+        return "lg:ml-auto max-w-[420px]";
+    }
+  };
+
   return (
-    <section className="relative w-full min-h-[960px] lg:min-h-screen bg-black overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 lg:pt-24 pb-10 lg:pb-12 select-none">
+    <section className="relative w-full min-h-[calc(100vh-72px)] bg-black overflow-hidden flex flex-col justify-between select-none">
       {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Sharingan Moon, Mountains, Temples, Waterfalls, Itachi, Crow) */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -51,41 +67,63 @@ export default function ShinobiJourney() {
           }}
         />
 
-        {/* Crisp Edge Blending */}
-        <div className="pointer-events-none absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+        {/* Edge Blending */}
+        <div className="pointer-events-none absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/80 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
       </div>
 
       {/* 2. DRIFTING MAPLE LEAVES LAYER */}
       <DriftingLeaves />
 
-      {/* 3. FOREGROUND CONTENT & 2x2 MILESTONE GRID */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex flex-col justify-between">
-        {/* Top Header Block: Title, Subtitle, Indicators */}
-        <div className="space-y-4 pt-2">
-          {/* Eyebrow & Live Status */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-red-950/40 pb-3">
+      {/* 3. FOREGROUND CONTENT — TWO-COLUMN LAYOUT MATCHING REFERENCE IMAGE 1 */}
+      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex flex-col justify-between py-6 sm:py-8 lg:py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center flex-1">
+          {/* Left Column: Eyebrow, Title, Subtitle, 4 Single-Row Compact Stats */}
+          <div className="lg:col-span-5 space-y-4 max-w-xl self-start lg:pt-4">
+            {/* Eyebrow */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.25em] text-red-500 uppercase"
+              className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] text-red-500 uppercase"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
-              THE SHINOBI PATH // ACADEMIC & PROFESSIONAL TIMELINE
+              THE SHINOBI PATH // EDUCATION · EXPERIENCE · SPECIALIZATION
             </motion.div>
 
-            {/* Quick Summary Pill Bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
+            {/* Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex items-center gap-2 overflow-x-auto"
+              className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight leading-[1.08]"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              My Shinobi<br />
+              <em className="text-red-500 italic">Journey.</em>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed max-w-md"
+            >
+              A progressive journey of learning, building, and specializing in cybersecurity.
+            </motion.p>
+
+            {/* Single Row 4 Compact Indicators matching Reference */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-wrap items-center gap-2 pt-2"
             >
               {SUMMARY_INDICATORS.map((ind) => (
                 <div
                   key={ind.label}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#090204]/85 border border-red-950/80 backdrop-blur-md text-[10px] font-mono text-neutral-300"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#090204]/90 border border-red-950/80 backdrop-blur-md text-[11px] font-mono shadow-[0_0_12px_rgba(0,0,0,0.8)]"
                 >
                   {getIndicatorIcon(ind.iconType)}
                   <span className="font-bold text-white">{ind.count}</span>
@@ -95,55 +133,33 @@ export default function ShinobiJourney() {
             </motion.div>
           </div>
 
-          {/* Heading & Subtitle */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3">
-            <div>
-              <motion.h1
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
-                className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-tight"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                My Shinobi <em className="text-red-500 italic">Journey.</em>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed mt-1 max-w-xl"
-              >
-                A progressive journey of learning, building, and specializing in cybersecurity.
-              </motion.p>
-            </div>
+          {/* Right Column: 4 Staggered Floating Cards descending along the mountain slope */}
+          <div className="lg:col-span-7 flex flex-col space-y-3.5 sm:space-y-4 w-full">
+            {MILESTONES.map((milestone, idx) => {
+              const isActive = activeMilestone === milestone.id;
+
+              return (
+                <motion.div
+                  key={milestone.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.15 * idx }}
+                  className={`w-full ${getCardOffsetClass(idx)}`}
+                >
+                  <MilestoneCard
+                    milestone={milestone}
+                    isActive={isActive}
+                    onHover={setActiveMilestone}
+                  />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
-        {/* ALL FOUR MILESTONES IN A CLEAN 2x2 GRID (ALL VISIBLE TOGETHER ON DESKTOP WITHOUT SCROLLING) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 w-full my-auto py-4"
-        >
-          {MILESTONES.map((milestone) => {
-            const isActive = activeMilestone === milestone.id;
-
-            return (
-              <div key={milestone.id} className="w-full">
-                <MilestoneCard
-                  milestone={milestone}
-                  isActive={isActive}
-                  onHover={setActiveMilestone}
-                />
-              </div>
-            );
-          })}
-        </motion.div>
-
-        {/* Footer Note */}
-        <div className="pt-2 text-center">
-          <p className="text-[10px] font-mono tracking-wider text-neutral-400">
+        {/* Clean Minimal Footer Caption */}
+        <div className="pt-4 text-center">
+          <p className="text-[10px] font-mono tracking-wider text-neutral-500">
             KARUN H G // CONTINUOUS PROGRESSION THROUGH DISCIPLINE & CODE
           </p>
         </div>
