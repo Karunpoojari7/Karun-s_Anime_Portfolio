@@ -101,14 +101,14 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
   return (
     <section
       id="projects"
-      className={`relative w-full bg-black text-white selection:bg-red-900 selection:text-white overflow-hidden flex flex-col justify-between select-none ${
+      className={`relative w-full bg-black text-white selection:bg-red-900 selection:text-white flex flex-col justify-start select-none ${
         isDedicatedPage
-          ? "min-h-[calc(100vh-72px)] lg:h-[calc(100vh-72px)] lg:overflow-hidden pt-2 pb-3"
-          : "min-h-[920px] md:min-h-[960px] py-8"
+          ? "min-h-screen pb-16 pt-3 sm:pt-5"
+          : "min-h-[960px] md:min-h-[1050px] py-10 sm:py-14"
       }`}
     >
       {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Itachi Reaching Forward, Torii Gates, Reflective Floor) */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Image
           src="/assets/itachi/tsukuyomi-stage-bg.jpg"
           alt="Itachi Tsukuyomi Mission Dimension"
@@ -116,7 +116,7 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
           priority
           quality={100}
           sizes="100vw"
-          className="object-cover object-[center_32%]"
+          className="object-cover object-[center_top] sm:object-[center_3%] lg:object-[center_5%]"
         />
 
         {/* Subtle Stage Floor Crimson Ambience (Preserves 100% facial and sky clarity) */}
@@ -137,9 +137,9 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
       <CrowParticles />
 
       {/* 3. FOREGROUND CONTENT */}
-      <div className="relative z-20 w-full flex-1 flex flex-col justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 w-full flex-1 flex flex-col justify-start max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* TOP EDITORIAL HEADER & MODE SWITCHER MATCHING REFERENCE IMAGE 2 */}
-        <header className="w-full text-center space-y-1.5 shrink-0 pt-1">
+        <header className="w-full text-center space-y-1.5 shrink-0 pt-1 pb-2">
           {/* Eyebrow Tag */}
           <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-red-500 uppercase font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
@@ -189,9 +189,12 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
           </div>
         </header>
 
+        {/* Clear Atmospheric Viewing Window: Frames Itachi's face, hair, red moon & reaching hand completely unobstructed */}
+        <div className="w-full h-14 sm:h-20 md:h-28 lg:h-36 pointer-events-none shrink-0" aria-hidden="true" />
+
         {/* 4. MAIN INTERACTIVE EXPERIENCE (ORBIT OR ARCHIVE) */}
         {viewMode === "dimension" ? (
-          <div className="w-full flex-1 flex flex-col justify-between my-auto">
+          <div className="w-full flex-1 flex flex-col justify-start">
             {/* 3D Elliptical Orbit Carousel */}
             <MissionOrbit
               missions={projects}
@@ -201,7 +204,7 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
             />
 
             {/* 5. PROJECT INFORMATION DOSSIER PANEL MATCHING REFERENCE IMAGE 2 */}
-            <div className="w-full max-w-5xl mx-auto shrink-0 pt-2 pb-1">
+            <div className="w-full max-w-5xl mx-auto shrink-0 mt-6 sm:mt-8 pb-4">
               <div className="relative rounded-2xl bg-[#090204]/96 border border-red-500/60 shadow-[0_0_35px_rgba(225,29,46,0.3),inset_0_0_20px_rgba(0,0,0,0.9)] p-4 sm:p-5 flex flex-col lg:flex-row items-center justify-between gap-5 overflow-hidden">
                 {/* Subtle Ambient Red Glow inside Dossier */}
                 <div

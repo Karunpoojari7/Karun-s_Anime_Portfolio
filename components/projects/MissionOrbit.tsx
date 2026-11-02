@@ -58,37 +58,37 @@ export default function MissionOrbit({
   // Symmetrical orbital formation around central Itachi character
   const getSlotTransform = (offset: number) => {
     if (viewportWidth >= 1280) {
-      // Desktop: 9 cards forming a balanced 3D elliptical orbit around central Itachi
+      // Desktop: 9 cards forming a balanced 3D elliptical orbit framed below Itachi
       const desktopSlots: Record<
         number,
         { x: number; y: number; scale: number; zIndex: number; visible: boolean }
       > = {
-        0: { x: 0, y: 35, scale: 1.15, zIndex: 40, visible: true },
-        [-1]: { x: -260, y: 15, scale: 0.88, zIndex: 35, visible: true },
-        [1]: { x: 260, y: 15, scale: 0.88, zIndex: 35, visible: true },
-        [-2]: { x: -480, y: -16, scale: 0.78, zIndex: 30, visible: true },
-        [2]: { x: 480, y: -16, scale: 0.78, zIndex: 30, visible: true },
-        [-3]: { x: -340, y: -62, scale: 0.68, zIndex: 25, visible: true },
-        [3]: { x: 340, y: -62, scale: 0.68, zIndex: 25, visible: true },
-        [-4]: { x: -170, y: -84, scale: 0.60, zIndex: 20, visible: true },
-        [4]: { x: 170, y: -84, scale: 0.60, zIndex: 20, visible: true },
+        0: { x: 0, y: 40, scale: 1.12, zIndex: 40, visible: true },
+        [-1]: { x: -265, y: 20, scale: 0.88, zIndex: 35, visible: true },
+        [1]: { x: 265, y: 20, scale: 0.88, zIndex: 35, visible: true },
+        [-2]: { x: -485, y: -6, scale: 0.78, zIndex: 30, visible: true },
+        [2]: { x: 485, y: -6, scale: 0.78, zIndex: 30, visible: true },
+        [-3]: { x: -345, y: -42, scale: 0.68, zIndex: 25, visible: true },
+        [3]: { x: 345, y: -42, scale: 0.68, zIndex: 25, visible: true },
+        [-4]: { x: -165, y: -58, scale: 0.60, zIndex: 20, visible: true },
+        [4]: { x: 165, y: -58, scale: 0.60, zIndex: 20, visible: true },
       };
       return desktopSlots[offset] || { x: 0, y: 0, scale: 0, zIndex: 0, visible: false };
     } else if (viewportWidth >= 1024) {
-      // Laptop: 9 cards scaled to container
+      // Laptop: 9 cards scaled to container framed below Itachi
       const laptopSlots: Record<
         number,
         { x: number; y: number; scale: number; zIndex: number; visible: boolean }
       > = {
-        0: { x: 0, y: 28, scale: 1.05, zIndex: 40, visible: true },
-        [-1]: { x: -220, y: 12, scale: 0.84, zIndex: 35, visible: true },
-        [1]: { x: 220, y: 12, scale: 0.84, zIndex: 35, visible: true },
-        [-2]: { x: -400, y: -14, scale: 0.74, zIndex: 30, visible: true },
-        [2]: { x: 400, y: -14, scale: 0.74, zIndex: 30, visible: true },
-        [-3]: { x: -285, y: -52, scale: 0.64, zIndex: 25, visible: true },
-        [3]: { x: 285, y: -52, scale: 0.64, zIndex: 25, visible: true },
-        [-4]: { x: -142, y: -72, scale: 0.58, zIndex: 20, visible: true },
-        [4]: { x: 142, y: -72, scale: 0.58, zIndex: 20, visible: true },
+        0: { x: 0, y: 32, scale: 1.05, zIndex: 40, visible: true },
+        [-1]: { x: -225, y: 16, scale: 0.84, zIndex: 35, visible: true },
+        [1]: { x: 225, y: 16, scale: 0.84, zIndex: 35, visible: true },
+        [-2]: { x: -410, y: -5, scale: 0.74, zIndex: 30, visible: true },
+        [2]: { x: 410, y: -5, scale: 0.74, zIndex: 30, visible: true },
+        [-3]: { x: -290, y: -36, scale: 0.64, zIndex: 25, visible: true },
+        [3]: { x: 290, y: -36, scale: 0.64, zIndex: 25, visible: true },
+        [-4]: { x: -140, y: -48, scale: 0.58, zIndex: 20, visible: true },
+        [4]: { x: 140, y: -48, scale: 0.58, zIndex: 20, visible: true },
       };
       return laptopSlots[offset] || { x: 0, y: 0, scale: 0, zIndex: 0, visible: false };
     } else if (viewportWidth >= 640) {
@@ -97,11 +97,11 @@ export default function MissionOrbit({
         number,
         { x: number; y: number; scale: number; zIndex: number; visible: boolean }
       > = {
-        0: { x: 0, y: 20, scale: 1.0, zIndex: 40, visible: true },
-        [-1]: { x: -185, y: 8, scale: 0.80, zIndex: 35, visible: true },
-        [1]: { x: 185, y: 8, scale: 0.80, zIndex: 35, visible: true },
-        [-2]: { x: -330, y: -15, scale: 0.68, zIndex: 25, visible: true },
-        [2]: { x: 330, y: -15, scale: 0.68, zIndex: 25, visible: true },
+        0: { x: 0, y: 22, scale: 1.0, zIndex: 40, visible: true },
+        [-1]: { x: -190, y: 10, scale: 0.80, zIndex: 35, visible: true },
+        [1]: { x: 190, y: 10, scale: 0.80, zIndex: 35, visible: true },
+        [-2]: { x: -335, y: -12, scale: 0.68, zIndex: 25, visible: true },
+        [2]: { x: 335, y: -12, scale: 0.68, zIndex: 25, visible: true },
       };
       return tabletSlots[offset] || { x: 0, y: 0, scale: 0, zIndex: 0, visible: false };
     } else {
