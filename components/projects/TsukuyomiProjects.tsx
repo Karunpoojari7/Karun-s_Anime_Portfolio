@@ -81,25 +81,23 @@ export default function TsukuyomiProjects() {
           alt="Itachi Tsukuyomi Mission Dimension"
           fill
           priority
+          quality={100}
           sizes="100vw"
-          className="object-cover object-center filter contrast-[1.05] brightness-[0.92]"
+          className="object-cover object-[center_28%]"
         />
 
-        {/* Controlled Ambient Red Glow */}
+        {/* Subtle Stage Floor Crimson Ambience (Preserves 100% facial and sky clarity) */}
         <div
-          className="absolute inset-0 animate-red-pulse opacity-15"
+          className="absolute inset-0 pointer-events-none opacity-20"
           style={{
             background:
-              "radial-gradient(ellipse 65% 50% at 50% 40%, rgba(225, 29, 46, 0.28) 0%, rgba(130, 10, 22, 0.08) 50%, transparent 75%)",
+              "radial-gradient(ellipse 75% 30% at 50% 95%, rgba(225, 29, 46, 0.35) 0%, transparent 70%)",
           }}
         />
 
-        {/* Top & Bottom seamless blending gradients */}
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#070708] to-transparent z-10" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#070708] to-transparent z-10" />
-
-        {/* Atmospheric Vignette */}
-        <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.92)] z-10" />
+        {/* Subtle Top & Bottom seamless blending gradients */}
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#070708] to-transparent z-10" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#070708] to-transparent z-10" />
       </div>
 
       {/* 2. ATMOSPHERIC CROWS & DRIFTING FEATHERS */}
