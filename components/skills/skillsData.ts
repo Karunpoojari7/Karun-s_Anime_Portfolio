@@ -58,6 +58,7 @@ export interface SkillDiscipline {
   number: string;
   title: string;
   subtitle: string;
+  ninjaArt: string;
   description: string;
   iconType: "code" | "brain" | "shield" | "layers";
   technologies: TechnologyItem[];
@@ -71,6 +72,7 @@ export const SKILL_DISCIPLINES: SkillDiscipline[] = [
     number: "01",
     title: "Development",
     subtitle: "Web · Full-Stack",
+    ninjaArt: "Ninjutsu",
     description:
       "Building responsive web applications, scalable systems and real-world digital solutions.",
     iconType: "code",
@@ -126,6 +128,7 @@ export const SKILL_DISCIPLINES: SkillDiscipline[] = [
     number: "02",
     title: "AI & ML",
     subtitle: "ML · DL · LLMs",
+    ninjaArt: "Genjutsu",
     description:
       "Exploring applied machine learning, computer vision for medical diagnostics and intelligent application integration.",
     iconType: "brain",
@@ -181,6 +184,7 @@ export const SKILL_DISCIPLINES: SkillDiscipline[] = [
     number: "03",
     title: "Cybersecurity",
     subtitle: "Network · AppSec",
+    ninjaArt: "Dojutsu",
     description:
       "Investigating network protocols, packet inspection, incident triage and secure software defense architectures.",
     iconType: "shield",
@@ -236,6 +240,7 @@ export const SKILL_DISCIPLINES: SkillDiscipline[] = [
     number: "04",
     title: "DevOps & Tools",
     subtitle: "Build · Deploy · Manage",
+    ninjaArt: "Kugutsu",
     description:
       "Essential developer tooling, containerization, reproducible deployment environments and version control workflows.",
     iconType: "layers",
