@@ -46,7 +46,7 @@ export default function ShinobiSkillTree() {
   }, [activeId]);
 
   return (
-    <section className="relative w-full min-h-[calc(100vh-72px)] bg-black overflow-hidden flex flex-col justify-between py-5 sm:py-7 select-none">
+    <section className="relative w-full min-h-[calc(100vh-72px)] bg-black overflow-hidden flex flex-col justify-between py-4 sm:py-6 select-none">
       {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Itachi Uchiha on Cliff, Japanese Pagoda & Red Maples) */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
@@ -68,9 +68,9 @@ export default function ShinobiSkillTree() {
           }}
         />
 
-        {/* Top & Bottom Vignettes */}
-        <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/85 via-transparent to-transparent z-10" />
+        {/* Top & Bottom Subtle Vignettes */}
+        <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/70 via-transparent to-transparent z-10" />
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/75 via-transparent to-transparent z-10" />
       </div>
 
       {/* 2. DRIFTING MAPLE LEAVES PARTICLE LAYER */}
