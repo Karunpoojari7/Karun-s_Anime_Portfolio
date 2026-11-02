@@ -71,7 +71,7 @@ export default function MissionModal({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.28 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/90 backdrop-blur-md cursor-pointer"
+          className="fixed inset-0 bg-black/92 cursor-pointer"
         />
 
         {/* 2. Engineering Case Study Dossier Card */}

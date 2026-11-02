@@ -42,7 +42,7 @@ export default function MissionArchiveDrawer({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/85 backdrop-blur-md cursor-pointer"
+          className="fixed inset-0 bg-black/92 cursor-pointer"
         />
 
         {/* Drawer / Archive Index */}
