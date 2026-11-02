@@ -72,7 +72,7 @@ export default function ProjectsPage() {
   const totalNumStr = String(total).padStart(2, "0");
 
   return (
-    <div className="relative min-h-[calc(100vh-72px)] lg:h-[calc(100vh-72px)] lg:overflow-hidden bg-black text-white selection:bg-red-900 selection:text-white flex flex-col justify-between select-none">
+    <div className="relative min-h-[calc(100vh-72px)] w-full bg-black text-white selection:bg-red-900 selection:text-white flex flex-col justify-between select-none">
       {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Itachi, Torii Gates, Reflective Stage) */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
