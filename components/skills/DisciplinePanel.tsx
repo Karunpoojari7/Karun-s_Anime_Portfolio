@@ -6,8 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
   Folder,
-  ArrowUpRight,
-  ExternalLink,
   Laptop,
   Database,
   Terminal,
@@ -98,18 +96,8 @@ export default function DisciplinePanel({ discipline }: DisciplinePanelProps) {
 
   return (
     <div className="relative w-full max-w-[480px] mx-auto select-none">
-      {/* 1. SOFT AMBIENT CRIMSON GLOW BEHIND PANEL */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-20"
-        style={{
-          background:
-            "radial-gradient(circle at center, rgba(255, 42, 42, 0.35) 0%, transparent 75%)",
-          filter: "blur(30px)",
-        }}
-      />
-
-      {/* 2. MAIN OBSIDIAN SCI-FI TECH PANEL WITH CORNER ACCENTS */}
-      <div className="relative w-full rounded-2xl bg-[#080204]/94 border border-red-500/70 backdrop-blur-xl p-6 sm:p-7 shadow-[0_0_35px_rgba(255,42,42,0.25),inset_0_0_25px_rgba(0,0,0,0.9)] overflow-hidden">
+      {/* MAIN OBSIDIAN SCI-FI TECH PANEL WITH CORNER ACCENTS (ZERO BACKDROP BLUR) */}
+      <div className="relative w-full rounded-2xl bg-[#080204]/96 border border-red-500/70 p-6 sm:p-7 shadow-[0_0_35px_rgba(255,42,42,0.25),inset_0_0_25px_rgba(0,0,0,0.9)] overflow-hidden">
         {/* Sci-Fi Angular Corner Brackets */}
         <div className="pointer-events-none absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-red-500" />
         <div className="pointer-events-none absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 border-red-500" />
@@ -164,7 +152,7 @@ export default function DisciplinePanel({ discipline }: DisciplinePanelProps) {
             </div>
 
             {/* Dual Mode Switcher Tabs */}
-            <div className="inline-flex items-center p-1 rounded-xl bg-black/80 border border-red-950/80 backdrop-blur-md w-full">
+            <div className="inline-flex items-center p-1 rounded-xl bg-black/85 border border-red-950/80 w-full">
               <button
                 type="button"
                 onClick={() => setActiveTab("technologies")}
@@ -200,7 +188,7 @@ export default function DisciplinePanel({ discipline }: DisciplinePanelProps) {
                   {discipline.technologies.map((tech) => (
                     <div
                       key={tech.name}
-                      className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-black/75 border border-red-950/80 hover:border-red-500/80 hover:bg-red-950/30 transition-all duration-200 group shadow-[0_0_8px_rgba(0,0,0,0.6)]"
+                      className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-black/80 border border-red-950/80 hover:border-red-500/80 hover:bg-red-950/30 transition-all duration-200 group shadow-[0_0_8px_rgba(0,0,0,0.6)]"
                     >
                       <div className="w-5 h-5 rounded flex items-center justify-center shrink-0">
                         {getTechIcon(tech.iconType)}
@@ -221,7 +209,7 @@ export default function DisciplinePanel({ discipline }: DisciplinePanelProps) {
                   <div className="space-y-2">
                     {discipline.appliedIn.slice(0, 2).map((proj) => {
                       const Content = (
-                        <div className="flex items-center justify-between p-3 rounded-xl bg-black/75 border border-red-950/80 hover:border-red-500/80 hover:bg-red-950/30 transition-all duration-200 group cursor-pointer shadow-[0_0_12px_rgba(0,0,0,0.7)]">
+                        <div className="flex items-center justify-between p-3 rounded-xl bg-black/80 border border-red-950/80 hover:border-red-500/80 hover:bg-red-950/30 transition-all duration-200 group cursor-pointer shadow-[0_0_12px_rgba(0,0,0,0.7)]">
                           <div className="flex items-center gap-3 min-w-0">
                             <div className="w-7 h-7 rounded-lg bg-red-950/40 border border-red-900/60 flex items-center justify-center text-red-400 shrink-0 group-hover:text-white group-hover:border-red-500 transition-colors">
                               <Laptop size={14} />
@@ -267,7 +255,7 @@ export default function DisciplinePanel({ discipline }: DisciplinePanelProps) {
                 {discipline.evidence.map((item) => (
                   <div
                     key={item.title}
-                    className="p-3.5 rounded-xl bg-black/75 border border-red-950/80 hover:border-red-500/70 transition-all duration-200 space-y-2 group shadow-[0_0_10px_rgba(0,0,0,0.6)]"
+                    className="p-3.5 rounded-xl bg-black/80 border border-red-950/80 hover:border-red-500/70 transition-all duration-200 space-y-2 group shadow-[0_0_10px_rgba(0,0,0,0.6)]"
                   >
                     <div className="flex items-center justify-between">
                       <h4 className="text-xs font-serif font-bold text-white group-hover:text-red-400 transition-colors">
@@ -299,18 +287,18 @@ export default function DisciplinePanel({ discipline }: DisciplinePanelProps) {
                           href={item.link}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1 font-mono text-[10px] text-red-400 hover:text-white transition-colors"
+                          className="font-mono text-[10px] text-red-400 hover:text-white flex items-center gap-1 transition-colors"
                         >
-                          <span>Repository</span>
-                          <ExternalLink size={11} />
+                          <span>Explore</span>
+                          <ChevronsRight size={12} />
                         </a>
                       ) : (
                         <Link
                           href={item.link}
-                          className="inline-flex items-center gap-1 font-mono text-[10px] text-red-400 hover:text-white transition-colors"
+                          className="font-mono text-[10px] text-red-400 hover:text-white flex items-center gap-1 transition-colors"
                         >
-                          <span>View Dossier</span>
-                          <ArrowUpRight size={12} />
+                          <span>Explore</span>
+                          <ChevronsRight size={12} />
                         </Link>
                       )}
                     </div>

@@ -16,16 +16,7 @@ export default function SkillTrainingPath({
 
   return (
     <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 select-none">
-      <div className="relative w-full rounded-2xl bg-[#080204]/94 border border-red-500/50 backdrop-blur-xl px-5 sm:px-8 py-3.5 sm:py-4 shadow-[0_0_35px_rgba(225,29,46,0.25)] flex flex-col md:flex-row items-center justify-between gap-4 overflow-hidden">
-        {/* Subtle Ambient Red Glow inside bar */}
-        <div
-          className="pointer-events-none absolute -inset-2 opacity-25"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(225, 29, 46, 0.4) 0%, transparent 70%)",
-          }}
-        />
-
+      <div className="relative w-full rounded-2xl bg-[#080204]/96 border border-red-500/50 px-5 sm:px-8 py-3.5 sm:py-4 shadow-[0_0_35px_rgba(225,29,46,0.25)] flex flex-col md:flex-row items-center justify-between gap-4 overflow-hidden">
         {/* 1. LEFT: TITLE & SUBTITLE WITH SHURIKEN ICON */}
         <div className="flex items-center gap-3.5 shrink-0 w-full md:w-auto justify-center md:justify-start border-b md:border-b-0 md:border-r border-red-950/80 pb-3 md:pb-0 md:pr-6">
           {/* Stylized Japanese 4-Point Shuriken Icon */}
