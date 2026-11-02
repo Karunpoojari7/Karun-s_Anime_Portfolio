@@ -36,7 +36,7 @@ export default function Footer() {
             </span>
             <div>
               <b className="font-serif text-base tracking-wider text-white group-hover:text-red-400 transition-colors">
-                KARUN <span className="text-red-500 font-bold">H G</span>
+                KARUN<span className="text-red-500 font-bold">.DEV</span>
               </b>
               <small className="block font-mono text-[9px] tracking-[0.25em] text-neutral-400 uppercase">
                 THE SHINOBI DEVELOPER

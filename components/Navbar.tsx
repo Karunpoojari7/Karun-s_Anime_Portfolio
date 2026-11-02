@@ -37,7 +37,7 @@ export default function Navbar() {
         </span>
         <span>
           <b>
-            KARUN <span>H G</span>
+            KARUN<span>.DEV</span>
           </b>
           <small>THE SHINOBI DEVELOPER</small>
         </span>
