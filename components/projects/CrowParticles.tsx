@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function CrowParticles() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden z-20">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden z-10">
       {/* Flying Crow 1: Upper Left to Lower Right */}
       <motion.div
         initial={{ x: "-10vw", y: "15%", scale: 0.7, opacity: 0 }}
