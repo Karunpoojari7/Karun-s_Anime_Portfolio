@@ -31,50 +31,7 @@ export default function SkillPathway({ activeId, onSelect }: SkillPathwayProps) 
 
   return (
     <div className="relative w-full max-w-[500px] mx-auto min-h-[460px] flex items-center justify-end select-none">
-      {/* 1. LUNAR CHAKRA ORBITAL RING AROUND THE BLOOD MOON (Curving gracefully toward the selector cards) */}
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <svg
-          viewBox="0 0 500 500"
-          className="w-full h-full max-w-[480px] max-h-[480px] -translate-x-12 sm:-translate-x-16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <radialGradient id="nodeGlowGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ff4455" />
-              <stop offset="100%" stopColor="#ff263b" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
-          {/* Thin Elegant Crimson Orbit Ring wrapping around the moon */}
-          <circle
-            cx="210"
-            cy="245"
-            r="140"
-            stroke="#ff263b"
-            strokeWidth="1.5"
-            strokeOpacity="0.45"
-          />
-
-          {/* Glowing Energy Node on Orbit near 2 o'clock */}
-          <circle
-            cx="322"
-            cy="160"
-            r="4.5"
-            fill="#ff263b"
-            className="filter drop-shadow-[0_0_8px_#ff263b]"
-          />
-          <circle
-            cx="322"
-            cy="160"
-            r="12"
-            fill="url(#nodeGlowGrad)"
-            className="animate-ping opacity-60"
-          />
-        </svg>
-      </div>
-
-      {/* 2. VERTICAL STACK OF 4 DISCIPLINE SELECTOR CARDS */}
+      {/* VERTICAL STACK OF 4 DISCIPLINE SELECTOR CARDS (MATCHING REFERENCE IMAGE 2) */}
       <div className="relative z-20 flex flex-col space-y-3.5 w-full max-w-[270px] sm:max-w-[290px]">
         {SKILL_DISCIPLINES.map((discipline) => {
           const isActive = discipline.id === activeId;
@@ -87,8 +44,8 @@ export default function SkillPathway({ activeId, onSelect }: SkillPathwayProps) 
               onClick={() => onSelect(discipline.id)}
               className={`relative flex items-center gap-3.5 px-4 py-3 rounded-2xl transition-all duration-300 cursor-pointer group ${
                 isActive
-                  ? "bg-gradient-to-r from-[#1c0307]/95 via-[#2c050c]/95 to-[#160205]/95 border-2 border-red-500 shadow-[0_0_25px_rgba(255,42,42,0.45),inset_0_0_15px_rgba(255,42,42,0.15)] backdrop-blur-md"
-                  : "bg-black/50 border border-transparent hover:border-red-950/70 hover:bg-black/70 backdrop-blur-sm"
+                  ? "bg-gradient-to-r from-[#1c0307]/95 via-[#2c050c]/95 to-[#160205]/95 border-2 border-red-500 shadow-[0_0_25px_rgba(255,42,42,0.45),inset_0_0_15px_rgba(255,42,42,0.15)]"
+                  : "bg-black/60 border border-neutral-800/80 hover:border-red-950/70 hover:bg-black/80"
               }`}
             >
               {/* Left Circular Icon Badge */}

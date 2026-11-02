@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Settings, Shield } from "lucide-react";
+import { Code2, Layers, FlaskConical } from "lucide-react";
 
 export default function SkillsIntro() {
   const stats = [
@@ -12,19 +12,19 @@ export default function SkillsIntro() {
       label: "Core Domains",
     },
     {
-      icon: <Settings size={18} className="text-red-500" />,
+      icon: <Layers size={18} className="text-red-500" />,
       value: "15+",
       label: "Technologies",
     },
     {
-      icon: <Shield size={18} className="text-red-500" />,
+      icon: <FlaskConical size={18} className="text-red-500" />,
       value: "9",
       label: "Project Applications",
     },
   ];
 
   return (
-    <div className="flex flex-col justify-center space-y-6 max-w-md select-none">
+    <div className="flex flex-col justify-center space-y-5 max-w-md select-none">
       {/* 1. TOP EYEBROW TAG MATCHING REFERENCE */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -41,7 +41,7 @@ export default function SkillsIntro() {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-4xl sm:text-5xl lg:text-[50px] font-bold text-white tracking-tight leading-[1.08]"
+        className="text-4xl sm:text-5xl lg:text-[48px] font-bold text-white tracking-tight leading-[1.08]"
       >
         My Technical<br />
         <span
@@ -62,7 +62,7 @@ export default function SkillsIntro() {
         A practical skill set built through projects, internships and continuous learning.
       </motion.p>
 
-      {/* 4. THREE STACKED GLASSMORPHIISM METRIC CARDS */}
+      {/* 4. THREE STACKED GLASSMORPHIISM METRIC CARDS (ZERO BACKDROP BLUR) */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export default function SkillsIntro() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-black/60 border border-red-950/70 hover:border-red-500/50 backdrop-blur-md transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.8)] group cursor-default"
+            className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-black/60 border border-red-950/70 hover:border-red-500/50 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.8)] group cursor-default"
           >
             <div className="shrink-0 text-red-500 group-hover:scale-110 transition-transform">
               {stat.icon}
@@ -81,7 +81,7 @@ export default function SkillsIntro() {
               <span className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight">
                 {stat.value}
               </span>
-              <span className="font-mono text-xs text-neutral-400 tracking-wider">
+              <span className="font-mono text-xs text-neutral-300 tracking-wider">
                 {stat.label}
               </span>
             </div>
