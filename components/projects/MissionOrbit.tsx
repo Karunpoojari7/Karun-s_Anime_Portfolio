@@ -29,24 +29,24 @@ export default function MissionOrbit({
 
   const total = missions.length;
 
-  // Calculate coordinates matching the amphitheater crescent arc of Reference Image 1
-  // z-indexes are strictly contained between 10 and 40 (below global header z-50)
+  // Calculate coordinates matching the 3D perspective orbital ellipse of Reference Image 1
+  // z-indexes are strictly contained between 15 and 40 (below global header z-50)
   const getSlotTransform = (offset: number) => {
     if (viewportWidth >= 1280) {
-      // Desktop
+      // Desktop: 9 scrolls forming a true tilted 3D elliptical orbit around central Itachi
       const desktopSlots: Record<
         number,
         { x: number; y: number; scale: number; zIndex: number; opacity: number }
       > = {
-        0: { x: 0, y: 35, scale: 1.05, zIndex: 40, opacity: 1.0 },
-        [-1]: { x: -215, y: 15, scale: 0.82, zIndex: 30, opacity: 0.94 },
-        [1]: { x: 215, y: 15, scale: 0.82, zIndex: 30, opacity: 0.94 },
-        [-2]: { x: -390, y: -25, scale: 0.74, zIndex: 25, opacity: 0.88 },
-        [2]: { x: 390, y: -25, scale: 0.74, zIndex: 25, opacity: 0.88 },
-        [-3]: { x: -545, y: -10, scale: 0.68, zIndex: 20, opacity: 0.82 },
-        [3]: { x: 545, y: -10, scale: 0.68, zIndex: 20, opacity: 0.82 },
-        [-4]: { x: -680, y: 35, scale: 0.62, zIndex: 15, opacity: 0.76 },
-        [4]: { x: 680, y: 35, scale: 0.62, zIndex: 15, opacity: 0.76 },
+        0: { x: 0, y: 32, scale: 1.10, zIndex: 40, opacity: 1.0 },
+        [-1]: { x: -240, y: 12, scale: 0.86, zIndex: 35, opacity: 0.95 },
+        [1]: { x: 240, y: 12, scale: 0.86, zIndex: 35, opacity: 0.95 },
+        [-2]: { x: -440, y: -18, scale: 0.77, zIndex: 28, opacity: 0.90 },
+        [2]: { x: 440, y: -18, scale: 0.77, zIndex: 28, opacity: 0.90 },
+        [-3]: { x: -315, y: -62, scale: 0.68, zIndex: 22, opacity: 0.84 },
+        [3]: { x: 315, y: -62, scale: 0.68, zIndex: 22, opacity: 0.84 },
+        [-4]: { x: -155, y: -86, scale: 0.62, zIndex: 18, opacity: 0.80 },
+        [4]: { x: 155, y: -86, scale: 0.62, zIndex: 18, opacity: 0.80 },
       };
       return desktopSlots[offset] || desktopSlots[0];
     } else if (viewportWidth >= 1024) {
@@ -55,15 +55,15 @@ export default function MissionOrbit({
         number,
         { x: number; y: number; scale: number; zIndex: number; opacity: number }
       > = {
-        0: { x: 0, y: 30, scale: 1.0, zIndex: 40, opacity: 1.0 },
-        [-1]: { x: -180, y: 12, scale: 0.78, zIndex: 30, opacity: 0.92 },
-        [1]: { x: 180, y: 12, scale: 0.78, zIndex: 30, opacity: 0.92 },
-        [-2]: { x: -325, y: -22, scale: 0.70, zIndex: 25, opacity: 0.85 },
-        [2]: { x: 325, y: -22, scale: 0.70, zIndex: 25, opacity: 0.85 },
-        [-3]: { x: -455, y: -8, scale: 0.62, zIndex: 20, opacity: 0.78 },
-        [3]: { x: 455, y: -8, scale: 0.62, zIndex: 20, opacity: 0.78 },
-        [-4]: { x: -560, y: 28, scale: 0.56, zIndex: 15, opacity: 0.70 },
-        [4]: { x: 560, y: 28, scale: 0.56, zIndex: 15, opacity: 0.70 },
+        0: { x: 0, y: 26, scale: 1.02, zIndex: 40, opacity: 1.0 },
+        [-1]: { x: -205, y: 10, scale: 0.82, zIndex: 35, opacity: 0.95 },
+        [1]: { x: 205, y: 10, scale: 0.82, zIndex: 35, opacity: 0.95 },
+        [-2]: { x: -380, y: -16, scale: 0.72, zIndex: 28, opacity: 0.88 },
+        [2]: { x: 380, y: -16, scale: 0.72, zIndex: 28, opacity: 0.88 },
+        [-3]: { x: -270, y: -54, scale: 0.64, zIndex: 22, opacity: 0.82 },
+        [3]: { x: 270, y: -54, scale: 0.64, zIndex: 22, opacity: 0.82 },
+        [-4]: { x: -135, y: -74, scale: 0.58, zIndex: 18, opacity: 0.76 },
+        [4]: { x: 135, y: -74, scale: 0.58, zIndex: 18, opacity: 0.76 },
       };
       return laptopSlots[offset] || laptopSlots[0];
     } else if (viewportWidth >= 640) {
@@ -72,15 +72,15 @@ export default function MissionOrbit({
         number,
         { x: number; y: number; scale: number; zIndex: number; opacity: number }
       > = {
-        0: { x: 0, y: 20, scale: 0.95, zIndex: 40, opacity: 1.0 },
-        [-1]: { x: -145, y: 8, scale: 0.72, zIndex: 30, opacity: 0.88 },
-        [1]: { x: 145, y: 8, scale: 0.72, zIndex: 30, opacity: 0.88 },
-        [-2]: { x: -265, y: -18, scale: 0.60, zIndex: 25, opacity: 0.75 },
-        [2]: { x: 265, y: -18, scale: 0.60, zIndex: 25, opacity: 0.75 },
-        [-3]: { x: -360, y: -5, scale: 0.50, zIndex: 20, opacity: 0.60 },
-        [3]: { x: 360, y: -5, scale: 0.50, zIndex: 20, opacity: 0.60 },
-        [-4]: { x: -435, y: 20, scale: 0.42, zIndex: 15, opacity: 0.45 },
-        [4]: { x: 435, y: 20, scale: 0.42, zIndex: 15, opacity: 0.45 },
+        0: { x: 0, y: 18, scale: 0.95, zIndex: 40, opacity: 1.0 },
+        [-1]: { x: -165, y: 6, scale: 0.74, zIndex: 35, opacity: 0.92 },
+        [1]: { x: 165, y: 6, scale: 0.74, zIndex: 35, opacity: 0.92 },
+        [-2]: { x: -295, y: -14, scale: 0.62, zIndex: 28, opacity: 0.82 },
+        [2]: { x: 295, y: -14, scale: 0.62, zIndex: 28, opacity: 0.82 },
+        [-3]: { x: -210, y: -45, scale: 0.52, zIndex: 22, opacity: 0.72 },
+        [3]: { x: 210, y: -45, scale: 0.52, zIndex: 22, opacity: 0.72 },
+        [-4]: { x: -105, y: -62, scale: 0.45, zIndex: 18, opacity: 0.62 },
+        [4]: { x: 105, y: -62, scale: 0.45, zIndex: 18, opacity: 0.62 },
       };
       return tabletSlots[offset] || tabletSlots[0];
     } else {
@@ -89,19 +89,25 @@ export default function MissionOrbit({
         number,
         { x: number; y: number; scale: number; zIndex: number; opacity: number }
       > = {
-        0: { x: 0, y: 10, scale: 1.0, zIndex: 40, opacity: 1.0 },
-        [-1]: { x: -140, y: 5, scale: 0.68, zIndex: 25, opacity: 0.55 },
-        [1]: { x: 140, y: 5, scale: 0.68, zIndex: 25, opacity: 0.55 },
-        [-2]: { x: -245, y: -8, scale: 0.50, zIndex: 20, opacity: 0.25 },
-        [2]: { x: 245, y: -8, scale: 0.50, zIndex: 20, opacity: 0.25 },
-        [-3]: { x: -315, y: -5, scale: 0.38, zIndex: 15, opacity: 0.10 },
-        [3]: { x: 315, y: -5, scale: 0.38, zIndex: 15, opacity: 0.10 },
-        [-4]: { x: -365, y: 10, scale: 0.28, zIndex: 10, opacity: 0.0 },
-        [4]: { x: 365, y: 10, scale: 0.28, zIndex: 10, opacity: 0.0 },
+        0: { x: 0, y: 5, scale: 1.0, zIndex: 40, opacity: 1.0 },
+        [-1]: { x: -135, y: 0, scale: 0.68, zIndex: 30, opacity: 0.65 },
+        [1]: { x: 135, y: 0, scale: 0.68, zIndex: 30, opacity: 0.65 },
+        [-2]: { x: -225, y: -10, scale: 0.48, zIndex: 20, opacity: 0.30 },
+        [2]: { x: 225, y: -10, scale: 0.48, zIndex: 20, opacity: 0.30 },
+        [-3]: { x: -160, y: -30, scale: 0.36, zIndex: 15, opacity: 0.15 },
+        [3]: { x: 160, y: -30, scale: 0.36, zIndex: 15, opacity: 0.15 },
+        [-4]: { x: -80, y: -42, scale: 0.28, zIndex: 10, opacity: 0.05 },
+        [4]: { x: 80, y: -42, scale: 0.28, zIndex: 10, opacity: 0.05 },
       };
       return mobileSlots[offset] || mobileSlots[0];
     }
   };
+
+  // Dynamic SVG laser ring coordinates to match viewport
+  const laserRx = viewportWidth >= 1280 ? 440 : viewportWidth >= 1024 ? 380 : viewportWidth >= 640 ? 295 : 225;
+  const laserRy = viewportWidth >= 1280 ? 72 : viewportWidth >= 1024 ? 62 : viewportWidth >= 640 ? 48 : 34;
+  const laserCy = viewportWidth >= 1280 ? -26 : viewportWidth >= 1024 ? -24 : viewportWidth >= 640 ? -20 : -15;
+  const focusY = laserCy + laserRy;
 
   return (
     <div className="relative w-full h-[390px] sm:h-[430px] lg:h-[470px] flex items-center justify-center overflow-visible select-none my-auto">
@@ -128,42 +134,51 @@ export default function MissionOrbit({
           </filter>
         </defs>
 
-        {/* Ambient Glow Arc */}
-        <path
-          d="M -690 35 Q -550 -40, -390 -30 T 0 35 T 390 -30 Q 550 -40, 690 35"
+        {/* Ambient Glow Elliptical Ring */}
+        <ellipse
+          cx="0"
+          cy={laserCy}
+          rx={laserRx}
+          ry={laserRy}
           fill="none"
-          stroke="rgba(225, 29, 46, 0.4)"
+          stroke="rgba(225, 29, 46, 0.45)"
           strokeWidth="6"
           filter="url(#chakraBlur)"
         />
 
-        {/* Crisp Laser Arc Connecting all 9 Scrolls */}
-        <path
-          d="M -690 35 Q -550 -40, -390 -30 T 0 35 T 390 -30 Q 550 -40, 690 35"
+        {/* Crisp Laser Ellipse Connecting all 9 Scrolls around Itachi */}
+        <ellipse
+          cx="0"
+          cy={laserCy}
+          rx={laserRx}
+          ry={laserRy}
           fill="none"
           stroke="url(#laserGrad)"
-          strokeWidth="2"
+          strokeWidth="2.2"
         />
 
-        {/* Energy Pulse Sparkles */}
-        <path
-          d="M -690 35 Q -550 -40, -390 -30 T 0 35 T 390 -30 Q 550 -40, 690 35"
+        {/* Orbiting Energy Sparkles along Ellipse */}
+        <ellipse
+          cx="0"
+          cy={laserCy}
+          rx={laserRx}
+          ry={laserRy}
           fill="none"
           stroke="#ffffff"
-          strokeWidth="1.5"
-          strokeDasharray="12 180"
+          strokeWidth="1.6"
+          strokeDasharray="14 140"
           className="animate-pulse"
         />
 
-        {/* Central Energy Focus Point directly below Itachi's outstretched hand */}
+        {/* Central Energy Focus Point directly below Itachi's outstretched hand at front apex */}
         <circle
           cx="0"
-          cy="35"
-          r="8"
+          cy={focusY}
+          r="9"
           fill="#ff263b"
           className="animate-ping opacity-60"
         />
-        <circle cx="0" cy="35" r="4" fill="#ffffff" />
+        <circle cx="0" cy={focusY} r="4.5" fill="#ffffff" />
       </svg>
 
       {/* 2. THE 9 MISSION SCROLLS POSITIONED ALONG THE AMPHITHEATER CRESCENT */}
