@@ -235,7 +235,7 @@ export default async function ProjectDetail({
           {/* Aside Column */}
           <aside className="lg:col-span-4 space-y-6">
             {/* Status & Repository Card */}
-            <div className="p-6 rounded-xl bg-[#090204]/90 border border-red-500/40 shadow-[0_0_30px_rgba(225,29,46,0.2)] backdrop-blur-xl space-y-5">
+            <div className="p-6 rounded-xl bg-[#090204]/95 border border-red-500/40 shadow-[0_0_30px_rgba(225,29,46,0.2)] space-y-5">
               <div>
                 <span className="font-mono text-[10px] tracking-[0.2em] text-neutral-400 uppercase block mb-1">
                   FILE STATUS
