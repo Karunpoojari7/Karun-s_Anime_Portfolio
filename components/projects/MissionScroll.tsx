@@ -68,7 +68,7 @@ export default function MissionScroll({
 
       {/* SCROLL PARCHMENT BODY (High contrast deep obsidian background) */}
       <div
-        className={`relative w-[96%] flex flex-col p-3 sm:p-3.5 bg-[#0c0407]/98 border transition-all duration-300 backdrop-blur-md ${
+        className={`relative w-[96%] flex flex-col p-3 sm:p-3.5 bg-[#0c0407]/98 border transition-all duration-300 ${
           isActive
             ? "border-2 border-red-500 shadow-[0_0_30px_rgba(225,29,46,0.55),inset_0_0_15px_rgba(225,29,46,0.2)] bg-gradient-to-b from-[#140306] to-[#080204]"
             : "border border-red-900/70 shadow-[0_0_18px_rgba(0,0,0,0.9)] group-hover:border-red-500/80"

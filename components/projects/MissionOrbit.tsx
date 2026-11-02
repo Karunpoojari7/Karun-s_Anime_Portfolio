@@ -124,26 +124,17 @@ export default function MissionOrbit({
             <stop offset="70%" stopColor="#ff263b" />
             <stop offset="100%" stopColor="rgba(225, 29, 46, 0.2)" />
           </linearGradient>
-
-          <filter id="chakraBlur" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
-        {/* Ambient Glow Elliptical Ring */}
+        {/* Ambient Subtle Outer Ring (Clean Vector, No Rasterizing Gaussian Blur) */}
         <ellipse
           cx="0"
           cy={laserCy}
           rx={laserRx}
           ry={laserRy}
           fill="none"
-          stroke="rgba(225, 29, 46, 0.45)"
-          strokeWidth="6"
-          filter="url(#chakraBlur)"
+          stroke="rgba(225, 29, 46, 0.25)"
+          strokeWidth="4"
         />
 
         {/* Crisp Laser Ellipse Connecting all 9 Scrolls around Itachi */}
@@ -154,7 +145,7 @@ export default function MissionOrbit({
           ry={laserRy}
           fill="none"
           stroke="url(#laserGrad)"
-          strokeWidth="2.2"
+          strokeWidth="2"
         />
 
         {/* Orbiting Energy Sparkles along Ellipse */}
