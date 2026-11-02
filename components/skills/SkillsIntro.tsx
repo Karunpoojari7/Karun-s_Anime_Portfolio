@@ -2,89 +2,92 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Layers, FlaskConical } from "lucide-react";
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
-
-const stats = [
-  { icon: <Code2 size={15} className="text-red-500 shrink-0" />, value: "4", label: "Core Domains" },
-  { icon: <Layers size={15} className="text-red-500 shrink-0" />, value: "15+", label: "Technologies" },
-  { icon: <FlaskConical size={15} className="text-red-500 shrink-0" />, value: "9", label: "Project Applications" },
-];
+import { Code2, Settings, Shield } from "lucide-react";
 
 export default function SkillsIntro() {
+  const stats = [
+    {
+      icon: <Code2 size={18} className="text-red-500" />,
+      value: "4",
+      label: "Core Domains",
+    },
+    {
+      icon: <Settings size={18} className="text-red-500" />,
+      value: "15+",
+      label: "Technologies",
+    },
+    {
+      icon: <Shield size={18} className="text-red-500" />,
+      value: "9",
+      label: "Project Applications",
+    },
+  ];
+
   return (
-    <motion.div
-      className="flex flex-col justify-center space-y-5 select-none"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Eyebrow */}
+    <div className="flex flex-col justify-center space-y-6 max-w-md select-none">
+      {/* 1. TOP EYEBROW TAG MATCHING REFERENCE */}
       <motion.div
-        variants={itemVariants}
-        className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] text-red-500 uppercase font-semibold"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-red-500 uppercase font-semibold"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_#ff263b] animate-pulse" />
         SHINOBI ARSENAL
       </motion.div>
 
-      {/* Main Heading */}
+      {/* 2. MAIN EDITORIAL HEADING */}
       <motion.h1
-        variants={itemVariants}
-        className="font-serif font-bold text-white leading-[1.06] tracking-tight"
-        style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: "clamp(38px, 4.2vw, 58px)",
-        }}
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="text-4xl sm:text-5xl lg:text-[50px] font-bold text-white tracking-tight leading-[1.08]"
       >
-        My Technical
-        <br />
-        <em className="not-italic text-red-500 drop-shadow-[0_0_24px_rgba(225,29,46,0.45)]">
+        My Technical<br />
+        <span
+          className="text-red-500 italic drop-shadow-[0_0_20px_rgba(255,42,42,0.45)]"
+          style={{ fontFamily: "'Playfair Display', serif" }}
+        >
           Disciplines.
-        </em>
+        </span>
       </motion.h1>
 
-      {/* Description */}
+      {/* 3. EDITORIAL PARAGRAPH MATCHING EXACT USER PROMPT */}
       <motion.p
-        variants={itemVariants}
-        className="text-[13px] text-neutral-300 font-sans leading-relaxed max-w-[280px]"
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="text-xs sm:text-sm text-neutral-300 font-sans leading-relaxed max-w-sm"
       >
-        A practical skill set built through projects, internships and continuous
-        learning.
+        A practical skill set built through projects, internships and continuous learning.
       </motion.p>
 
-      {/* Stat Cards */}
-      <motion.div variants={itemVariants} className="space-y-3 pt-1">
+      {/* 4. THREE STACKED GLASSMORPHIISM METRIC CARDS */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="flex flex-col space-y-3 pt-2 w-full max-w-xs"
+      >
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-black/50 border border-red-950/60 hover:border-red-800/70 transition-colors duration-200 group cursor-default max-w-[240px]"
+            className="flex items-center gap-3.5 px-4 py-3 rounded-xl bg-black/60 border border-red-950/70 hover:border-red-500/50 backdrop-blur-md transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.8)] group cursor-default"
           >
-            <div className="w-7 h-7 rounded-md bg-red-950/50 border border-red-900/50 flex items-center justify-center shrink-0 group-hover:border-red-600/70 transition-colors">
+            <div className="shrink-0 text-red-500 group-hover:scale-110 transition-transform">
               {stat.icon}
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-serif text-base font-bold text-white tracking-tight">
+            <div className="flex items-baseline gap-2.5">
+              <span className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight">
                 {stat.value}
               </span>
-              <span className="font-mono text-[10px] text-neutral-400 tracking-wider">
+              <span className="font-mono text-xs text-neutral-400 tracking-wider">
                 {stat.label}
               </span>
             </div>
           </div>
         ))}
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

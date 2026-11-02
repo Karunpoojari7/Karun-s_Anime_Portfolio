@@ -10,184 +10,116 @@ interface SkillPathwayProps {
   onSelect: (id: DisciplineId) => void;
 }
 
-// Reference positions: Development=top-right, AI&ML=right-mid, Cybersecurity=left-mid, DevOps=bottom-left
-// Matching the reference image: nodes sit ON the ring at 4 cardinal/diagonal positions
-// Ring center ~50% 52%, radius ~42% of container
-// top (Dev): 12% top, 58% left
-// right (AI): 38% top, 88% left
-// left (Cyber): 60% top, 12% left
-// bottom-right (DevOps): 82% top, 62% left
-const NODE_POSITIONS: Record<DisciplineId, { top: string; left: string; labelSide: "right" | "left" }> = {
-  development:   { top: "10%",  left: "62%", labelSide: "right" },
-  "ai-ml":       { top: "38%",  left: "88%", labelSide: "right" },
-  cybersecurity: { top: "62%",  left: "12%", labelSide: "left"  },
-  "devops-tools":{ top: "84%",  left: "62%", labelSide: "right" },
-};
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.5 } },
-};
-
-const nodeVariants = {
-  hidden: { opacity: 0, scale: 0.6 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] } },
-};
-
-const ringVariants = {
-  hidden: { opacity: 0, pathLength: 0 },
-  visible: { opacity: 1, pathLength: 1, transition: { duration: 1.4, delay: 0.3, ease: "easeInOut" } },
-};
-
-function NodeIcon({
-  type,
-  isActive,
-}: {
-  type: SkillDiscipline["iconType"];
-  isActive: boolean;
-}) {
-  const cls = isActive
-    ? "text-white"
-    : "text-neutral-300 group-hover:text-red-400 transition-colors duration-200";
-  const size = 20;
-  switch (type) {
-    case "code":   return <Code2 size={size} className={cls} />;
-    case "brain":  return <Brain size={size} className={cls} />;
-    case "shield": return <Shield size={size} className={cls} />;
-    case "layers": return <Layers size={size} className={cls} />;
-  }
-}
-
 export default function SkillPathway({ activeId, onSelect }: SkillPathwayProps) {
+  const getNodeIcon = (type: SkillDiscipline["iconType"], isActive: boolean) => {
+    const iconSize = 20;
+    const iconClass = isActive
+      ? "text-red-500"
+      : "text-neutral-400 group-hover:text-red-400 transition-colors";
+
+    switch (type) {
+      case "code":
+        return <Code2 size={iconSize} className={iconClass} />;
+      case "brain":
+        return <Brain size={iconSize} className={iconClass} />;
+      case "shield":
+        return <Shield size={iconSize} className={iconClass} />;
+      case "layers":
+        return <Layers size={iconSize} className={iconClass} />;
+    }
+  };
+
   return (
-    <div className="relative w-full max-w-[520px] h-[480px] sm:h-[520px] mx-auto select-none">
-      {/* SVG Ring Layer — single clean orbital circle */}
+    <div className="relative w-full max-w-[500px] mx-auto min-h-[460px] flex items-center justify-end select-none">
+      {/* 1. LUNAR CHAKRA ORBITAL RING AROUND THE BLOOD MOON (Curving gracefully toward the selector cards) */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <svg
           viewBox="0 0 500 500"
-          className="w-full h-full"
+          className="w-full h-full max-w-[480px] max-h-[480px] -translate-x-12 sm:-translate-x-16"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            {/* Gradient for the animated arc sparkle */}
-            <linearGradient id="skillArcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(225,29,46,0)" />
-              <stop offset="40%" stopColor="#e11d2e" />
-              <stop offset="100%" stopColor="rgba(255,60,80,0)" />
-            </linearGradient>
+            <radialGradient id="nodeGlowGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ff4455" />
+              <stop offset="100%" stopColor="#ff263b" stopOpacity="0" />
+            </radialGradient>
           </defs>
 
-          {/* Base dashed ring — subtle */}
-          <motion.circle
-            cx="250"
-            cy="260"
-            r="195"
-            stroke="rgba(225,29,46,0.22)"
-            strokeWidth="1.2"
-            strokeDasharray="5 9"
-            variants={ringVariants}
-            initial="hidden"
-            animate="visible"
-          />
-
-          {/* Solid thin ring behind */}
-          <motion.circle
-            cx="250"
-            cy="260"
-            r="195"
-            stroke="rgba(180,20,36,0.15)"
-            strokeWidth="1"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          />
-
-          {/* Animated arc — energy moving around ring */}
+          {/* Thin Elegant Crimson Orbit Ring wrapping around the moon */}
           <circle
-            cx="250"
-            cy="260"
-            r="195"
-            stroke="url(#skillArcGrad)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeDasharray="50 1180"
-            className="animate-spin"
-            style={{ animationDuration: "12s", transformOrigin: "250px 260px" }}
+            cx="210"
+            cy="245"
+            r="140"
+            stroke="#ff263b"
+            strokeWidth="1.5"
+            strokeOpacity="0.45"
+          />
+
+          {/* Glowing Energy Node on Orbit near 2 o'clock */}
+          <circle
+            cx="322"
+            cy="160"
+            r="4.5"
+            fill="#ff263b"
+            className="filter drop-shadow-[0_0_8px_#ff263b]"
+          />
+          <circle
+            cx="322"
+            cy="160"
+            r="12"
+            fill="url(#nodeGlowGrad)"
+            className="animate-ping opacity-60"
           />
         </svg>
       </div>
 
-      {/* Four Discipline Nodes */}
-      <motion.div
-        className="absolute inset-0"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      {/* 2. VERTICAL STACK OF 4 DISCIPLINE SELECTOR CARDS */}
+      <div className="relative z-20 flex flex-col space-y-3.5 w-full max-w-[270px] sm:max-w-[290px]">
         {SKILL_DISCIPLINES.map((discipline) => {
           const isActive = discipline.id === activeId;
-          const pos = NODE_POSITIONS[discipline.id];
-          const isLeft = pos.labelSide === "left";
 
           return (
             <motion.div
               key={discipline.id}
-              variants={nodeVariants}
-              className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ top: pos.top, left: pos.left }}
+              whileHover={{ x: 4 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => onSelect(discipline.id)}
+              className={`relative flex items-center gap-3.5 px-4 py-3 rounded-2xl transition-all duration-300 cursor-pointer group ${
+                isActive
+                  ? "bg-gradient-to-r from-[#1c0307]/95 via-[#2c050c]/95 to-[#160205]/95 border-2 border-red-500 shadow-[0_0_25px_rgba(255,42,42,0.45),inset_0_0_15px_rgba(255,42,42,0.15)] backdrop-blur-md"
+                  : "bg-black/50 border border-transparent hover:border-red-950/70 hover:bg-black/70 backdrop-blur-sm"
+              }`}
             >
-              <button
-                type="button"
-                onClick={() => onSelect(discipline.id)}
-                aria-label={`Select ${discipline.title}`}
-                aria-pressed={isActive}
-                className={`group relative flex ${
-                  isLeft ? "flex-row-reverse" : "flex-row"
-                } items-center gap-2.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-xl`}
+              {/* Left Circular Icon Badge */}
+              <div
+                className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                  isActive
+                    ? "bg-black/90 border border-red-500/80 shadow-[0_0_15px_rgba(255,42,42,0.6)]"
+                    : "bg-black/80 border border-neutral-800 group-hover:border-red-900/60 group-hover:bg-red-950/30"
+                }`}
               >
-                {/* Icon Circle */}
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.92 }}
-                  className={`relative flex items-center justify-center rounded-full transition-all duration-300 ${
-                    isActive
-                      ? "w-14 h-14 bg-gradient-to-br from-[#a51020] to-[#e11d2e] border-2 border-white/85 shadow-[0_0_28px_rgba(225,29,46,0.85),0_0_60px_rgba(225,29,46,0.3)]"
-                      : "w-12 h-12 bg-[#0c0305]/90 border border-red-900/70 hover:border-red-500/90 hover:bg-red-950/40 hover:shadow-[0_0_20px_rgba(225,29,46,0.4)]"
-                  }`}
-                >
-                  {/* Pulse ring for active */}
-                  {isActive && (
-                    <span className="absolute -inset-1.5 rounded-full border border-red-400/50 animate-ping opacity-60" />
-                  )}
-                  <NodeIcon type={discipline.iconType} isActive={isActive} />
-                </motion.div>
+                {getNodeIcon(discipline.iconType, isActive)}
+              </div>
 
-                {/* Label Pill */}
-                <div
-                  className={`flex flex-col transition-all duration-300 ${
-                    isLeft ? "items-end text-right" : "items-start text-left"
+              {/* Title & Subtitle */}
+              <div className="flex flex-col min-w-0">
+                <span
+                  className={`font-serif text-base font-bold tracking-tight transition-colors truncate ${
+                    isActive ? "text-white" : "text-neutral-300 group-hover:text-white"
                   }`}
+                  style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  <span
-                    className={`font-serif text-[13px] font-bold leading-tight transition-colors ${
-                      isActive
-                        ? "text-white drop-shadow-[0_0_10px_rgba(255,60,80,0.6)]"
-                        : "text-neutral-200 group-hover:text-white"
-                    }`}
-                    style={{ fontFamily: "'Playfair Display', serif" }}
-                  >
-                    {discipline.title}
-                  </span>
-                  <span className="font-mono text-[9px] text-neutral-500 tracking-wider group-hover:text-neutral-400 transition-colors">
-                    {discipline.subtitle}
-                  </span>
-                </div>
-              </button>
+                  {discipline.title}
+                </span>
+                <span className="font-mono text-[10.5px] text-neutral-400 tracking-wider truncate">
+                  {discipline.subtitle}
+                </span>
+              </div>
             </motion.div>
           );
         })}
-      </motion.div>
+      </div>
     </div>
   );
 }
