@@ -9,7 +9,9 @@ export default function Footer() {
   const pathname = usePathname();
   const currentYear = 2026;
 
-
+  // Suppress footer on full-viewport immersive cinematic pages to prevent vertical scroll and header collisions
+  const isCinematicPage = ["/experience", "/contact", "/skills", "/projects"].includes(pathname);
+  if (isCinematicPage) return null;
 
   const footerLinks = [
     { href: "/", label: "Home" },
