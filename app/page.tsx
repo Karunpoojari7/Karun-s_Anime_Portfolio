@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Code2, ShieldCheck, BrainCircuit, Terminal, Sparkles } from "lucide-react";
 import { projects } from "@/lib/projects";
-import ItachiIntro from "@/components/ItachiIntro";
+import MangekyoIntro from "@/components/intro/MangekyoIntro";
 import ShinobiHero from "@/components/hero/ShinobiHero";
 import MissionStats from "@/components/hero/MissionStats";
 import TsukuyomiProjects from "@/components/projects/TsukuyomiProjects";
@@ -41,7 +41,7 @@ export default function Home() {
     <div className="homepage-root">
       {/* Dedicated Cinematic Mangekyo Sharingan Opening Experience */}
       {isReady && showIntro && (
-        <ItachiIntro onComplete={handleIntroComplete} />
+        <MangekyoIntro onEnter={handleIntroComplete} onSkip={handleIntroComplete} />
       )}
 
       {/* Hero: Itachi Arrival, Akatsuki Cloak, Crow Vortex */}
