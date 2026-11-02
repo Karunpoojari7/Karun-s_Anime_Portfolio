@@ -26,8 +26,8 @@ interface TsukuyomiProjectsProps {
 }
 
 export default function TsukuyomiProjects({ isDedicatedPage = false }: TsukuyomiProjectsProps) {
-  // Default to Mission 03 (Diabetic Retinopathy Detection as shown in visual Reference Image 1)
-  const [currentIndex, setCurrentIndex] = useState(2);
+  // Default to Mission 09 (Bayora Sec as shown in visual Reference Image 2)
+  const [currentIndex, setCurrentIndex] = useState(8);
   const [viewMode, setViewMode] = useState<"dimension" | "archive">("dimension");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -107,7 +107,7 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
           : "min-h-[920px] md:min-h-[960px] py-8"
       }`}
     >
-      {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Itachi, Torii Gates, Reflective Floor) */}
+      {/* 1. CINEMATIC BACKGROUND ARTWORK (Giant Blood Moon, Itachi Reaching Forward, Torii Gates, Reflective Floor) */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src="/assets/itachi/tsukuyomi-stage-bg.jpg"
@@ -116,7 +116,7 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
           priority
           quality={100}
           sizes="100vw"
-          className="object-cover object-[center_28%]"
+          className="object-cover object-[center_32%]"
         />
 
         {/* Subtle Stage Floor Crimson Ambience (Preserves 100% facial and sky clarity) */}
@@ -138,7 +138,7 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
 
       {/* 3. FOREGROUND CONTENT */}
       <div className="relative z-20 w-full flex-1 flex flex-col justify-between max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* TOP EDITORIAL HEADER & MODE SWITCHER MATCHING REFERENCE IMAGE 1 */}
+        {/* TOP EDITORIAL HEADER & MODE SWITCHER MATCHING REFERENCE IMAGE 2 */}
         <header className="w-full text-center space-y-1.5 shrink-0 pt-1">
           {/* Eyebrow Tag */}
           <div className="inline-flex items-center gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-red-500 uppercase font-semibold">
@@ -200,7 +200,7 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
               onOpenDossier={(p) => handleOpenDossier(p, currentIndex)}
             />
 
-            {/* 5. PROJECT INFORMATION DOSSIER PANEL MATCHING REFERENCE IMAGE 1 */}
+            {/* 5. PROJECT INFORMATION DOSSIER PANEL MATCHING REFERENCE IMAGE 2 */}
             <div className="w-full max-w-5xl mx-auto shrink-0 pt-2 pb-1">
               <div className="relative rounded-2xl bg-[#090204]/96 border border-red-500/60 shadow-[0_0_35px_rgba(225,29,46,0.3),inset_0_0_20px_rgba(0,0,0,0.9)] p-4 sm:p-5 flex flex-col lg:flex-row items-center justify-between gap-5 overflow-hidden">
                 {/* Subtle Ambient Red Glow inside Dossier */}
@@ -248,6 +248,7 @@ export default function TsukuyomiProjects({ isDedicatedPage = false }: Tsukuyomi
                   <div className="font-mono text-[9px] tracking-[0.25em] text-red-500 uppercase font-semibold mb-2">
                     TECHNOLOGIES
                   </div>
+
                   <div className="flex flex-wrap items-center gap-1.5 justify-start lg:justify-center">
                     {currentProject.stack.slice(0, 5).map((tech) => (
                       <span
